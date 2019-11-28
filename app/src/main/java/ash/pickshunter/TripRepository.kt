@@ -232,7 +232,29 @@ class TripRepository {
 
         return apiResponse
     }
+    fun getTripDetails(tripId: Int,islatest: String): LiveData<ArrayList<TripDetailsResponse>> {
+        val apiResponse = MutableLiveData<ArrayList<TripDetailsResponse>>()
+        val apiService = endpoints.getClient()!!.create(ApiInterface::class.java)
 
+        val call: Call<ArrayList<TripDetailsResponse>> = apiService.getTripDetails(tripId,islatest)
+        call.enqueue(object : Callback<ArrayList<TripDetailsResponse>> {
+            override fun onFailure(call: Call<ArrayList<TripDetailsResponse>>?, t: Throwable?) {
+                apiResponse.postValue(apiResponse.value)
+            }
+
+            override fun onResponse(call: Call<ArrayList<TripDetailsResponse>>?, response: Response<ArrayList<TripDetailsResponse>>?) {
+                if (response!!.isSuccessful) {
+                    apiResponse.postValue(response.body()!!)
+                } else {
+//                    val body: ArrayList<TripDetailsResponse> = Gson().fromJson(response.errorBody()!!.string(), TripDetailsResponse::class.java)
+//                    apiResponse.postValue(body)
+                }
+            }
+
+        })
+
+        return apiResponse
+    }
 
     fun getAttributes(id: String): LiveData<AttributeResponse> {
         val apiResponse = MutableLiveData<AttributeResponse>()

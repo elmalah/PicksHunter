@@ -104,7 +104,7 @@ class AddTripFragment : Fragment() {
                 if (it != null) {
                     val bundle = Bundle()
                     bundle.putParcelable("trip", it)
-                    NavHostFragment.findNavController(navigation_trip).navigate(R.id.fragment_trip_stores, bundle)
+                    NavHostFragment.findNavController(navigation_trip).navigate(R.id.fragment_go_to_trip_details, bundle)
                 }
                 else {
                     Toast.makeText(requireContext(), "Trip date is conflicting with other trip", Toast.LENGTH_LONG).show()

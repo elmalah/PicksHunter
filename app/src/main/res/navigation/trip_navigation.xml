@@ -16,12 +16,23 @@
         tools:layout="@layout/fragment_add_trip"
         android:name="ash.pickshunter.AddTripFragment"
         android:label="AddTripFragment" />
+    <fragment
+        android:id="@+id/fragment_gender_interests"
+        tools:layout="@layout/fragment_gender_interests"
+        android:name="ash.pickshunter.GenderInterestFragment"
+        android:label="GenderInterestFragment" />
 
     <fragment
         android:id="@+id/fragment_trip_stores"
         tools:layout="@layout/fragment_trip_stores"
         android:name="ash.pickshunter.TripStoresFragment"
         android:label="TripStoresFragment" />
+
+    <fragment
+        android:id="@+id/fragment_go_to_trip_details"
+        tools:layout="@layout/fragment_trip_stores"
+        android:name="ash.pickshunter.GoToTripDetailsFragment"
+        android:label="GoToTripDetailsFragment" />
 
     <fragment
         android:id="@+id/fragment_new_product_step_one"

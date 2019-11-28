@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".PlanTripFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:layout_marginStart="@dimen/_32sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="@dimen/_30ssp"
+        android:textColor="@color/colorBlue1"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/welcome_to_pickshunter" />
+
+    <ImageView
+        android:id="@+id/iv_trip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        android:src="@drawable/getready"
+        android:layout_marginTop="@dimen/_28sdp"/>
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_32sdp"
+        android:layout_marginEnd="@dimen/_32sdp"
+        app:layout_constraintTop_toBottomOf="@+id/iv_trip"
+        android:textSize="@dimen/_16ssp"
+        android:textColor="@color/colorGray1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/get_ready_for_trip" />
+
+    <Button
+        android:id="@+id/bt_go_to_trip"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/go_trip_details"
+        android:backgroundTint="@color/colorBlue1"
+        android:background="@drawable/shap_btn"
+        android:textColor="@color/colorWhite"
+        android:layout_marginTop="@dimen/_32sdp"
+        app:layout_constraintStart_toStartOf="@id/tv_desc"
+        app:layout_constraintEnd_toEndOf="@+id/tv_desc"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc"/>
+
+    <TextView
+        android:id="@+id/state_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="307dp"
+        android:layout_marginBottom="16dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/bt_go_to_trip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

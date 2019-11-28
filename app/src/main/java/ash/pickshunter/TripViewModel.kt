@@ -13,6 +13,7 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
 
     private var apiResponse: MutableLiveData<ApiResponse> = MutableLiveData()
 
+    private var tripDetailsResponse: MutableLiveData<ArrayList<TripDetailsResponse>> = MutableLiveData()
     var attributeApiResponse: MutableLiveData<AttributeResponse> = MutableLiveData()
 
     var createTripApiResponse: MutableLiveData<Trip> = MutableLiveData()
@@ -94,5 +95,10 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
 
     fun addComment(params: ProductCommentRequest): LiveData<Product> {
         return repository.addComment(params)
+    }
+
+    fun getTripDetails(userId: Int,isLatest: String): MutableLiveData<ArrayList<TripDetailsResponse>> {
+        tripDetailsResponse = repository.getTripDetails(userId,isLatest) as MutableLiveData<ArrayList<TripDetailsResponse>>
+        return tripDetailsResponse
     }
 }

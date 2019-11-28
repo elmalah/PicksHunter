@@ -18,10 +18,17 @@ class PicksHunterTypeActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(p0: View?) {
         when  (p0) {
             ll_customer -> {
-                startActivity(Intent(this, GenderInterestActivity::class.java))
+//                startActivity(Intent(this, GenderInterestActivity::class.java))
+//                val intent = Intent(this, MainActivity::class.java).putExtra("type", "Customer")
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                startActivity(intent)
+                startActivity(Intent(this, GenderInterestActivity::class.java).putExtra("type", "Customer"))
             }
             ll_hunter -> {
-                startActivity(Intent(this, MainActivity::class.java).putExtra("type", "hunter"))
+                val intent = Intent(this, MainActivity::class.java).putExtra("type", "hunter")
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
+//                startActivity(Intent(this, MainActivity::class.java).putExtra("type", "hunter"))
             }
         }
     }

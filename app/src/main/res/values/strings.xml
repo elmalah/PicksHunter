@@ -41,8 +41,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="welcome_to_pickshunter">Welcome to\nPicksHunter</string>
     <string name="plan_your_upcoming_trip_and_start_adding_products_to_your_profile">Plan your upcoming trip and start adding products to your profile</string>
+    <string name="get_ready_for_trip">Get Ready For Youur Trip To</string>
     <string name="plan_your_trip">Plan Your Trip</string>
     <string name="trip_details">Trip details</string>
+    <string name="go_trip_details">Go To Trip details</string>
     <string name="from">From</string>
     <string name="country_city">Country, City</string>
     <string name="to">To</string>
@@ -80,4 +82,11 @@
     <string name="post">Post</string>
     <string name="add_a_comment">Add a comment</string>
     <string name="delivery_address">Delivery Address</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
 </resources>
