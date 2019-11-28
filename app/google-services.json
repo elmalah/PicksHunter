@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "422307046479",
+    "firebase_url": "https://picks-hunter.firebaseio.com",
+    "project_id": "picks-hunter",
+    "storage_bucket": "picks-hunter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422307046479:android:07557c9ba1de5aa42cb63a",
+        "android_client_info": {
+          "package_name": "ash.pickshunter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "422307046479-hds22o529qlegfgaomqavvi41dg8l5as.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ash.pickshunter",
+            "certificate_hash": "0ffc54caa3b7b2d06047497c7c91039fa272f33a"
+          }
+        },
+        {
+          "client_id": "422307046479-c6f24565eft9ckr5ur8vesqrp9cbq741.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALJGW1rmiLzT8_WPczJKIADBghpy3FqVs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "422307046479-c6f24565eft9ckr5ur8vesqrp9cbq741.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

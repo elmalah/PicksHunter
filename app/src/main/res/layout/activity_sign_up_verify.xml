@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    tools:context=".SignUpVerifyActivity" >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/loginlogo"
+        android:layout_margin="@dimen/_26sdp"/>
+
+
+    <ImageView
+        android:id="@+id/iv_circle_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/logincirclesup"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_up"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/iv_circle_1"
+        android:textSize="@dimen/_28ssp"
+        android:textColor="@color/colorWhite"
+        android:layout_marginBottom="@dimen/_40sdp"
+        android:layout_marginStart="@dimen/_33sdp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/clap"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mobile_number_verified"
+            android:textColor="@color/colorBlue1"
+            android:textSize="@dimen/_24ssp"
+            android:layout_marginTop="@dimen/_18sdp" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_egypt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/verifying_mobile_number"
+        android:textColor="@color/colorGray"
+        android:textSize="@dimen/_18ssp"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/_33sdp"
+        android:layout_marginEnd="@dimen/_33sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_14sdp"
+        android:layout_marginStart="@dimen/_33sdp"
+        android:layout_marginEnd="@dimen/_33sdp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_egypt">
+
+        <EditText
+            android:id="@+id/et_code_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:inputType="number"
+            android:maxLength="6"
+            android:gravity="center"
+            android:background="@drawable/shap_edit_text_mobile_verify"
+            android:padding="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_egypt"/>
+
+
+        <EditText
+            android:id="@+id/et_code_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="number"
+            android:visibility="gone"
+            android:background="@drawable/shap_edit_text_mobile_verify"
+            android:padding="@dimen/_10sdp"
+            android:maxLength="1"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/_33sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_egypt"/>
+
+
+        <EditText
+            android:id="@+id/et_code_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:inputType="number"
+            android:background="@drawable/shap_edit_text_mobile_verify"
+            android:padding="@dimen/_10sdp"
+            android:maxLength="1"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/_33sdp"
+            android:layout_marginEnd="@dimen/_33sdp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_egypt"/>
+
+
+        <EditText
+            android:id="@+id/et_code_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:inputType="number"
+            android:background="@drawable/shap_edit_text_mobile_verify"
+            android:padding="@dimen/_10sdp"
+            android:maxLength="1"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_egypt"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_resend"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/resend_otp"
+        android:textColor="@color/colorBlue1"
+        android:textSize="@dimen/_12ssp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_33sdp"
+        app:layout_constraintStart_toStartOf="@+id/linear_layout"
+        app:layout_constraintTop_toBottomOf="@+id/linear_layout"/>
+
+    <Button
+        android:id="@+id/btn_get_started"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/get_started"
+        android:backgroundTint="@color/colorBlue1"
+        android:background="@drawable/shap_btn"
+        android:textColor="@color/colorWhite"
+        android:layout_marginTop="@dimen/_33sdp"
+        app:layout_constraintStart_toStartOf="@id/linear_layout"
+        app:layout_constraintEnd_toEndOf="@+id/linear_layout"
+        app:layout_constraintTop_toBottomOf="@+id/tv_resend"/>
+
+    <TextView
+        android:id="@+id/already_have_an_account"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="@string/already_have_an_account"
+        android:textColor="@color/colorGray1"
+        android:textSize="@dimen/_12ssp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_33sdp"
+        android:layout_marginEnd="@dimen/_33sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_get_started"/>
+
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:textColor="@color/colorBlue1"
+        android:textSize="@dimen/_12ssp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_33sdp"
+        app:layout_constraintStart_toEndOf="@+id/already_have_an_account"
+        app:layout_constraintTop_toTopOf="@+id/already_have_an_account"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

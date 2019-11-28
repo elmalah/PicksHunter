@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFC000</color>
+    <color name="colorPrimaryDark">#FFC000</color>
+    <color name="colorAccent">#4071BB</color>
+    <color name="colorYellow">#FFC000</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorGray1">#66676A</color>
+    <color name="colorBlue1">#4071BB</color>
+    <color name="colorOrange">#FFC000</color>
+    <color name="colorFacebook">#1877F2</color>
+    <color name="colorGray">#242529</color>
+    <color name="colorBlack2">#242529</color>
+    <color name="colorGray2">#BABABA</color>
+    <color name="colorGreen">#4BD37B</color>
+</resources>

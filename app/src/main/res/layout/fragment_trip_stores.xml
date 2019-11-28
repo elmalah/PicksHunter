@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".TripStoresFragment" >
+
+    <ImageView
+        android:id="@+id/iv_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back"
+        android:layout_marginTop="@dimen/_28sdp"
+        android:layout_marginStart="@dimen/_14sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/trip_stores"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_6sdp"
+        android:textColor="@color/colorBlue1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_arrow"
+        android:textSize="@dimen/_24sdp"/>
+
+
+    <TextView
+        android:id="@+id/tv_from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/check_in_a_new_store"
+        android:layout_marginTop="@dimen/_28sdp"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:textColor="@color/colorBlue1"
+        app:layout_constraintTop_toBottomOf="@+id/iv_arrow"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="@dimen/_16sdp"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_store"
+        android:layout_width="0dp"
+        android:focusable="false"
+        android:layout_height="wrap_content"
+        android:hint="@string/store_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_from"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/_14sdp"
+        android:layout_marginEnd="@dimen/_14sdp"
+        android:layout_marginTop="@dimen/_3sdp" />
+
+    <TextView
+        android:id="@+id/tv_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/checked_in_stores"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginStart="@dimen/_14sdp"
+        android:textColor="@color/colorBlue1"
+        app:layout_constraintTop_toBottomOf="@+id/et_store"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="@dimen/_16sdp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_stories"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        tools:listitem="@layout/item_store"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@+id/tv_to"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="@dimen/_14sdp"
+        android:clipToPadding="false"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

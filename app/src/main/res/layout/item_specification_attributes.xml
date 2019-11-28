@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_spinner_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:textColor="@color/colorBlack"
+        android:text="@string/choose_category"
+        app:layout_constraintTop_toBottomOf="@+id/et_product_desc"
+        app:layout_constraintStart_toStartOf="@+id/tv_product_title"
+        app:layout_constraintEnd_toEndOf="@id/tv_product_title"
+        android:layout_marginTop="@dimen/_5sdp" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spinner_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_edit_text"
+        android:textColor="@color/colorGray2"
+        android:padding="@dimen/_10sdp"
+        android:hint="@string/write_a_description"
+        app:layout_constraintTop_toBottomOf="@+id/tv_spinner"
+        app:layout_constraintStart_toStartOf="@+id/tv_product_title"
+        app:layout_constraintEnd_toEndOf="@id/tv_product_title"
+        android:layout_marginTop="@dimen/_10sdp" />
+
+</LinearLayout>

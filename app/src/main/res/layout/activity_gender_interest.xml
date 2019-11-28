@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="menSelected"
+            type="Boolean" />
+
+        <variable
+            name="womanSelected"
+            type="Boolean" />
+
+        <variable
+            name="kidsSelected"
+            type="Boolean" />
+
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    tools:context=".GenderInterestActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/interestscircles"/>
+
+    <TextView
+        android:id="@+id/tv_title_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/pick_your_interests"
+        android:textColor="@color/colorBlue1"
+        android:textSize="@dimen/_28ssp"
+        android:layout_marginStart="@dimen/_33sdp"
+        android:layout_marginEnd="@dimen/_33sdp"
+        android:layout_marginTop="@dimen/_80sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_title_2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/display_items_for"
+        android:textColor="@color/colorGray1"
+        android:textSize="@dimen/_18ssp"
+        android:layout_marginStart="@dimen/_33sdp"
+        android:layout_marginEnd="@dimen/_33sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_1"/>
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:weightSum="3"
+        app:layout_constraintStart_toStartOf="@id/tv_title_1"
+        app:layout_constraintEnd_toEndOf="@id/tv_title_1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_2"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:id="@+id/ll_men"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:backgroundTint="@{menSelected ? @color/colorOrange : @color/colorGray2}"
+            android:background="@drawable/shape_edit_text"
+            app:layout_constraintStart_toStartOf="@id/tv_title_1"
+            app:layout_constraintEnd_toEndOf="@id/tv_title_1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:visibility="@{menSelected ? View.VISIBLE : View.INVISIBLE}"
+                android:src="@drawable/tick1"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/men"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_45sdp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/men"
+                android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/_16ssp"
+                android:textColor="@color/colorBlack2"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginBottom="@dimen/_16sdp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_woman"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:backgroundTint="@{womanSelected ? @color/colorOrange : @color/colorGray2}"
+            android:background="@drawable/shape_edit_text"
+            app:layout_constraintStart_toStartOf="@id/tv_title_1"
+            app:layout_constraintEnd_toEndOf="@id/tv_title_1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:visibility="@{womanSelected ? View.VISIBLE : View.INVISIBLE}"
+                android:src="@drawable/tick1"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/women"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_45sdp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/women"
+                android:singleLine="true"
+                android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/_16ssp"
+                android:textColor="@color/colorBlack2"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginBottom="@dimen/_16sdp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_kids"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:backgroundTint="@{kidsSelected ? @color/colorOrange : @color/colorGray2}"
+            android:background="@drawable/shape_edit_text"
+            app:layout_constraintStart_toStartOf="@id/tv_title_1"
+            app:layout_constraintEnd_toEndOf="@id/tv_title_1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:visibility="@{kidsSelected ? View.VISIBLE : View.INVISIBLE}"
+                android:src="@drawable/tick1"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/kids"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_45sdp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/kids"
+                android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/_16ssp"
+                android:textColor="@color/colorBlack2"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginBottom="@dimen/_16sdp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_continue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/continue_text"
+        android:backgroundTint="@color/colorBlue1"
+        android:background="@drawable/shap_btn"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintStart_toStartOf="@id/linear_layout"
+        app:layout_constraintEnd_toEndOf="@+id/linear_layout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_layout"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

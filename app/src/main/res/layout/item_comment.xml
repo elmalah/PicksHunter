@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_user"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/loginlogo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/_14sdp"
+        android:layout_marginBottom="@dimen/_14sdp" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/iv_user"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Ahmed Shafeek"
+        android:layout_marginStart="@dimen/_14sdp"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintTop_toTopOf="@+id/iv_user"/>
+
+    <TextView
+        android:id="@+id/tv_comment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/iv_user"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Comment"
+        android:layout_marginStart="@dimen/_14sdp"
+        android:textColor="@color/colorGray2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name"/>
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/_14sdp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/iv_user"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="11 hours ago"
+        android:textColor="@color/colorGray2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_comment"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

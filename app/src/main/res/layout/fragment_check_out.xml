@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".CheckOutFragment" >
+
+    <ImageView
+        android:id="@+id/iv_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back"
+        android:tint="@color/colorBlack"
+        android:layout_marginTop="@dimen/_28sdp"
+        android:layout_marginStart="@dimen/_14sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Checkout"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_6sdp"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_arrow"
+        android:textSize="@dimen/_24sdp"/>
+
+    <ImageView
+        android:id="@+id/iv_product"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:src="@drawable/loginlogo"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_14sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_arrow"/>
+
+    <TextView
+        android:id="@+id/tv_product_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/product_title"
+        android:layout_marginStart="@dimen/_14sdp"
+        android:layout_marginEnd="@dimen/_14sdp"
+        android:textColor="@color/colorGray2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_product"
+        app:layout_constraintStart_toEndOf="@+id/iv_product"
+        android:textSize="@dimen/_14sdp"/>
+
+    <TextView
+        android:id="@+id/et_product_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:textColor="@color/colorGray2"
+        android:lines="3"
+        android:hint="@string/write_a_description"
+        app:layout_constraintTop_toBottomOf="@+id/tv_product_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_product_title"
+        app:layout_constraintEnd_toEndOf="@id/tv_product_title"
+        android:layout_marginTop="@dimen/_3sdp" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:alpha="0.4"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@color/colorGray1"
+        app:layout_constraintTop_toBottomOf="@+id/iv_product"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tv_attributes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/store"
+        android:nestedScrollingEnabled="false"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginStart="@dimen/_14sdp"
+        android:textColor="@color/colorBlue1"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="@dimen/_16sdp"/>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:alpha="0.4"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@color/colorGray1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_attributes"/>
+
+    <TextView
+        android:id="@+id/tv_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:textColor="@color/colorBlack"
+        android:text="@string/delivery_address"
+        android:layout_marginStart="@dimen/_14sdp"
+        android:layout_marginEnd="@dimen/_14sdp"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:layout_constraintStart_toStartOf="@+id/tv_product_title"
+        app:layout_constraintEnd_toEndOf="@id/tv_product_title"
+        android:layout_marginTop="@dimen/_5sdp" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tv_adddresses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/store"
+        android:nestedScrollingEnabled="false"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginStart="@dimen/_14sdp"
+        android:textColor="@color/colorBlue1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="@dimen/_16sdp"/>
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:orientation="vertical"
+        android:weightSum="3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/_14sdp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_adddresses"
+        android:layout_marginStart="@dimen/_14sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="horizontal" android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:weightSum="2" >
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="0dp"
+                android:text="Product Price"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:textColor="@color/colorBlue1"/>
+
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="horizontal" android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:weightSum="2" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:text="Payment Method"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="Cash on delivery"
+                android:textColor="@color/colorBlue1"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_add_product"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="PLACE ORDER"
+        android:backgroundTint="@color/colorBlue1"
+        android:background="@drawable/shap_btn"
+        android:textColor="@color/colorWhite"
+        android:layout_marginTop="@dimen/_26sdp"
+        app:layout_constraintStart_toStartOf="@id/ll"
+        app:layout_constraintEnd_toEndOf="@+id/ll"
+        app:layout_constraintTop_toBottomOf="@id/ll"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
