@@ -1,5 +1,6 @@
 package ash.pickshunter
 
+import android.graphics.Picture
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -19,6 +20,8 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
     var createTripApiResponse: MutableLiveData<Trip> = MutableLiveData()
 
     var addProductApiResponse: MutableLiveData<ProductResponse> = MutableLiveData()
+
+    var addPictureApiResponse: MutableLiveData<PictureResponse> = MutableLiveData()
 
     private var countries: MutableLiveData<ArrayList<Country>> = MutableLiveData()
 
@@ -53,6 +56,12 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
         addProductApiResponse = repository.addProduct(productRequest, id.toString()) as MutableLiveData<ProductResponse>
         return addProductApiResponse
     }
+
+    fun addPicture(pictureRequest: PictureRequest): LiveData<PictureResponse> {
+        addPictureApiResponse = repository.addPicture(pictureRequest) as MutableLiveData<PictureResponse>
+        return addPictureApiResponse
+    }
+
 
     fun updateProduct(productRequest: ProductRequest, id: Int): LiveData<ProductResponse> {
         addProductApiResponse = repository.updateProduct(productRequest, id.toString()) as MutableLiveData<ProductResponse>

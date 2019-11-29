@@ -9,7 +9,10 @@ import ash.pickshunter.Country
 import ash.pickshunter.R
 import ash.pickshunter.State
 import ash.pickshunter.inflateView
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_country.view.*
+import kotlinx.android.synthetic.main.item_country.view.iv_country_flag
+import kotlinx.android.synthetic.main.item_product.view.*
 
 class CountryAdapter(
     var countries: List<State>,
@@ -33,6 +36,9 @@ class CountryAdapter(
         countries[position].let {
 
             holder.itemView.tv_country_name.text = it.name
+
+            Picasso.get().load(it.flag)
+                .placeholder(R.drawable.loginlogo).into(holder.itemView.iv_country_flag)
         }
     }
 

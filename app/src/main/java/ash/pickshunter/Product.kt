@@ -34,17 +34,26 @@ class Product() : Parcelable {
     @SerializedName("ToDate")
     var toDate:String ? = null
 
+    @SerializedName("ReturnsIn")
+    var returnsIn:String ? = null
+
     @SerializedName("ShopName")
     var shopName: String? = null
 
     @SerializedName("ProductImages")
     var productImages: ArrayList<String>? = null
 
+    @SerializedName("images")
+    var images: ArrayList<ProductPicture>? = null
+
     @SerializedName("Description")
     var description: String? = null
 
-    @SerializedName("Price")
+    @SerializedName("price")
     var price: String? = null
+
+    @SerializedName("DisplayPrice")
+    var displayPrice: String? = null
 
     @SerializedName("ShoperAvatar")
     var shoperAvatar: String? = null

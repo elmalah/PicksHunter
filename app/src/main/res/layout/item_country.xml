@@ -23,7 +23,7 @@
                 android:id="@+id/iv_country_flag"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-            android:src="@drawable/loginlogo"
+                android:src="@drawable/placeholder"
                 android:scaleType="centerCrop" />
 
     </androidx.cardview.widget.CardView>

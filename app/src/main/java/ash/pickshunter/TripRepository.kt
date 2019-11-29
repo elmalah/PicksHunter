@@ -1,15 +1,26 @@
 package ash.pickshunter
 
+import android.database.Cursor
+import android.webkit.MimeTypeMap
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.fly365.shared.service.ApiClient
 import com.fly365.shared.service.ApiInterface
 import com.google.gson.Gson
+import okhttp3.MediaType
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import rx.schedulers.Schedulers.io
+import android.provider.MediaStore
+
+
+
 
 class TripRepository {
 
@@ -25,7 +36,10 @@ class TripRepository {
 //                apiResponse.postValue(t!!))
             }
 
-            override fun onResponse(call: Call<ArrayList<Country>>?, response: Response<ArrayList<Country>>?) {
+            override fun onResponse(
+                call: Call<ArrayList<Country>>?,
+                response: Response<ArrayList<Country>>?
+            ) {
                 if (response!!.isSuccessful) {
                     apiResponse.postValue(response.body()!!)
                 } else {
@@ -49,7 +63,10 @@ class TripRepository {
 //                apiResponse.postValue(t!!))
             }
 
-            override fun onResponse(call: Call<ArrayList<Shop>>?, response: Response<ArrayList<Shop>>?) {
+            override fun onResponse(
+                call: Call<ArrayList<Shop>>?,
+                response: Response<ArrayList<Shop>>?
+            ) {
                 if (response!!.isSuccessful) {
                     apiResponse.postValue(response.body()!!)
                 } else {
@@ -122,7 +139,49 @@ class TripRepository {
 //                apiResponse.postValue(t!!))
             }
 
-            override fun onResponse(call: Call<ProductResponse>?, response: Response<ProductResponse>?) {
+            override fun onResponse(
+                call: Call<ProductResponse>?,
+                response: Response<ProductResponse>?
+            ) {
+                if (response!!.isSuccessful) {
+                    apiResponse.postValue(response.body()!!)
+                } else {
+//                    val body: ApiResponse = Gson().fromJson(response.errorBody()!!.string(), ApiResponse::class.java)
+//                    apiResponse.postValue(body)
+                }
+            }
+
+        })
+
+        return apiResponse
+    }
+
+
+    fun addPicture(pictureRequest: PictureRequest): LiveData<PictureResponse> {
+        val apiResponse = MutableLiveData<PictureResponse>()
+        val apiService = endpoints.getClient()!!.create(ApiInterface::class.java)
+
+        // create RequestBody instance from file
+        val requestFile =
+            RequestBody.create(MediaType.parse("image/jpeg"), pictureRequest.file)
+
+        // MultipartBody.Part is used to send also the actual file name
+        val body = MultipartBody.Part.createFormData("file", pictureRequest.file?.getName(), requestFile)
+
+       // var params = HashMap<String, RequestBody>()
+       // params["file"] = body!!.body()
+
+        val call: Call<PictureResponse> = apiService.addPicture(body)
+        call.enqueue(object : Callback<PictureResponse> {
+            override fun onFailure(call: Call<PictureResponse>?, t: Throwable?) {
+                var xx = t!!
+
+            }
+
+            override fun onResponse(
+                call: Call<PictureResponse>?,
+                response: Response<PictureResponse>?
+            ) {
                 if (response!!.isSuccessful) {
                     apiResponse.postValue(response.body()!!)
                 } else {
@@ -147,7 +206,10 @@ class TripRepository {
 //                apiResponse.postValue(ApiResponse(t!!))
             }
 
-            override fun onResponse(call: Call<ArrayList<Product>>?, response: Response<ArrayList<Product>>?) {
+            override fun onResponse(
+                call: Call<ArrayList<Product>>?,
+                response: Response<ArrayList<Product>>?
+            ) {
                 if (response!!.isSuccessful) {
                     apiResponse.postValue(response.body()!!)
                 } else {
@@ -161,7 +223,7 @@ class TripRepository {
         return apiResponse
     }
 
-    fun addComment(params : ProductCommentRequest): LiveData<Product> {
+    fun addComment(params: ProductCommentRequest): LiveData<Product> {
         val apiResponse = MutableLiveData<Product>()
         val apiService = endpoints.getClient()!!.create(ApiInterface::class.java)
 
@@ -195,7 +257,10 @@ class TripRepository {
 //                apiResponse.postValue(t!!))
             }
 
-            override fun onResponse(call: Call<PriceResponse>?, response: Response<PriceResponse>?) {
+            override fun onResponse(
+                call: Call<PriceResponse>?,
+                response: Response<PriceResponse>?
+            ) {
                 if (response!!.isSuccessful) {
                     apiResponse.postValue(response.body()!!)
                 } else {
@@ -223,7 +288,8 @@ class TripRepository {
                 if (response!!.isSuccessful) {
                     apiResponse.postValue(response.body()!!)
                 } else {
-                    val body: ApiResponse = Gson().fromJson(response.errorBody()!!.string(), ApiResponse::class.java)
+                    val body: ApiResponse =
+                        Gson().fromJson(response.errorBody()!!.string(), ApiResponse::class.java)
                     apiResponse.postValue(body)
                 }
             }
@@ -232,17 +298,21 @@ class TripRepository {
 
         return apiResponse
     }
-    fun getTripDetails(tripId: Int,islatest: String): LiveData<ArrayList<TripDetailsResponse>> {
+
+    fun getTripDetails(tripId: Int, islatest: String): LiveData<ArrayList<TripDetailsResponse>> {
         val apiResponse = MutableLiveData<ArrayList<TripDetailsResponse>>()
         val apiService = endpoints.getClient()!!.create(ApiInterface::class.java)
 
-        val call: Call<ArrayList<TripDetailsResponse>> = apiService.getTripDetails(tripId,islatest)
+        val call: Call<ArrayList<TripDetailsResponse>> = apiService.getTripDetails(tripId, islatest)
         call.enqueue(object : Callback<ArrayList<TripDetailsResponse>> {
             override fun onFailure(call: Call<ArrayList<TripDetailsResponse>>?, t: Throwable?) {
                 apiResponse.postValue(apiResponse.value)
             }
 
-            override fun onResponse(call: Call<ArrayList<TripDetailsResponse>>?, response: Response<ArrayList<TripDetailsResponse>>?) {
+            override fun onResponse(
+                call: Call<ArrayList<TripDetailsResponse>>?,
+                response: Response<ArrayList<TripDetailsResponse>>?
+            ) {
                 if (response!!.isSuccessful) {
                     apiResponse.postValue(response.body()!!)
                 } else {
@@ -266,7 +336,10 @@ class TripRepository {
 //                apiResponse.postValue(ApiResponse(t!!))
             }
 
-            override fun onResponse(call: Call<AttributeResponse>?, response: Response<AttributeResponse>?) {
+            override fun onResponse(
+                call: Call<AttributeResponse>?,
+                response: Response<AttributeResponse>?
+            ) {
                 if (response!!.isSuccessful) {
                     apiResponse.postValue(response.body()!!)
                 } else {
@@ -315,7 +388,10 @@ class TripRepository {
 //                apiResponse.postValue(ApiResponse(t!!))
             }
 
-            override fun onResponse(call: Call<ProductResponse>?, response: Response<ProductResponse>?) {
+            override fun onResponse(
+                call: Call<ProductResponse>?,
+                response: Response<ProductResponse>?
+            ) {
                 if (response!!.isSuccessful) {
                     apiResponse.postValue(response.body()!!)
                 } else {
@@ -339,7 +415,10 @@ class TripRepository {
 //                apiResponse.postValue(ApiResponse(t!!))
             }
 
-            override fun onResponse(call: Call<ArrayList<Shop>>?, response: Response<ArrayList<Shop>>?) {
+            override fun onResponse(
+                call: Call<ArrayList<Shop>>?,
+                response: Response<ArrayList<Shop>>?
+            ) {
                 if (response!!.isSuccessful) {
                     apiResponse.postValue(response.body()!!)
                 } else {

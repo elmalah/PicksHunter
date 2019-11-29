@@ -10,7 +10,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import com.fly365.utils.injection.InjectorUtils
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_product_pricing.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -32,7 +35,10 @@ class ProductPricingFragment : Fragment() {
     private var param2: String? = null
     var type = 1
     var price: Double? = null
-    var priceCost: Double? = null
+    var priceEgp: Double? = null
+    var cost: Double? = null
+    var costEgp: Double? = null
+
     private var product: Product? = null
 
     private val viewModel: TripViewModel by viewModels {
@@ -99,7 +105,11 @@ class ProductPricingFragment : Fragment() {
             viewModel.calculatePrice(priceRequest).observe(this) {
                 ProgressDialog.dismiss()
                 price = it.totalPrice
-                priceCost = it.totalPriceEgp
+                priceEgp = it.totalPriceEgp
+
+                cost = it.cost
+                costEgp = it.costEgp
+
                 tv_vat.text = it.vatAmount.toString() + " $"
                 tv_app_comission.text = it.appComission.toString() + " %"
                 tv_total_price.text = ((Math.round(it.totalPrice!! * 100))/100.0).toString() + " $"
@@ -116,12 +126,15 @@ class ProductPricingFragment : Fragment() {
 
             ProgressDialog.show(requireContext(), false)
             val productRequest = ProductRequest()
-            productRequest.product.price = price.toString()
-            productRequest.product.productCost = priceCost
+            productRequest.product.price = priceEgp.toString()
+            productRequest.product.productCost = costEgp
             productRequest.product.published = true
             viewModel.updateProduct(productRequest, product!!.id!!).observe(this) {
                 ProgressDialog.dismiss()
+
                 Toast.makeText(requireContext(), "Product Updated Successfully", Toast.LENGTH_LONG).show()
+
+                NavHostFragment.findNavController(navigation_trip).navigate(R.id.fragment_go_to_trip_details)
             }
         }
     }

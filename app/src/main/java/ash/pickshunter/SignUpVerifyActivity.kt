@@ -49,9 +49,17 @@ class SignUpVerifyActivity : AppCompatActivity(), View.OnClickListener {
         ProgressDialog.show(this, false)
         viewModel.verifyPhone(et_code_1.text.toString(), user.id).observe(this) {
             ProgressDialog.dismiss()
-            user.isPhoneVerified= true
-            PreferenceHelper(this).putUser(user)
-            startActivity(Intent(this, PicksHunterTypeActivity::class.java))
+
+            it.user = it.users!!.get(0)
+
+            PreferenceHelper(this).putUser(it.user)
+
+            if (it.users != null && it.users!!.isNotEmpty() && !it.user!!.isPhoneVerified) {
+                Toast.makeText(this, "Invalid verification code", Toast.LENGTH_LONG).show()
+            }
+            else {
+                startActivity(Intent(this, PicksHunterTypeActivity::class.java))
+            }
         }
     }
 }

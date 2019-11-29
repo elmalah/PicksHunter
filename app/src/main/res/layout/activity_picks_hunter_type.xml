@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:text="@string/use_picks_hunter_as"
         android:textColor="@color/colorBlue1"
-        android:textSize="@dimen/_28ssp"
+        android:textSize="30dp"
         android:layout_marginStart="@dimen/_33sdp"
         android:layout_marginEnd="@dimen/_33sdp"
         android:layout_marginTop="@dimen/_80sdp"
@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/hunter"
-                android:textSize="@dimen/_22ssp"
+                android:textSize="22dp"
                 android:textColor="@color/colorBlack2"
                 android:layout_marginTop="@dimen/_40sdp"
                 android:layout_marginBottom="@dimen/_16sdp"/>
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/customer"
                 android:singleLine="true"
-                android:textSize="@dimen/_22ssp"
+                android:textSize="22dp"
                 android:textColor="@color/colorBlack2"
                 android:layout_marginTop="@dimen/_40sdp"
                 android:layout_marginBottom="@dimen/_16sdp"/>

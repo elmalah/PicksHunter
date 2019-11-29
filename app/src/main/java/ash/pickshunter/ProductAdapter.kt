@@ -9,8 +9,10 @@ import kotlinx.android.synthetic.main.item_brand.view.*
 import kotlinx.android.synthetic.main.item_product.view.*
 import kotlinx.android.synthetic.main.item_store.view.*
 
-class ProductAdapter(var products: List<Product>,
-                     val onClickListener: (Product, Int) -> Unit) :
+class ProductAdapter(
+    var products: List<Product>,
+    val onClickListener: (Product, Int) -> Unit
+) :
     RecyclerView.Adapter<ProductAdapter.BrandViewHolder>() {
 
     fun notifyChange(products: List<Product>) {
@@ -30,26 +32,27 @@ class ProductAdapter(var products: List<Product>,
             holder.itemView.date.text = it.date
             holder.itemView.tv_name.text = it.shopperName
             if (it.productImages != null && it.productImages!!.isNotEmpty())
-            Picasso.get().load(it.productImages!![0])
-                .placeholder(R.drawable.loginlogo).into(holder.itemView.iv_product_image)
+                Picasso.get().load(it.productImages!![0])
+                    .placeholder(R.drawable.loginlogo).into(holder.itemView.iv_product_image)
 
             Picasso.get().load(it.tripCountryFlag)
                 .placeholder(R.drawable.loginlogo).into(holder.itemView.iv_country_flag)
 
             holder.itemView.tv_product_title.text = it.productName
 
-            holder.itemView.tv_from.text = it.fromCountryAndState + " " + it.fromDate
+            //holder.itemView.tv_from.text = it.fromDate + " " + it.fromCountryAndState
+            //holder.itemView.tv_to.text = it.toDate + " " + it.toCountryAndState
 
-            holder.itemView.tv_to.text = it.toCountryAndState + " " + it.toDate
+            holder.itemView.tv_returnsIn.text = it.returnsIn
 
             holder.itemView.tv_brand_name.text = it.shopName
 
             holder.itemView.tv_desc.text = it.description
 
-            holder.itemView.tv_price.text = it.price
+            holder.itemView.tv_price.text = it.displayPrice
 
             Picasso.get().load(it.shoperAvatar)
-                .placeholder(R.drawable.loginlogo).into( holder.itemView.iv_product)
+                .placeholder(R.drawable.loginlogo).into(holder.itemView.iv_product)
 
         }
     }

@@ -24,6 +24,10 @@ class State() : Parcelable {
     @SerializedName("Name")
     var name: String? = null
 
+    @SerializedName("Flag")
+    var flag: String? = null
+
+
     constructor(parcel: Parcel) : this() {
         id = parcel.readValue(Int::class.java.classLoader) as? Int
         name = parcel.readString()

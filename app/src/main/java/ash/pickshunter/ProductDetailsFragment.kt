@@ -64,18 +64,19 @@ class ProductDetailsFragment : Fragment() {
 
         tv_product_title.text = product.productName
 
-        tv_from.text = product.fromCountryAndState + " " + product.fromDate
+        //tv_from.text = product.fromDate + " " + product.fromCountryAndState
+        //tv_to.text = product.toDate + " " + product.toCountryAndState
 
-        tv_to.text = product.toCountryAndState + " " + product.toDate
+        tv_returnsIn.text = product.returnsIn
 
         tv_brand_name.text = product.shopName
 
         tv_desc.text = product.description
 
-        tv_price.text = product.price
+        tv_price.text = product.displayPrice
 
         Picasso.get().load(product.shoperAvatar)
-            .placeholder(R.drawable.loginlogo).into( iv_product)
+            .placeholder(R.drawable.loginlogo).into(iv_product)
 
         var adapter = CommentAdapter(arrayListOf())
         adapter.notifyChange(product.comments!!)
@@ -88,10 +89,11 @@ class ProductDetailsFragment : Fragment() {
         rv_attributes.adapter = adapter2
 
         tv_post.setOnClickListener {
-            if(et_comment.text.isNotEmpty()) {
+            if (et_comment.text.isNotEmpty()) {
                 val productCommentRequest = ProductCommentRequest()
                 productCommentRequest.productComment.comment = et_comment.text.toString()
-                productCommentRequest.productComment.customerId = PreferenceHelper(requireContext()).user.id
+                productCommentRequest.productComment.customerId =
+                    PreferenceHelper(requireContext()).user.id
                 productCommentRequest.productComment.productId = product.productId
                 ProgressDialog.show(requireContext(), false)
                 viewModel.addComment(productCommentRequest).observe(this) {
@@ -106,7 +108,8 @@ class ProductDetailsFragment : Fragment() {
         fb_checkout.setOnClickListener {
             val bundle = Bundle()
             bundle.putParcelable("product", product)
-            NavHostFragment.findNavController(navigation_trip).navigate(R.id.fragment_check_out, bundle)
+            NavHostFragment.findNavController(navigation_trip)
+                .navigate(R.id.fragment_check_out, bundle)
         }
     }
 

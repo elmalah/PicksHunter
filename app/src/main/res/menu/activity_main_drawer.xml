@@ -6,24 +6,12 @@
     <group android:checkableBehavior="single">
         <item
                 android:id="@+id/nav_switch"
-                android:icon="@android:drawable/ic_menu_camera"
+                android:icon="@android:drawable/ic_menu_rotate"
                 android:title="Switch Mode"/>
 
 
 
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                    android:id="@+id/nav_about"
-                    android:icon="@android:drawable/ic_menu_share"
-                    android:title="about"/>
-            <item
-                    android:id="@+id/nav_contact_us"
-                    android:icon="@android:drawable/ic_menu_send"
-                    android:title="contact_us"/>
-        </menu>
-    </item>
 
 </menu>

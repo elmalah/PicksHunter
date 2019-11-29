@@ -16,6 +16,14 @@
         tools:layout="@layout/fragment_add_trip"
         android:name="ash.pickshunter.AddTripFragment"
         android:label="AddTripFragment" />
+
+
+    <fragment
+        android:id="@+id/fragment_trip"
+        tools:layout="@layout/fragment_trip"
+        android:name="ash.pickshunter.TripFragment"
+        android:label="TripFragment" />
+
     <fragment
         android:id="@+id/fragment_gender_interests"
         tools:layout="@layout/fragment_gender_interests"

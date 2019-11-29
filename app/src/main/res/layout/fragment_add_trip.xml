@@ -84,7 +84,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/country_city"
-
+        android:focusable="false"
         app:layout_constraintTop_toBottomOf="@+id/tv_to"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -173,6 +173,8 @@
         android:layout_marginTop="@dimen/_26sdp"
         app:layout_constraintStart_toStartOf="@id/cb_terms"
         app:layout_constraintEnd_toEndOf="@+id/ll_dates"
-        app:layout_constraintTop_toBottomOf="@+id/cb_terms"/>
+        app:layout_constraintTop_toBottomOf="@+id/cb_terms"
+        android:enabled="false"
+        android:alpha="5"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

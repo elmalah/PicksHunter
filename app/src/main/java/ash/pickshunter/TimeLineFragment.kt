@@ -54,10 +54,22 @@ class TimeLineFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        loadData()
+        swiperefresh.setOnRefreshListener {
+            loadData()
+        }
+
+    }
+
+    fun loadData() {
         val adapter = ProductAdapter(arrayListOf(), ::onClickListener)
-        ProgressDialog.show(requireContext(), false)
+        swiperefresh.isRefreshing = true
+        //ProgressDialog.show(requireContext(), false)
         viewModel.getTimelineProduct().observe(this) {
-            ProgressDialog.dismiss()
+            //ProgressDialog.dismiss()
+            swiperefresh.isRefreshing = false
+
             val x = it.filter { it != null }
             rv_products.adapter = adapter
             adapter.notifyChange(x)
@@ -67,7 +79,8 @@ class TimeLineFragment : Fragment() {
     fun onClickListener(product: Product, index: Int) {
         val bundle = Bundle()
         bundle.putParcelable("product", product)
-        NavHostFragment.findNavController(navigation_trip).navigate(R.id.fragment_product_details, bundle)
+        NavHostFragment.findNavController(navigation_trip)
+            .navigate(R.id.fragment_product_details, bundle)
     }
 
     /**

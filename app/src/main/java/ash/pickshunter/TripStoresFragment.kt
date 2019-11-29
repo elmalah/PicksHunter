@@ -37,7 +37,8 @@ class TripStoresFragment : Fragment() {
     private var param2: String? = null
     lateinit var adapter: StoreAdapter
 
-    private var trip = Trip()
+    //private var trip = Trip()
+    private var tripId = 0
 
     private val viewModel: TripViewModel by viewModels {
         InjectorUtils.provideTripViewModelFactory(requireContext())
@@ -72,7 +73,8 @@ class TripStoresFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        trip = arguments!!.getParcelable("trip")!!
+        //trip = arguments!!.getParcelable("trip")!!
+        tripId = PreferenceHelper(requireContext()).tripId
 
         et_store.setOnClickListener {
             startActivityForResult(Intent(requireContext(), ShopActivity::class.java), 102)
@@ -81,7 +83,7 @@ class TripStoresFragment : Fragment() {
     }
 
     private fun getStores() {
-        viewModel.getTripStores(trip.id!!).observe(this) {
+        viewModel.getTripStores(tripId).observe(this) {
             ProgressDialog.dismiss()
             rv_stories.adapter = adapter
             adapter.notifyChange(it)
@@ -104,7 +106,7 @@ class TripStoresFragment : Fragment() {
 
     fun checkInShop(storeId: Int) {
         ProgressDialog.show(requireContext(), false)
-        viewModel.checkIn(trip.id!!, storeId).observe(this) {
+        viewModel.checkIn(tripId, storeId).observe(this) {
             getStores()
         }
     }

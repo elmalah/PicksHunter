@@ -21,4 +21,10 @@ class PriceResponse {
 
     @SerializedName("total-price-egp")
     var totalPriceEgp: Double? = null
+
+    @SerializedName("cost")
+    var cost: Double? = null
+
+    @SerializedName("cost-egp")
+    var costEgp: Double? = null
 }

@@ -18,6 +18,7 @@ import com.fly365.utils.injection.InjectorUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_add_trip.*
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -67,6 +68,10 @@ class AddTripFragment : Fragment() {
             pickDate(startDateView = true)
         }
 
+        cb_terms.setOnCheckedChangeListener { buttonView, isChecked ->
+            bt_add_trip.isEnabled = cb_terms.isChecked
+        }
+
         et_end_date.setOnClickListener {
             pickDate(false)
         }
@@ -101,7 +106,8 @@ class AddTripFragment : Fragment() {
             ProgressDialog.show(requireContext(), false)
             viewModel.createTrip(tripRequest).observe(this) {
                 ProgressDialog.dismiss()
-                if (it != null) {
+
+                if (it!!.id != null) {
                     val bundle = Bundle()
                     bundle.putParcelable("trip", it)
                     NavHostFragment.findNavController(navigation_trip).navigate(R.id.fragment_go_to_trip_details, bundle)
@@ -157,8 +163,10 @@ class AddTripFragment : Fragment() {
         )
         if (startDateView)
             mDatePickerDialog.datePicker.minDate = System.currentTimeMillis()
-        else
+        else {
             mDatePickerDialog.datePicker.minDate = System.currentTimeMillis()
+        }
+
         mDatePickerDialog.show()
     }
 

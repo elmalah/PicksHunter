@@ -17,10 +17,12 @@ import android.app.Activity
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.os.Handler
+import android.widget.Toast
 import java.lang.System.*
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,20 +31,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setupNavigationDrawer()
 
         try {
-            if (intent.getStringExtra("type") == "hunter")
-            {
+            if (intent.getStringExtra("type") == "hunter") {
                 //check if Hunter has Already Active Trip
                 NavHostFragment.findNavController(navigation_trip).navigate(R.id.fragment_plan_trip)
-            }else if(intent.getStringExtra("type") == "Customer"){
-                NavHostFragment.findNavController(navigation_trip).navigate(R.id.fragment_gender_interests)
+            } else if (intent.getStringExtra("type") == "Customer") {
+                NavHostFragment.findNavController(navigation_trip)
+                    .navigate(R.id.fragment_gender_interests)
+            } else if (intent.getStringExtra("type") == "tripDetails") {
+                NavHostFragment.findNavController(navigation_trip)
+                    .navigate(R.id.fragment_go_to_trip_details)
             }
-        }
-        catch (e: Exception) {
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
-    fun setupNavigationDrawer(){
+    fun setupNavigationDrawer() {
 
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
@@ -70,9 +74,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navView.setNavigationItemSelectedListener(this)
     }
 
+    private var doubleBackToExitPressedOnce = false
     override fun onBackPressed() {
-        super.onBackPressed()
+        var type = this.intent?.getStringExtra("type")
+
+        if (type == "hunter" || type == "tripDetails") {
+            if (doubleBackToExitPressedOnce) {
+                finish()
+            }
+
+            this.doubleBackToExitPressedOnce = true
+            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
+
+            Handler().postDelayed(Runnable {
+                doubleBackToExitPressedOnce = false
+            }, 2000)
+        } else {
+            super.onBackPressed()
+        }
     }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
@@ -82,15 +103,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val intent = Intent(this, PicksHunterTypeActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(intent)
-//                startActivity(Intent(this, PicksHunterTypeActivity::class.java))
-
+                //startActivity(Intent(this, PicksHunterTypeActivity::class.java))
             }
-            R.id.nav_about -> {
-//                NavHostFragment.findNavController(navigation_trip).navigate(R.id.fragment_plan_trip)
-
-            }
-
-
         }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         drawerLayout.closeDrawer(GravityCompat.START)
