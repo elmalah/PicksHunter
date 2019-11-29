@@ -13,12 +13,11 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_product"
-
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
         android:layout_marginStart="@dimen/_18sdp"
         android:layout_marginTop="@dimen/_18sdp"
-        android:src="https://www.countryflags.io/us/flat/64.png"
+        android:src="@drawable/placeholder"
         app:civ_border_color="@color/colorGreen"
         app:civ_border_width="@dimen/_2sdp"
         app:layout_constraintStart_toStartOf="parent"
