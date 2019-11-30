@@ -15,6 +15,9 @@ class Comment() : Parcelable {
     @SerializedName("FriendlyDate")
     var friendlyDate: String? = null
 
+    @SerializedName("CustomerAvatar")
+    var customerAvatar: String? = null
+
     constructor(parcel: Parcel) : this() {
         customerName = parcel.readString()
         comment = parcel.readString()

@@ -38,7 +38,7 @@ class CountryAdapter(
             holder.itemView.tv_country_name.text = it.name
 
             Picasso.get().load(it.flag)
-                .placeholder(R.drawable.loginlogo).into(holder.itemView.iv_country_flag)
+                .placeholder(R.drawable.placeholder).into(holder.itemView.iv_country_flag)
         }
     }
 

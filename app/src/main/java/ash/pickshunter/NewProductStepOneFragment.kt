@@ -149,7 +149,7 @@ class NewProductStepOneFragment : Fragment() {
         tv_name.text = shop!!.name
 
         Picasso.get().load(shop!!.logo)
-            .placeholder(R.drawable.loginlogo).into(iv_store)
+            .placeholder(R.drawable.placeholder).into(iv_store)
 
         iv_product.setOnClickListener {
             //check runtime permission

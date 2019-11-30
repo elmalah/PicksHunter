@@ -64,7 +64,7 @@ class ProductView() : Parcelable {
     @SerializedName("ProductAttributes")
     var productAttributes: ArrayList<Option>? = null
 
-    @SerializedName("productAttributesDetailed")
+    @SerializedName("ProductAttributesDetailed")
     var productAttributesDetailed: ArrayList<Attribute>? = null
 
     constructor(parcel: Parcel) : this() {

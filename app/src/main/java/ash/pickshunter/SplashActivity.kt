@@ -43,27 +43,27 @@ class SplashActivity : AppCompatActivity() {
         handler.postDelayed({
             if (user == null) {
                 startActivity(Intent(this, LoginActivity::class.java))
+                finish()
             } else {
-                if (!user!!.isPhoneVerified)
+                if (!user!!.isPhoneVerified) {
                     startActivity(Intent(this, SignUpMobileActivity::class.java))
-                else {
+                    finish()
+                } else {
 
                     val userType = PreferenceHelper(this).userType
 
-                    //Toast.makeText(this, userType, Toast.LENGTH_LONG).show()
-
-                    if (userType == null || userType == "")
+                    if (userType == null || userType == "") {
                         startActivity(Intent(this, PicksHunterTypeActivity::class.java))
-                    else if (userType == "customer") {
+                        finish()
+                    } else if (userType == "customer") {
                         userViewModel.checkIfIntrestsSaved(user!!.id.toString()).observe(this) {
                             if (it) {
                                 startActivity(Intent(this, MainActivity::class.java))
                             } else {
                                 startActivity(Intent(this, GenderInterestActivity::class.java))
                             }
-
+                            finish()
                         }
-
                     } else if (userType == "hunter") {
                         if (trip != null && trip?.tripId != null) {
                             val intent =
@@ -81,11 +81,11 @@ class SplashActivity : AppCompatActivity() {
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                             startActivity(intent)
                         }
+                        finish()
 
                     }
                 }
             }
-            finish()
         }, 2000)
     }
 }

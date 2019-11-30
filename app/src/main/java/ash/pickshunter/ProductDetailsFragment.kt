@@ -57,10 +57,10 @@ class ProductDetailsFragment : Fragment() {
         tv_name.text = product.shopperName
         if (product.productImages != null && product.productImages!!.isNotEmpty())
             Picasso.get().load(product.productImages!![0])
-                .placeholder(R.drawable.loginlogo).into(iv_product_image)
+                .placeholder(R.drawable.placeholder).into(iv_product_image)
 
         Picasso.get().load(product.tripCountryFlag)
-            .placeholder(R.drawable.loginlogo).into(iv_country_flag)
+            .placeholder(R.drawable.placeholder).into(iv_country_flag)
 
         tv_product_title.text = product.productName
 
@@ -76,7 +76,7 @@ class ProductDetailsFragment : Fragment() {
         tv_price.text = product.displayPrice
 
         Picasso.get().load(product.shoperAvatar)
-            .placeholder(R.drawable.loginlogo).into(iv_product)
+            .placeholder(R.drawable.placeholder).into(iv_product)
 
         var adapter = CommentAdapter(arrayListOf())
         adapter.notifyChange(product.comments!!)

@@ -27,7 +27,7 @@ class CategoryAdapter(
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         categories[position].let {
             Picasso.get().load(it.Image!!.src)
-                .placeholder(R.drawable.loginlogo).into(holder.itemView.iv_category)
+                .placeholder(R.drawable.placeholder).into(holder.itemView.iv_category)
 
             holder.itemView.tv_title.text = it.name
 

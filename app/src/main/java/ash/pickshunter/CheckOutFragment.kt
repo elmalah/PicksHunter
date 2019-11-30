@@ -29,9 +29,9 @@ private const val ARG_PARAM2 = "param2"
 
 class CheckOutFragment : Fragment(), View.OnClickListener {
     override fun onClick(p0: View?) {
-        when(p0) {
+        when (p0) {
             ln_add_address -> {
-                Toast.makeText(requireContext(),"Ad Address",Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Ad Address", Toast.LENGTH_LONG).show()
                 addAddressPopupShow()
             }
         }
@@ -41,9 +41,9 @@ class CheckOutFragment : Fragment(), View.OnClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    lateinit var product: Product
-    lateinit var adapter2 : ProductAttributeAdapter
-    lateinit var addressAdapter : AddressAdapter
+    lateinit var product: ProductView
+    lateinit var adapter2: ProductAttributeAdapter
+    lateinit var addressAdapter: AddressAdapter
 
     private val viewModel: TripViewModel by viewModels {
         InjectorUtils.provideTripViewModelFactory(requireContext())
@@ -51,6 +51,7 @@ class CheckOutFragment : Fragment(), View.OnClickListener {
     private val userViewModel: UserViewModel by viewModels {
         InjectorUtils.provideUserViewModelFactory(requireContext())
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -73,9 +74,9 @@ class CheckOutFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(product.productImages != null && !product.productImages!!.isEmpty())
-        Picasso.get().load(product.productImages!![0])
-            .placeholder(R.drawable.loginlogo).into(iv_product)
+        if (product.productImages != null && !product.productImages!!.isEmpty())
+            Picasso.get().load(product.productImages!![0])
+                .placeholder(R.drawable.placeholder).into(iv_product)
 
         tv_product_title.text = product.productName
 
@@ -87,10 +88,10 @@ class CheckOutFragment : Fragment(), View.OnClickListener {
         adapter2 = ProductAttributeAdapter(arrayListOf(), ::onOptionClickListener)
 
         tv_attributes.adapter = adapter2
-        adapter2.notifyChange(ArrayList(product.ProductAttributesDetailed))
+        adapter2.notifyChange(ArrayList(product.productAttributesDetailed))
 
 
-        addressAdapter = AddressAdapter (arrayListOf(), ::onClickListener)
+        addressAdapter = AddressAdapter(arrayListOf(), ::onClickListener)
 
         tv_adddresses.adapter = addressAdapter
         addressAdapter.notifyChange(ArrayList(PreferenceHelper(requireContext()).user.addresses))
@@ -98,26 +99,29 @@ class CheckOutFragment : Fragment(), View.OnClickListener {
         ln_add_address.setOnClickListener(this)
 
     }
+
     fun onClickListener(address: Address, i: Int) {
         PreferenceHelper(requireContext()).user.addresses!!.map { it.selected = false }
         PreferenceHelper(requireContext()).user.addresses!![i].selected = true
         addressAdapter.notifyChange(ArrayList(PreferenceHelper(requireContext()).user.addresses))
     }
+
     fun onOptionClickListener(option: Option, optionPos: Int, attPos: Int) {
-       product.ProductAttributesDetailed!!.map { it.options?.map { it.selected = false } }
-        product.ProductAttributesDetailed!![attPos].options!![optionPos].selected = true
-        adapter2.notifyChange(ArrayList(product.ProductAttributesDetailed))
+        product.productAttributesDetailed!!.map { it.options?.map { it.selected = false } }
+        product.productAttributesDetailed!![attPos].options!![optionPos].selected = true
+        adapter2.notifyChange(ArrayList(product.productAttributesDetailed))
     }
 
-    fun addAddressPopupShow(){
+    fun addAddressPopupShow() {
         //Inflate the dialog with custom view
-        val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.add_address_popup, null)
+        val mDialogView =
+            LayoutInflater.from(requireContext()).inflate(R.layout.add_address_popup, null)
         //AlertDialogBuilder
         val mBuilder = AlertDialog.Builder(requireContext())
             .setView(mDialogView)
             .setTitle("Add Address")
         //show dialog
-        val  mAlertDialog = mBuilder.show()
+        val mAlertDialog = mBuilder.show()
         //login button click of custom layout
         mDialogView.dialogAddBtn.setOnClickListener {
             //dismiss dialog
@@ -127,7 +131,7 @@ class CheckOutFragment : Fragment(), View.OnClickListener {
             val city = mDialogView.dialogEmailEt.text.toString()
             //set the input text in TextView
 //            mainInfoTv.setText("Name:"+ name +"\nEmail: "+ email +"\nPassword: "+ password)
-            postNewAddress(name,city)
+            postNewAddress(name, city)
         }
         //cancel button click of custom layout
 //        mDialogView.dialogAddBtn.setOnClickListener {
@@ -135,21 +139,23 @@ class CheckOutFragment : Fragment(), View.OnClickListener {
 //            mAlertDialog.dismiss()
 //        }
     }
-fun postNewAddress(name : String, city: String){
-    val registrationRequest = RegistrationRequest()
-    registrationRequest.customer.id= PreferenceHelper(requireContext()).user.id
-    registrationRequest.customer.addresses.add(Address(name,city))
-    ProgressDialog.show(requireContext(), false)
-    userViewModel.updateUser(registrationRequest).observe(this) {
-        ProgressDialog.dismiss()
-        Toast.makeText(requireContext(), "text address added ", Toast.LENGTH_LONG).show()
-        if (it.users != null && it.users!!.isNotEmpty()) {
-            Toast.makeText(requireContext(), "Yes", Toast.LENGTH_LONG).show()         }
-        else {
-            Toast.makeText(requireContext(), "No", Toast.LENGTH_LONG).show()
+
+    fun postNewAddress(name: String, city: String) {
+        val registrationRequest = RegistrationRequest()
+        registrationRequest.customer.id = PreferenceHelper(requireContext()).user.id
+        registrationRequest.customer.addresses.add(Address(name, city))
+        ProgressDialog.show(requireContext(), false)
+        userViewModel.updateUser(registrationRequest).observe(this) {
+            ProgressDialog.dismiss()
+            Toast.makeText(requireContext(), "text address added ", Toast.LENGTH_LONG).show()
+            if (it.users != null && it.users!!.isNotEmpty()) {
+                Toast.makeText(requireContext(), "Yes", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(requireContext(), "No", Toast.LENGTH_LONG).show()
+            }
         }
     }
-}
+
     interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         fun onFragmentInteraction(uri: Uri)

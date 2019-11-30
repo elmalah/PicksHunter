@@ -33,10 +33,10 @@ class ProductAdapter(
             holder.itemView.tv_name.text = it.shopperName
             if (it.productImages != null && it.productImages!!.isNotEmpty())
                 Picasso.get().load(it.productImages!![0])
-                    .placeholder(R.drawable.loginlogo).into(holder.itemView.iv_product_image)
+                    .placeholder(R.drawable.placeholder).into(holder.itemView.iv_product_image)
 
             Picasso.get().load(it.tripCountryFlag)
-                .placeholder(R.drawable.loginlogo).into(holder.itemView.iv_country_flag)
+                .placeholder(R.drawable.placeholder).into(holder.itemView.iv_country_flag)
 
             holder.itemView.tv_product_title.text = it.productName
 
@@ -52,7 +52,7 @@ class ProductAdapter(
             holder.itemView.tv_price.text = it.displayPrice
 
             Picasso.get().load(it.shoperAvatar)
-                .placeholder(R.drawable.loginlogo).into(holder.itemView.iv_product)
+                .placeholder(R.drawable.placeholder).into(holder.itemView.iv_product)
 
         }
     }

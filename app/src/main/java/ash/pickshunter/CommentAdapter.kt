@@ -29,8 +29,8 @@ class CommentAdapter(var comments: List<Comment>) :
 
     override fun onBindViewHolder(holder: BrandViewHolder, position: Int) {
         comments[position].let {
-//            Picasso.get().load(it.Image!!.src)
-//                .placeholder(R.drawable.loginlogo).into(holder.itemView.iv_brand)
+            Picasso.get().load(it.customerAvatar!!)
+                .placeholder(R.drawable.placeholder).into(holder.itemView.iv_user)
 
             holder.itemView.tv_name.text = it.customerName
 
