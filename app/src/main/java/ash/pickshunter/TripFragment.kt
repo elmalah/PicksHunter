@@ -6,13 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_trip.*
 import com.google.android.material.floatingactionbutton.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_trip_details.*
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,7 +36,7 @@ class TripFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var trip: Trip? = null
-
+    lateinit var recyclerView: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -50,10 +54,21 @@ class TripFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_trip, container, false)
     }
+    private fun initRecycler(){
+        recyclerView = rv_parent as RecyclerView
 
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext(),
+                RecyclerView.HORIZONTAL, false)
+            adapter = ChildAdapter(ChildDataFactory
+                .getChildren(40))
+        }
+
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initRecycler()
         fb_actions.setOnClickListener()
         {
             NavHostFragment.findNavController(navigation_trip).navigate(R.id.fragment_trip_stores)
@@ -110,4 +125,30 @@ class TripFragment : Fragment() {
                 }
             }
     }
+}
+object ChildDataFactory{
+
+    private val random = Random()
+
+    private val titles =  arrayListOf( "Aviator", "Now you can See me", "God Father", "Mission Impossible", "3 idiots")
+
+    private fun randomTitle() : String{
+        val index = random.nextInt(titles.size)
+        return titles[index]
+    }
+
+    private fun randomImage() : Int{
+        return R.drawable.hunter
+    }
+
+    fun getChildren(count : Int) : List<ChildModel>{
+        val children = mutableListOf<ChildModel>()
+        repeat(count){
+            val child = ChildModel(randomImage(), randomTitle())
+            children.add(child)
+        }
+        return children
+    }
+
+
 }
