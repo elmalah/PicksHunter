@@ -154,6 +154,28 @@ class TripRepository {
         return apiResponse
     }
 
+    fun addOrder(productRequest: OrderRequest): LiveData<OrderResponse> {
+        val apiResponse = MutableLiveData<OrderResponse>()
+        val apiService = endpoints.getClient()!!.create(ApiInterface::class.java)
+
+        val call: Call<OrderResponse> = apiService.addOrder(productRequest)
+        call.enqueue(object : Callback<OrderResponse> {
+            override fun onFailure(call: Call<OrderResponse>?, t: Throwable?) {
+            }
+
+            override fun onResponse(
+                call: Call<OrderResponse>?,
+                response: Response<OrderResponse>?
+            ) {
+                if (response!!.isSuccessful) {
+                    apiResponse.postValue(response.body()!!)
+                }
+            }
+
+        })
+
+        return apiResponse
+    }
 
     fun addPicture(pictureRequest: PictureRequest): LiveData<PictureResponse> {
         val apiResponse = MutableLiveData<PictureResponse>()

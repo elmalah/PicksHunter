@@ -25,13 +25,13 @@ import kotlinx.android.synthetic.main.fragment_new_product_step_two.*
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-
+private var selectedAddressId: Int? = null
 
 class CheckOutFragment : Fragment(), View.OnClickListener {
     override fun onClick(p0: View?) {
         when (p0) {
             ln_add_address -> {
-                Toast.makeText(requireContext(), "Ad Address", Toast.LENGTH_LONG).show()
+                //Toast.makeText(requireContext(), "Ad Address", Toast.LENGTH_LONG).show()
                 addAddressPopupShow()
             }
         }
@@ -93,17 +93,36 @@ class CheckOutFragment : Fragment(), View.OnClickListener {
 
         addressAdapter = AddressAdapter(arrayListOf(), ::onClickListener)
 
+        var userAddresses = PreferenceHelper(requireContext()).user.addresses
         tv_adddresses.adapter = addressAdapter
-        addressAdapter.notifyChange(ArrayList(PreferenceHelper(requireContext()).user.addresses))
-
+        addressAdapter.notifyChange(ArrayList(userAddresses))
+        selectedAddressId = userAddresses!!.get(0).id
         ln_add_address.setOnClickListener(this)
 
+        var orderRequest = OrderRequest()
+        var order = Order()
+
+        
+
+        orderRequest.order
+        bt_place_order.setOnClickListener() {
+            ProgressDialog.show(requireContext(), false)
+            viewModel.addOrder(orderRequest).observe(this) {
+                ProgressDialog.dismiss()
+
+                Toast.makeText(requireContext(), "Order placed successfully", Toast.LENGTH_LONG)
+                    .show()
+            }
+        }
     }
 
     fun onClickListener(address: Address, i: Int) {
-        PreferenceHelper(requireContext()).user.addresses!!.map { it.selected = false }
-        PreferenceHelper(requireContext()).user.addresses!![i].selected = true
-        addressAdapter.notifyChange(ArrayList(PreferenceHelper(requireContext()).user.addresses))
+        var user = PreferenceHelper(requireContext()).user
+        selectedAddressId = address.id
+        user.addresses!!.map { it.selected = false }
+        user.addresses!![i].selected = true
+        PreferenceHelper(requireContext()).putUser(user)
+        addressAdapter.notifyChange(ArrayList(user.addresses))
     }
 
     fun onOptionClickListener(option: Option, optionPos: Int, attPos: Int) {
@@ -149,9 +168,15 @@ class CheckOutFragment : Fragment(), View.OnClickListener {
             ProgressDialog.dismiss()
             Toast.makeText(requireContext(), "text address added ", Toast.LENGTH_LONG).show()
             if (it.users != null && it.users!!.isNotEmpty()) {
-                Toast.makeText(requireContext(), "Yes", Toast.LENGTH_LONG).show()
+                PreferenceHelper(requireContext()).putUser(it.users!![0])
+                var addresses = PreferenceHelper(requireContext()).user.addresses
+                addressAdapter.notifyChange(ArrayList(addresses))
+                var lastIndex = addresses.count() - 1
+                onClickListener(addresses[lastIndex], lastIndex)
+                Toast.makeText(requireContext(), "Address added successfully", Toast.LENGTH_LONG)
+                    .show()
             } else {
-                Toast.makeText(requireContext(), "No", Toast.LENGTH_LONG).show()
+                //Toast.makeText(requireContext(), "No", Toast.LENGTH_LONG).show()
             }
         }
     }

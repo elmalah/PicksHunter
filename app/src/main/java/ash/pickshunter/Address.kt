@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 class Address {
 
+    @SerializedName("id")
+    var id: Int? = null
+
     @SerializedName("city")
     var city: String? = null
 

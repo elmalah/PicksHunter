@@ -9,8 +9,10 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_address.view.*
 import kotlinx.android.synthetic.main.item_brand.view.*
 
-class AddressAdapter(var addresses: List<Address>,
-                     val onClickListener: (Address, Int) -> Unit) :
+class AddressAdapter(
+    var addresses: List<Address>,
+    val onClickListener: (Address, Int) -> Unit
+) :
     RecyclerView.Adapter<AddressAdapter.AddressViewHolder>() {
 
     fun notifyChange(addresses: List<Address>) {
@@ -30,17 +32,34 @@ class AddressAdapter(var addresses: List<Address>,
     override fun getItemCount(): Int = addresses.size
 
     override fun onBindViewHolder(holder: AddressViewHolder, position: Int) {
+        if (!addresses.any { address -> address.selected == true }) {
+            addresses[0].selected = true;
+        }
         addresses[position].let {
 
             holder.itemView.tv_name.text = it.address1
 
             if (it.selected) {
                 holder.itemView.tv_name.setTextColor(holder.itemView.context.resources.getColor(R.color.colorOrange))
-                holder.itemView.iv_icon.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.colorOrange), android.graphics.PorterDuff.Mode.MULTIPLY);
-            }
-            else {
+                holder.itemView.iv_icon.setImageDrawable(
+                    holder.itemView.context.resources.getDrawable(
+                        R.drawable.ic_check_circle
+                    )
+                )
+                holder.itemView.iv_icon.setColorFilter(
+                    ContextCompat.getColor(
+                        holder.itemView.context,
+                        R.color.colorOrange
+                    ), android.graphics.PorterDuff.Mode.MULTIPLY
+                );
+            } else {
                 holder.itemView.tv_name.setTextColor(holder.itemView.context.resources.getColor(R.color.colorGray2))
-                holder.itemView.iv_icon.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.colorGray2), android.graphics.PorterDuff.Mode.MULTIPLY);
+                holder.itemView.iv_icon.setImageDrawable(
+                    holder.itemView.context.resources.getDrawable(
+                        R.drawable.ic_check_circle
+                    )
+                )
+                holder.itemView.iv_icon.clearColorFilter()
             }
         }
     }

@@ -27,6 +27,12 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
         apiResponse = repository.updateUser(registrationRequest) as MutableLiveData<ApiResponse>
         return apiResponse
     }
+
+    fun getUser(id: String): LiveData<ApiResponse> {
+        apiResponse = repository.getUser(id) as MutableLiveData<ApiResponse>
+        return apiResponse
+    }
+
     fun updateUserAddress(registrationRequest: RegistrationRequest): LiveData<ApiResponse> {
         apiResponse = repository.updateUserAddress(registrationRequest) as MutableLiveData<ApiResponse>
         return apiResponse

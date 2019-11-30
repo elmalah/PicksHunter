@@ -22,6 +22,8 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
 
     var addProductApiResponse: MutableLiveData<ProductResponse> = MutableLiveData()
 
+    var addOrderApiResponse: MutableLiveData<OrderResponse> = MutableLiveData()
+
     var addPictureApiResponse: MutableLiveData<PictureResponse> = MutableLiveData()
 
     private var countries: MutableLiveData<ArrayList<Country>> = MutableLiveData()
@@ -58,6 +60,12 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
         addProductApiResponse =
             repository.addProduct(productRequest, id.toString()) as MutableLiveData<ProductResponse>
         return addProductApiResponse
+    }
+
+    fun addOrder(orderRequest: OrderRequest): LiveData<OrderResponse> {
+        addOrderApiResponse =
+            repository.addOrder(orderRequest) as MutableLiveData<OrderResponse>
+        return addOrderApiResponse
     }
 
     fun addPicture(pictureRequest: PictureRequest): LiveData<PictureResponse> {
