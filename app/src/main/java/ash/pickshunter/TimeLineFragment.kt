@@ -76,7 +76,7 @@ class TimeLineFragment : Fragment() {
         }
     }
 
-    fun onClickListener(product: Product, index: Int) {
+    fun onClickListener(product: ProductView, index: Int) {
         val bundle = Bundle()
         bundle.putParcelable("product", product)
         NavHostFragment.findNavController(navigation_trip)

@@ -2,7 +2,7 @@ package ash.pickshunter
 
 import com.google.gson.annotations.SerializedName
 
-class Manufacture {
+class Manufacturer {
 
     @SerializedName("name")
     var name: String? = null
@@ -14,4 +14,8 @@ class Manufacture {
     var Image: Image? = null
 
     var selected = false
+
+    override fun toString(): String {
+        return name.toString()
+    }
 }

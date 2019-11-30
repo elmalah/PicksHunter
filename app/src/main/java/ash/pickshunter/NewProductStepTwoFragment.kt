@@ -1,24 +1,20 @@
 package ash.pickshunter
 
-import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import com.fly365.utils.injection.InjectorUtils
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_new_product_step_one.*
-import android.widget.AdapterView
-import androidx.lifecycle.map
 import androidx.navigation.fragment.NavHostFragment
 import ash.pickshunter.country.Option
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_new_product_step_one.*
 import kotlinx.android.synthetic.main.fragment_new_product_step_one.bt_add_product
 import kotlinx.android.synthetic.main.fragment_new_product_step_two.*
 
@@ -44,9 +40,15 @@ class NewProductStepTwoFragment : Fragment() {
     private var product: Product? = null
     lateinit var adapter1: AttributeAdapter
     lateinit var adapter2: ProductAttributeAdapter
+    //lateinit var adapter3: ManufacturerAdapter
+    private var manufacturerId: Int = 0
 
     private val viewModel: TripViewModel by viewModels {
         InjectorUtils.provideTripViewModelFactory(requireContext())
+    }
+
+    private val userViewModel: UserViewModel by viewModels {
+        InjectorUtils.provideUserViewModelFactory(requireContext())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,7 +74,7 @@ class NewProductStepTwoFragment : Fragment() {
 
         adapter1 = AttributeAdapter(arrayListOf(), ::onOptionSelectedListener)
         adapter2 = ProductAttributeAdapter(arrayListOf(), ::onOptionClickListener)
-
+        //adapter3 = ManufacturerAdapter(arrayListOf(), ::onClickListener)
 
         ProgressDialog.show(requireContext(), false)
         viewModel.getAttributes(product?.categoryIds!![0]).observe(this) {
@@ -84,47 +86,99 @@ class NewProductStepTwoFragment : Fragment() {
             adapter2.notifyChange(ArrayList(it.productAttributes))
         }
 
+        getManufacturers()
+
+        ProgressDialog.show(requireContext(), false)
+        viewModel.getProduct(product?.id!!.toInt()).observe(this) {
+            ProgressDialog.dismiss()
+            product = it!!.products!!.get(0)
+        }
+
         bt_add_product.setOnClickListener {
             ProgressDialog.show(requireContext(), false)
+
             val productRequest = ProductRequest()
-            viewModel.attributeApiResponse.value!!.productAttributes!!.map { att->
+
+            viewModel.attributeApiResponse.value!!.productAttributes!!.map { att ->
                 val option = att.options?.filter { it.selected }
                 var attribute_values: ArrayList<AttributeValues> = arrayListOf()
                 option?.map {
-                    attribute_values.add(AttributeValues(it.name)) }
-                product!!.attributes.add(AttributeRequest(att.id, attribute_values))  }
+                    attribute_values.add(AttributeValues(it.name))
+                }
+                product!!.attributes!!.add(AttributeRequest(att.id, attribute_values))
+            }
+
+            product!!.manufacturerIds?.add(0, manufacturerId)
             productRequest.product = product!!
             viewModel.updateProduct(productRequest, product!!.id!!).observe(this) {
                 ProgressDialog.dismiss()
                 val bundle = Bundle()
                 bundle.putParcelable("product", product)
-                NavHostFragment.findNavController(navigation_trip).navigate(R.id.fragment_product_pricing, bundle)
+                NavHostFragment.findNavController(navigation_trip)
+                    .navigate(R.id.fragment_product_pricing, bundle)
             }
         }
-        getBrands()
+
     }
 
     fun onOptionSelectedListener(option: Option, optionPos: Int, attPos: Int) {
-        if (product!!.productSpecificationAttributes.size >= attPos)
-            product!!.productSpecificationAttributes.add(attPos, ProductSpecificationAttributes(option.id!!))
+        if (product!!.productSpecificationAttributes!!.size >= attPos)
+            product!!.productSpecificationAttributes!!.add(
+                attPos,
+                ProductSpecificationAttributes(option.id!!)
+            )
         else
-            product!!.productSpecificationAttributes[attPos] = ProductSpecificationAttributes(option.id!!)
+            product!!.productSpecificationAttributes!![attPos] =
+                ProductSpecificationAttributes(option.id!!)
     }
 
     fun onOptionClickListener(option: Option, optionPos: Int, attPos: Int) {
         viewModel.onOptionChange(option, optionPos, attPos)
     }
 
-    fun getBrands() {
-//        ProgressDialog.show(requireContext(), false)
-        viewModel.getCategories().observe(this) {
-//            ProgressDialog.dismiss()
-//            val options = it.categories
-//            val adapter : ArrayAdapter<Category> =  ArrayAdapter<Category>(requireContext(), android.R.layout.simple_spinner_item, options)
-//            spinner_category.adapter = adapter
-//            spinner_category.setSelection(0)
+    fun getManufacturers() {
+        ProgressDialog.show(requireContext(), false)
+        userViewModel.getBrands().observe(this) {
+            ProgressDialog.dismiss()
+            val options = it.manufacturers
+            val adapter: ArrayAdapter<Manufacturer> = ArrayAdapter<Manufacturer>(
+                requireContext(),
+                android.R.layout.simple_spinner_item,
+                options
+            )
+            spinner_manufacturer.adapter = adapter
+            spinner_manufacturer.setSelection(0)
+        }
+        spinner_manufacturer.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>,
+                selectedItemView: View,
+                position: Int,
+                id: Long
+            ) {
+                manufacturerId = userViewModel.getBrandsList()[position].id
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>) {
+                // your code here
+            }
+
         }
     }
+
+    //fun getBrands() {
+    //    ProgressDialog.show(requireContext(), false)
+    //    userViewModel.getBrands().observe(this) {
+    //        ProgressDialog.dismiss()
+    //        val options = it.manufacturers
+    //        val adapter: ArrayAdapter<Manufacturer> = ArrayAdapter<Manufacturer>(
+    //            requireContext(),
+    //            android.R.layout.simple_spinner_item,
+    //            options
+    //        )
+    //        rv_brands.adapter = adapter
+    //    }
+    //}
 
     /**
      * This interface must be implemented by activities that contain this

@@ -3,20 +3,19 @@ package ash.pickshunter
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ash.pickshunter.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_brand.view.*
 
-class BrandAdapter( var brands: List<Manufacture>,
-                    val onClickListener: (Manufacture, Int) -> Unit) :
+class BrandAdapter(var brands: List<Manufacturer>,
+                   val onClickListener: (Manufacturer, Int) -> Unit) :
     RecyclerView.Adapter<BrandAdapter.BrandViewHolder>() {
 
-    fun notifyChange(brands: List<Manufacture>) {
+    fun notifyChange(brands: List<Manufacturer>) {
         this.brands = brands
         notifyDataSetChanged()
     }
 
-    fun notifyChangePosition(brands: List<Manufacture>, position: Int) {
+    fun notifyChangePosition(brands: List<Manufacturer>, position: Int) {
         this.brands = brands
         notifyItemChanged(position)
     }

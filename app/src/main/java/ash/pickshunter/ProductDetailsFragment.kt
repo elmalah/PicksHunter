@@ -33,7 +33,7 @@ class ProductDetailsFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    lateinit var product: Product
+    lateinit var product: ProductView
 
     private val viewModel: TripViewModel by viewModels {
         InjectorUtils.provideTripViewModelFactory(requireContext())

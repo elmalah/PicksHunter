@@ -7,25 +7,25 @@ import ash.pickshunter.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_category.view.*
 
-class CategoryAdapter(
-    var categories: List<Category>,
-    val onClickListener: (Category, Int) -> Unit
+class ManufacturerAdapter(
+    var manufacturers: List<Manufacturer>,
+    val onClickListener: (Manufacturer, Int) -> Unit
 ) :
-    RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+    RecyclerView.Adapter<ManufacturerAdapter.ManufacturerViewHolder>() {
 
-    fun notifyChange(categories: List<Category>) {
-        this.categories = categories
+    fun notifyChange(manufacturers: List<Manufacturer>) {
+        this.manufacturers = manufacturers
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
-        return CategoryViewHolder(parent.inflateView(R.layout.item_category))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ManufacturerViewHolder {
+        return ManufacturerViewHolder(parent.inflateView(R.layout.item_category))
     }
 
-    override fun getItemCount(): Int = categories.size
+    override fun getItemCount(): Int = manufacturers.size
 
-    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        categories[position].let {
+    override fun onBindViewHolder(holder: ManufacturerViewHolder, position: Int) {
+        manufacturers[position].let {
             Picasso.get().load(it.Image!!.src)
                 .placeholder(R.drawable.loginlogo).into(holder.itemView.iv_category)
 
@@ -43,10 +43,10 @@ class CategoryAdapter(
         }
     }
 
-    inner class CategoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ManufacturerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         init {
             view.setOnClickListener {
-                onClickListener.invoke(categories[adapterPosition], adapterPosition)
+                onClickListener.invoke(manufacturers[adapterPosition], adapterPosition)
             }
         }
     }

@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.os.Handler
 import android.widget.Toast
+import androidx.lifecycle.observe
 import java.lang.System.*
 
 
@@ -104,6 +105,54 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(intent)
                 //startActivity(Intent(this, PicksHunterTypeActivity::class.java))
+            }
+        }
+
+        when (item.itemId) {
+            R.id.action_home -> {
+                var trip = TripDetailsResponse()
+                var user = User()
+
+                if (user == null) {
+
+
+                } else {
+                    if (!user!!.isPhoneVerified)
+                        startActivity(Intent(this, SignUpMobileActivity::class.java))
+                    else {
+
+                        //  val userType = PreferenceHelper(this).userType
+
+                        //  //Toast.makeText(this, userType, Toast.LENGTH_LONG).show()
+
+                        //  if (userType == null || userType == "")
+                        //      startActivity(Intent(this, PicksHunterTypeActivity::class.java))
+                        //  else if (userType == "customer")
+                        //      startActivity(Intent(this, MainActivity::class.java))
+                        //  else if (userType == "hunter") {
+                        //      if (trip != null && trip?.tripId != null) {
+                        //          val intent =
+                        //              Intent(this, MainActivity::class.java).putExtra(
+                        //                  "type",
+                        //                  "tripDetails"
+                        //              )
+                        //          intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        //          intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        //          startActivity(intent)
+                        //      } else {
+                        //          val intent =
+                        //              Intent(this, MainActivity::class.java).putExtra(
+                        //                  "type",
+                        //                  "hunter"
+                        //              )
+                        //          intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        //          intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        //          startActivity(intent)
+                        //      }
+
+                        //  }
+                    }
+                }
             }
         }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)

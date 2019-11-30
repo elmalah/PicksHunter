@@ -21,6 +21,9 @@ class SplashActivity : AppCompatActivity() {
     private val viewModel: TripViewModel by viewModels {
         InjectorUtils.provideTripViewModelFactory(this)
     }
+    private val userViewModel: UserViewModel by viewModels {
+        InjectorUtils.provideUserViewModelFactory(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,9 +54,17 @@ class SplashActivity : AppCompatActivity() {
 
                     if (userType == null || userType == "")
                         startActivity(Intent(this, PicksHunterTypeActivity::class.java))
-                    else if (userType == "customer")
-                        startActivity(Intent(this, MainActivity::class.java))
-                    else if (userType == "hunter") {
+                    else if (userType == "customer") {
+                        userViewModel.checkIfIntrestsSaved(user!!.id.toString()).observe(this) {
+                            if (it) {
+                                startActivity(Intent(this, MainActivity::class.java))
+                            } else {
+                                startActivity(Intent(this, GenderInterestActivity::class.java))
+                            }
+
+                        }
+
+                    } else if (userType == "hunter") {
                         if (trip != null && trip?.tripId != null) {
                             val intent =
                                 Intent(this, MainActivity::class.java).putExtra(

@@ -86,9 +86,16 @@ class ProductPricingFragment : Fragment() {
                 resources.getColorStateList(R.color.colorOrange)
         }
 
+        ProgressDialog.show(requireContext(), false)
+        viewModel.getProduct(product?.id!!.toInt()).observe(this) {
+            ProgressDialog.dismiss()
+            product = it!!.products!!.get(0)
+        }
+
         btn_calculate.setOnClickListener {
             if (et_store_price.text.isEmpty()) {
-                Toast.makeText(requireContext(), "Please Enter Store Price", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Please Enter Store Price", Toast.LENGTH_LONG)
+                    .show()
                 return@setOnClickListener
             }
 
@@ -112,9 +119,11 @@ class ProductPricingFragment : Fragment() {
 
                 tv_vat.text = it.vatAmount.toString() + " $"
                 tv_app_comission.text = it.appComission.toString() + " %"
-                tv_total_price.text = ((Math.round(it.totalPrice!! * 100))/100.0).toString() + " $"
+                tv_total_price.text =
+                    ((Math.round(it.totalPrice!! * 100)) / 100.0).toString() + " $"
 
-                tv_total_price_egp.text = ((Math.round(it.totalPriceEgp!! * 100))/100.0).toString() + " EGP"
+                tv_total_price_egp.text =
+                    ((Math.round(it.totalPriceEgp!! * 100)) / 100.0).toString() + " EGP"
             }
         }
 
@@ -125,16 +134,26 @@ class ProductPricingFragment : Fragment() {
             }
 
             ProgressDialog.show(requireContext(), false)
+
             val productRequest = ProductRequest()
-            productRequest.product.price = priceEgp.toString()
-            productRequest.product.productCost = costEgp
-            productRequest.product.published = true
+            //var productId = product!!.id
+            //product = Product()
+            //product!!.id = productId
+
+            product!!.price = priceEgp
+            product!!.productCost = costEgp
+            product!!.published = true
+
+            productRequest.product = product!!
+
             viewModel.updateProduct(productRequest, product!!.id!!).observe(this) {
                 ProgressDialog.dismiss()
 
-                Toast.makeText(requireContext(), "Product Updated Successfully", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Product Updated Successfully", Toast.LENGTH_LONG)
+                    .show()
 
-                NavHostFragment.findNavController(navigation_trip).navigate(R.id.fragment_go_to_trip_details)
+                NavHostFragment.findNavController(navigation_trip)
+                    .navigate(R.id.fragment_go_to_trip_details)
             }
         }
     }

@@ -57,6 +57,8 @@ class NewProductStepOneFragment : Fragment() {
         InjectorUtils.provideTripViewModelFactory(requireContext())
     }
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -196,7 +198,6 @@ class NewProductStepOneFragment : Fragment() {
 
             ProgressDialog.show(requireContext(), false)
             val productRequest = ProductRequest()
-            productRequest.product.images = ArrayList<ProductPicture>()
             productRequest.product.name = tv_product_title.text.toString()
             productRequest.product.shortDescription = et_product_desc.text.toString()
             productRequest.product.categoryIds?.add(0, categoryId)

@@ -14,7 +14,8 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
 
     private var apiResponse: MutableLiveData<ApiResponse> = MutableLiveData()
 
-    private var tripDetailsResponse: MutableLiveData<ArrayList<TripDetailsResponse>> = MutableLiveData()
+    private var tripDetailsResponse: MutableLiveData<ArrayList<TripDetailsResponse>> =
+        MutableLiveData()
     var attributeApiResponse: MutableLiveData<AttributeResponse> = MutableLiveData()
 
     var createTripApiResponse: MutableLiveData<Trip> = MutableLiveData()
@@ -38,7 +39,8 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
     }
 
     fun getAttributes(id: Int): LiveData<AttributeResponse> {
-        attributeApiResponse = repository.getAttributes(id.toString()) as MutableLiveData<AttributeResponse>
+        attributeApiResponse =
+            repository.getAttributes(id.toString()) as MutableLiveData<AttributeResponse>
         return attributeApiResponse
     }
 
@@ -53,18 +55,28 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
     }
 
     fun addProduct(productRequest: ProductRequest, id: Int): LiveData<ProductResponse> {
-        addProductApiResponse = repository.addProduct(productRequest, id.toString()) as MutableLiveData<ProductResponse>
+        addProductApiResponse =
+            repository.addProduct(productRequest, id.toString()) as MutableLiveData<ProductResponse>
         return addProductApiResponse
     }
 
     fun addPicture(pictureRequest: PictureRequest): LiveData<PictureResponse> {
-        addPictureApiResponse = repository.addPicture(pictureRequest) as MutableLiveData<PictureResponse>
+        addPictureApiResponse =
+            repository.addPicture(pictureRequest) as MutableLiveData<PictureResponse>
         return addPictureApiResponse
     }
 
+    fun getProduct(id: Int): LiveData<ProductResponse> {
+        addProductApiResponse =
+            repository.getProduct(id.toString()) as MutableLiveData<ProductResponse>
+        return addProductApiResponse
+    }
 
     fun updateProduct(productRequest: ProductRequest, id: Int): LiveData<ProductResponse> {
-        addProductApiResponse = repository.updateProduct(productRequest, id.toString()) as MutableLiveData<ProductResponse>
+        addProductApiResponse = repository.updateProduct(
+            productRequest,
+            id.toString()
+        ) as MutableLiveData<ProductResponse>
         return addProductApiResponse
     }
 
@@ -72,25 +84,25 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
         return repository.getTripStores(tripId.toString())
     }
 
-    fun getCountries() : LiveData<ArrayList<Country>> {
+    fun getCountries(): LiveData<ArrayList<Country>> {
         countries = repository.getCountries() as MutableLiveData<ArrayList<Country>>
         return countries
     }
 
-    fun getShops() : LiveData<ArrayList<Shop>> {
+    fun getShops(): LiveData<ArrayList<Shop>> {
         shops = repository.getShops() as MutableLiveData<ArrayList<Shop>>
         return shops
     }
 
-    fun getAllCountries() : ArrayList<Country> {
+    fun getAllCountries(): ArrayList<Country> {
         return countries.value!!
     }
 
-    fun checkIn(tripId: Int, storeId: Int) : LiveData<ResponseBody> {
+    fun checkIn(tripId: Int, storeId: Int): LiveData<ResponseBody> {
         return repository.checkIn(tripId.toString(), storeId.toString())
     }
 
-    fun checkOut(tripId: Int) : LiveData<ResponseBody> {
+    fun checkOut(tripId: Int): LiveData<ResponseBody> {
         return repository.checkOut(tripId.toString())
     }
 
@@ -98,16 +110,22 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
         return repository.calculatePrice(priceRequest)
     }
 
-    fun getTimelineProduct(): LiveData<ArrayList<Product>> {
+    fun getTimelineProduct(): LiveData<ArrayList<ProductView>> {
         return repository.getTimelineProduct()
     }
 
-    fun addComment(params: ProductCommentRequest): LiveData<Product> {
+    fun addComment(params: ProductCommentRequest): LiveData<ProductView> {
         return repository.addComment(params)
     }
 
-    fun getTripDetails(userId: Int,isLatest: String): MutableLiveData<ArrayList<TripDetailsResponse>> {
-        tripDetailsResponse = repository.getTripDetails(userId,isLatest) as MutableLiveData<ArrayList<TripDetailsResponse>>
+    fun getTripDetails(
+        userId: Int,
+        isLatest: String
+    ): MutableLiveData<ArrayList<TripDetailsResponse>> {
+        tripDetailsResponse = repository.getTripDetails(
+            userId,
+            isLatest
+        ) as MutableLiveData<ArrayList<TripDetailsResponse>>
         return tripDetailsResponse
     }
 }

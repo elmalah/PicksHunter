@@ -18,6 +18,10 @@ class PicksHunterTypeActivity : AppCompatActivity(), View.OnClickListener {
         InjectorUtils.provideTripViewModelFactory(this)
     }
 
+    private val userViewModel: UserViewModel by viewModels {
+        InjectorUtils.provideUserViewModelFactory(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_picks_hunter_type)
@@ -27,6 +31,11 @@ class PicksHunterTypeActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
+
+        var user = PreferenceHelper(this).user
+
+        ProgressDialog.show(this, false)
+
         when (p0) {
             ll_customer -> {
 
@@ -35,23 +44,32 @@ class PicksHunterTypeActivity : AppCompatActivity(), View.OnClickListener {
 //                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 //                startActivity(intent)
                 PreferenceHelper(this).putUserType("customer")
-                startActivity(
-                    Intent(this, GenderInterestActivity::class.java).putExtra(
-                        "type",
-                        "Customer"
-                    )
-                )
+
+                userViewModel.checkIfIntrestsSaved(user!!.id.toString()).observe(this) {
+                    if (it) {
+                        startActivity(Intent(this, MainActivity::class.java))
+                    } else {
+                        startActivity(
+                            Intent(this, GenderInterestActivity::class.java).putExtra(
+                                "type",
+                                "Customer"
+                            )
+                        )
+                    }
+
+                }
+
+
             }
             ll_hunter -> {
                 PreferenceHelper(this).putUserType("hunter")
-                if (    PreferenceHelper(this).tripId == 0){
+                if (PreferenceHelper(this).tripId == 0) {
                     val intent =
                         Intent(this, MainActivity::class.java).putExtra("type", "hunter")
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     startActivity(intent)
                 }
 
-                var user = PreferenceHelper(this).user
                 viewModel.getTripDetails(user!!.id, "true").observe(this) {
                     if (it[0] != null && it[0]?.tripId != null) {
                         val intent =
@@ -70,6 +88,8 @@ class PicksHunterTypeActivity : AppCompatActivity(), View.OnClickListener {
                 //startActivity(Intent(this, MainActivity::class.java).putExtra("type", "hunter"))
             }
         }
+
+        ProgressDialog.dismiss()
     }
 
 }

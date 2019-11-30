@@ -20,8 +20,6 @@ import rx.schedulers.Schedulers.io
 import android.provider.MediaStore
 
 
-
-
 class TripRepository {
 
     var endpoints: ApiClient = ApiClient()
@@ -166,10 +164,11 @@ class TripRepository {
             RequestBody.create(MediaType.parse("image/jpeg"), pictureRequest.file)
 
         // MultipartBody.Part is used to send also the actual file name
-        val body = MultipartBody.Part.createFormData("file", pictureRequest.file?.getName(), requestFile)
+        val body =
+            MultipartBody.Part.createFormData("file", pictureRequest.file?.getName(), requestFile)
 
-       // var params = HashMap<String, RequestBody>()
-       // params["file"] = body!!.body()
+        // var params = HashMap<String, RequestBody>()
+        // params["file"] = body!!.body()
 
         val call: Call<PictureResponse> = apiService.addPicture(body)
         call.enqueue(object : Callback<PictureResponse> {
@@ -196,19 +195,19 @@ class TripRepository {
     }
 
 
-    fun getTimelineProduct(): LiveData<ArrayList<Product>> {
-        val apiResponse = MutableLiveData<ArrayList<Product>>()
+    fun getTimelineProduct(): LiveData<ArrayList<ProductView>> {
+        val apiResponse = MutableLiveData<ArrayList<ProductView>>()
         val apiService = endpoints.getClient()!!.create(ApiInterface::class.java)
 
-        val call: Call<ArrayList<Product>> = apiService.getTimelineProduct()
-        call.enqueue(object : Callback<ArrayList<Product>> {
-            override fun onFailure(call: Call<ArrayList<Product>>?, t: Throwable?) {
+        val call: Call<ArrayList<ProductView>> = apiService.getTimelineProduct()
+        call.enqueue(object : Callback<ArrayList<ProductView>> {
+            override fun onFailure(call: Call<ArrayList<ProductView>>?, t: Throwable?) {
 //                apiResponse.postValue(ApiResponse(t!!))
             }
 
             override fun onResponse(
-                call: Call<ArrayList<Product>>?,
-                response: Response<ArrayList<Product>>?
+                call: Call<ArrayList<ProductView>>?,
+                response: Response<ArrayList<ProductView>>?
             ) {
                 if (response!!.isSuccessful) {
                     apiResponse.postValue(response.body()!!)
@@ -223,17 +222,17 @@ class TripRepository {
         return apiResponse
     }
 
-    fun addComment(params: ProductCommentRequest): LiveData<Product> {
-        val apiResponse = MutableLiveData<Product>()
+    fun addComment(params: ProductCommentRequest): LiveData<ProductView> {
+        val apiResponse = MutableLiveData<ProductView>()
         val apiService = endpoints.getClient()!!.create(ApiInterface::class.java)
 
-        val call: Call<Product> = apiService.addComment(params)
-        call.enqueue(object : Callback<Product> {
-            override fun onFailure(call: Call<Product>?, t: Throwable?) {
+        val call: Call<ProductView> = apiService.addComment(params)
+        call.enqueue(object : Callback<ProductView> {
+            override fun onFailure(call: Call<ProductView>?, t: Throwable?) {
 //                apiResponse.postValue(ApiResponse(t!!))
             }
 
-            override fun onResponse(call: Call<Product>?, response: Response<Product>?) {
+            override fun onResponse(call: Call<ProductView>?, response: Response<ProductView>?) {
                 if (response!!.isSuccessful) {
                     apiResponse.postValue(response.body()!!)
                 } else {
@@ -365,6 +364,33 @@ class TripRepository {
             }
 
             override fun onResponse(call: Call<Trip>?, response: Response<Trip>?) {
+                if (response!!.isSuccessful) {
+                    apiResponse.postValue(response.body()!!)
+                } else {
+//                    val body: ApiResponse = Gson().fromJson(response.errorBody()!!.string(), ApiResponse::class.java)
+                    apiResponse.postValue(null)
+                }
+            }
+
+        })
+
+        return apiResponse
+    }
+
+    fun getProduct(id: String): LiveData<ProductResponse> {
+        val apiResponse = MutableLiveData<ProductResponse>()
+        val apiService = endpoints.getClient()!!.create(ApiInterface::class.java)
+
+        val call: Call<ProductResponse> = apiService.getProduct(id)
+        call.enqueue(object : Callback<ProductResponse> {
+            override fun onFailure(call: Call<ProductResponse>?, t: Throwable?) {
+//                apiResponse.postValue(ApiResponse(t!!))
+            }
+
+            override fun onResponse(
+                call: Call<ProductResponse>?,
+                response: Response<ProductResponse>?
+            ) {
                 if (response!!.isSuccessful) {
                     apiResponse.postValue(response.body()!!)
                 } else {

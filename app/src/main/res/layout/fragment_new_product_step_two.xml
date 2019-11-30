@@ -45,6 +45,40 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_brands"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:itemCount="4"
+                tools:listitem="@layout/item_specification_attributes"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layout_margin="@dimen/_14sdp"
+                android:nestedScrollingEnabled="false"/>
+
+            <TextView
+                android:id="@+id/tv_spinner_manufacturer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:textColor="@color/colorBlack"
+                android:text="@string/brands"
+                app:layout_constraintTop_toBottomOf="@+id/et_product_desc"
+                app:layout_constraintStart_toStartOf="@+id/tv_product_title"
+                app:layout_constraintEnd_toEndOf="@id/tv_product_title"
+                android:layout_marginLeft="@dimen/_14sdp"
+                android:layout_marginRight="@dimen/_14sdp"/>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner_manufacturer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_edit_text"
+                android:textColor="@color/colorGray2"
+                android:padding="@dimen/_10sdp"
+                android:hint="@string/write_a_description"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_14sdp"
+                android:layout_marginRight="@dimen/_14sdp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_attributes"
@@ -69,7 +103,7 @@
                 android:id="@+id/bt_add_product"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/add_product"
+                android:text="Save and Continue"
                 android:layout_margin="@dimen/_14sdp"
                 android:backgroundTint="@color/colorBlue1"
                 android:background="@drawable/shap_btn"

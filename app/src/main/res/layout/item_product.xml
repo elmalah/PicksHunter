@@ -145,14 +145,15 @@
 
     <TextView
         android:id="@+id/tv_brand_name"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_50sdp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_18sdp"
         android:textColor="@color/colorGray2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_product"
-        tools:text="Macy's\n Tommy" />
+        tools:text="Macy's Tommy"
+        android:lines="2" />
 
     <ImageView
         android:id="@+id/iv_product_image"

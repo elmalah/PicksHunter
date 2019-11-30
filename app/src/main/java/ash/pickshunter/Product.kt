@@ -7,68 +7,11 @@ import com.google.gson.annotations.SerializedName
 
 class Product() : Parcelable {
 
-    @SerializedName("ProductId")
+    @SerializedName("product_id")
     var productId: Int? = null
 
-    @SerializedName("ShopperName")
-    var shopperName: String? = null
-
-    @SerializedName("ProductName")
-    var productName: String? = null
-
-    @SerializedName("Date")
-    var date: String? = null
-
-    @SerializedName("FromCountryAndState")
-    var fromCountryAndState: String? = null
-
-    @SerializedName("ToCountryAndState")
-    var toCountryAndState: String? = null
-
-    @SerializedName("TripCountryFlag")
-    var tripCountryFlag: String? = null
-
-    @SerializedName("FromDate")
-    var fromDate: String? = null
-
-    @SerializedName("ToDate")
-    var toDate:String ? = null
-
-    @SerializedName("ReturnsIn")
-    var returnsIn:String ? = null
-
-    @SerializedName("ShopName")
-    var shopName: String? = null
-
-    @SerializedName("ProductImages")
-    var productImages: ArrayList<String>? = null
-
     @SerializedName("images")
-    var images: ArrayList<ProductPicture>? = null
-
-    @SerializedName("Description")
-    var description: String? = null
-
-    @SerializedName("price")
-    var price: String? = null
-
-    @SerializedName("DisplayPrice")
-    var displayPrice: String? = null
-
-    @SerializedName("ShoperAvatar")
-    var shoperAvatar: String? = null
-
-    @SerializedName("Comments")
-    var comments: ArrayList<Comment>? = null
-
-    @SerializedName("SpecificationAttributes")
-    var specificationAttributes: ArrayList<Option>? = null
-
-    @SerializedName("ProductAttributes")
-    var productAttributes: ArrayList<Option>? = null
-
-    @SerializedName("ProductAttributesDetailed")
-    var ProductAttributesDetailed: ArrayList<Attribute>? = null
+    var images: ArrayList<ProductPicture>? = arrayListOf()
 
     @SerializedName("name")
     var name: String? = null
@@ -83,10 +26,10 @@ class Product() : Parcelable {
     var manufacturerIds: ArrayList<Int>? = arrayListOf()
 
     @SerializedName("product_specification_attributes")
-    var productSpecificationAttributes: ArrayList<ProductSpecificationAttributes> = arrayListOf()
+    var productSpecificationAttributes: ArrayList<ProductSpecificationAttributes>? = arrayListOf()
 
     @SerializedName("attributes")
-    var attributes: ArrayList<AttributeRequest> = arrayListOf()
+    var attributes: ArrayList<AttributeRequest>? = arrayListOf()
 
     @SerializedName("id")
     var id: Int? = null
@@ -94,52 +37,46 @@ class Product() : Parcelable {
     @SerializedName("published")
     var published = false
 
-//    @SerializedName("price")
-//    var price: Double? = null
+    @SerializedName("price")
+    var price: Double? = null
 
     @SerializedName("product_cost")
     var productCost: Double? = null
 
     constructor(parcel: Parcel) : this() {
-        productId = parcel.readValue(Int::class.java.classLoader) as? Int
-        shopperName = parcel.readString()
-        productName = parcel.readString()
-        date = parcel.readString()
-        fromCountryAndState = parcel.readString()
-        toCountryAndState = parcel.readString()
-        tripCountryFlag = parcel.readString()
-        fromDate = parcel.readString()
-        toDate = parcel.readString()
-        shopName = parcel.readString()
-        description = parcel.readString()
-        price = parcel.readString()
-        shoperAvatar = parcel.readString()
-        name = parcel.readString()
-        shortDescription = parcel.readString()
-        id = parcel.readValue(Int::class.java.classLoader) as? Int
-        published = parcel.readByte() != 0.toByte()
-        productCost = parcel.readValue(Double::class.java.classLoader) as? Double
+        id = parcel.readInt()
+        productId = parcel.readInt()
+
+        //productCost = parcel.readDouble()
+        //price = parcel.readDouble()
+        //published = parcel.readByte() != 0.toByte()
+        //attributes =
+        //    parcel.readValue(Array<AttributeRequest>::class.java.classLoader) as? java.util.ArrayList<AttributeRequest>
+        //productSpecificationAttributes =
+        //    parcel.readValue(Array<ProductSpecificationAttributes>::class.java.classLoader) as? java.util.ArrayList<ProductSpecificationAttributes>
+        //manufacturerIds =
+        //    parcel.readValue(Array<Int>::class.java.classLoader) as? java.util.ArrayList<Int>
+        //categoryIds =
+        //    parcel.readValue(Array<Int>::class.java.classLoader) as? java.util.ArrayList<Int>
+        //shortDescription = parcel.readString()
+        //name = parcel.readString()
+        //images =
+        //    parcel.readValue(Array<ProductPicture>::class.java.classLoader) as? java.util.ArrayList<ProductPicture>
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeValue(productId)
-        parcel.writeString(shopperName)
-        parcel.writeString(productName)
-        parcel.writeString(date)
-        parcel.writeString(fromCountryAndState)
-        parcel.writeString(toCountryAndState)
-        parcel.writeString(tripCountryFlag)
-        parcel.writeString(fromDate)
-        parcel.writeString(toDate)
-        parcel.writeString(shopName)
-        parcel.writeString(description)
-        parcel.writeString(price)
-        parcel.writeString(shoperAvatar)
-        parcel.writeString(name)
-        parcel.writeString(shortDescription)
         parcel.writeValue(id)
-        parcel.writeByte(if (published) 1 else 0)
-        parcel.writeValue(productCost)
+        //parcel.writeValue(productCost)
+        //parcel.writeValue(price)
+        //parcel.writeByte(if (published) 1 else 0)
+        //parcel.writeValue(attributes)
+        //parcel.writeValue(productSpecificationAttributes)
+        //parcel.writeValue(manufacturerIds)
+        //parcel.writeValue(categoryIds)
+        //parcel.writeString(shortDescription)
+        //parcel.writeString(name)
+        //parcel.writeValue(images)
     }
 
     override fun describeContents(): Int {

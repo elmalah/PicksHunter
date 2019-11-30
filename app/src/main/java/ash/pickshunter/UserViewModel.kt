@@ -1,10 +1,8 @@
 package ash.pickshunter
 
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import java.text.ParsePosition
 
 
 class UserViewModel(private val repository: UserRepository) : ViewModel() {
@@ -14,6 +12,10 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
     fun login(loginRequest: LoginRequest): LiveData<ApiResponse> {
         apiResponse = repository.login(loginRequest) as MutableLiveData<ApiResponse>
         return apiResponse
+    }
+
+    fun checkIfIntrestsSaved(id: String): LiveData<Boolean> {
+        return repository.checkIfIntrestsSaved(id) as MutableLiveData<Boolean>
     }
 
     fun register(registrationRequest: RegistrationRequest): LiveData<ApiResponse> {
@@ -31,11 +33,11 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
         return apiResponse
     }
 
-    fun getBrandsList(): List<Manufacture> {
+    fun getBrandsList(): List<Manufacturer> {
         return apiResponse.value!!.manufacturers!!
     }
 
-    fun updateSelectedBrand(position: Int) : List<Manufacture> {
+    fun updateSelectedBrand(position: Int) : List<Manufacturer> {
         val apiResponse = apiResponse.value
         val manufactureses = apiResponse!!.manufacturers
         manufactureses!![position].selected = !manufactureses[position].selected

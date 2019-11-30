@@ -31,8 +31,8 @@ class CheckOutFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    lateinit var product: Product
-    lateinit var adapter2 : ProductAttributeAdapter
+    lateinit var product: ProductView
+    lateinit var adapter2: ProductAttributeAdapter
 
     private val viewModel: TripViewModel by viewModels {
         InjectorUtils.provideTripViewModelFactory(requireContext())
@@ -60,9 +60,9 @@ class CheckOutFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(product.productImages != null && !product.productImages!!.isEmpty())
-        Picasso.get().load(product.productImages!![0])
-            .placeholder(R.drawable.loginlogo).into(iv_product)
+        if (product.productImages != null && !product.productImages!!.isEmpty())
+            Picasso.get().load(product.productImages!![0])
+                .placeholder(R.drawable.loginlogo).into(iv_product)
 
         tv_product_title.text = product.productName
 
@@ -73,13 +73,13 @@ class CheckOutFragment : Fragment() {
         adapter2 = ProductAttributeAdapter(arrayListOf(), ::onOptionClickListener)
 
         tv_attributes.adapter = adapter2
-        adapter2.notifyChange(ArrayList(product.ProductAttributesDetailed))
+        adapter2.notifyChange(ArrayList(product.productAttributesDetailed))
     }
 
     fun onOptionClickListener(option: Option, optionPos: Int, attPos: Int) {
-       product.ProductAttributesDetailed!!.map { it.options?.map { it.selected = false } }
-        product.ProductAttributesDetailed!![attPos].options!![optionPos].selected = true
-        adapter2.notifyChange(ArrayList(product.ProductAttributesDetailed))
+        product.productAttributesDetailed!!.map { it.options?.map { it.selected = false } }
+        product.productAttributesDetailed!![attPos].options!![optionPos].selected = true
+        adapter2.notifyChange(ArrayList(product.productAttributesDetailed))
     }
 
     interface OnFragmentInteractionListener {

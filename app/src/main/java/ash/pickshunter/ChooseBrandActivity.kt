@@ -9,7 +9,6 @@ import androidx.activity.viewModels
 import androidx.lifecycle.observe
 import com.fly365.utils.injection.InjectorUtils
 import kotlinx.android.synthetic.main.activity_choose_brand.*
-import java.text.FieldPosition
 
 class ChooseBrandActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -29,7 +28,7 @@ class ChooseBrandActivity : AppCompatActivity(), View.OnClickListener {
         user = PreferenceHelper(this).user
     }
 
-    private fun onClickListener(manufacture: Manufacture, position: Int) {
+    private fun onClickListener(manufacturer: Manufacturer, position: Int) {
         viewModel.updateSelectedBrand(position)
     }
 

@@ -10,12 +10,12 @@ import kotlinx.android.synthetic.main.item_product.view.*
 import kotlinx.android.synthetic.main.item_store.view.*
 
 class ProductAdapter(
-    var products: List<Product>,
-    val onClickListener: (Product, Int) -> Unit
+    var products: List<ProductView>,
+    val onClickListener: (ProductView, Int) -> Unit
 ) :
     RecyclerView.Adapter<ProductAdapter.BrandViewHolder>() {
 
-    fun notifyChange(products: List<Product>) {
+    fun notifyChange(products: List<ProductView>) {
         this.products = products
         notifyDataSetChanged()
     }
@@ -62,9 +62,6 @@ class ProductAdapter(
             view.setOnClickListener {
                 onClickListener.invoke(products[adapterPosition], adapterPosition)
             }
-//            view.cl_store.setOnClickListener {
-//                onClickListener.invoke(shops[adapterPosition], adapterPosition, true)
-//            }
         }
     }
 }

@@ -22,7 +22,7 @@ class ApiResponse {
     var errors: Error? = null
 
     @SerializedName("manufacturers")
-    var manufacturers: List<Manufacture>? = null
+    var manufacturers: List<Manufacturer>? = null
 
     @SerializedName("categories")
     var categories: List<Category>? = null

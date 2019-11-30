@@ -41,6 +41,29 @@ class UserRepository {
         return apiResponse
     }
 
+    fun checkIfIntrestsSaved(id: String): LiveData<Boolean> {
+        val apiResponse = MutableLiveData<Boolean>()
+        val apiService = endpoints.getClient()!!.create(ApiInterface::class.java)
+
+        val call: Call<Boolean> = apiService.checkIfIntrestsSaved(id)
+        call.enqueue(object : Callback<Boolean> {
+            override fun onFailure(call: Call<Boolean>?, t: Throwable?) {
+                apiResponse.postValue(false)
+            }
+
+            override fun onResponse(call: Call<Boolean>?, response: Response<Boolean>?) {
+                if (response!!.isSuccessful) {
+                    apiResponse.postValue(response.body()!!)
+                } else {
+                    apiResponse.postValue(null)
+                }
+            }
+
+        })
+
+        return apiResponse
+    }
+
     fun register(registrationRequest: RegistrationRequest): LiveData<ApiResponse> {
         val apiResponse = MutableLiveData<ApiResponse>()
         val apiService = endpoints.getClient()!!.create(ApiInterface::class.java)
