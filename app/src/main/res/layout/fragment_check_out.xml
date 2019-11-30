@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -46,7 +49,7 @@
         android:hint="@string/product_title"
         android:layout_marginStart="@dimen/_14sdp"
         android:layout_marginEnd="@dimen/_14sdp"
-        android:textColor="@color/colorGray2"
+        android:textColor="@color/cardview_dark_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/iv_product"
         app:layout_constraintStart_toEndOf="@+id/iv_product"
@@ -57,7 +60,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:textColor="@color/colorGray2"
+        android:textColor="@color/colorBlue1"
         android:lines="3"
         android:hint="@string/write_a_description"
         app:layout_constraintTop_toBottomOf="@+id/tv_product_title"
@@ -87,7 +90,80 @@
         android:textColor="@color/colorBlue1"
         app:layout_constraintTop_toBottomOf="@+id/view"
         app:layout_constraintStart_toStartOf="parent"
-        android:textSize="@dimen/_16sdp"/>
+        android:textSize="@dimen/_16sdp">
+    </androidx.recyclerview.widget.RecyclerView>
+<!--<LinearLayout-->
+<!--    android:id="@+id/tv_attributes"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:orientation="horizontal"-->
+<!--    android:layout_marginTop="@dimen/_8sdp"-->
+<!--    android:layout_marginStart="@dimen/_14sdp"-->
+<!--    android:textColor="@color/colorBlue1"-->
+<!--    app:layout_constraintTop_toBottomOf="@+id/view"-->
+<!--    app:layout_constraintStart_toStartOf="parent">-->
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:paddingRight="20dp"-->
+<!--        android:paddingLeft="20dp"-->
+<!--        android:paddingTop="10dp"-->
+<!--        android:paddingBottom="10dp"-->
+<!--        android:text="S"-->
+<!--        android:textSize="18sp"-->
+<!--        android:background="@drawable/btn_open_pressed"-->
+<!--        android:layout_marginEnd="10dp"-->
+<!--        />-->
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:paddingRight="20dp"-->
+<!--        android:paddingLeft="20dp"-->
+<!--        android:paddingTop="10dp"-->
+<!--        android:paddingBottom="10dp"-->
+<!--        android:text="M"-->
+<!--        android:textSize="18sp"-->
+<!--        android:background="@drawable/btn_open_pressed"-->
+<!--        android:layout_marginEnd="10dp"-->
+<!--        />-->
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:paddingRight="20dp"-->
+<!--        android:paddingLeft="20dp"-->
+<!--        android:paddingTop="10dp"-->
+<!--        android:paddingBottom="10dp"-->
+<!--        android:text="L"-->
+<!--        android:textSize="18sp"-->
+<!--        android:background="@drawable/btn_open_pressed"-->
+<!--        android:layout_marginEnd="10dp"-->
+<!--        />-->
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:paddingRight="20dp"-->
+<!--        android:paddingLeft="20dp"-->
+<!--        android:paddingTop="10dp"-->
+<!--        android:paddingBottom="10dp"-->
+<!--        android:text="XL"-->
+<!--        android:textSize="18sp"-->
+<!--        android:background="@drawable/btn_open_pressed"-->
+<!--        android:layout_marginEnd="10dp"-->
+<!--        />-->
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:paddingRight="20dp"-->
+<!--        android:paddingLeft="20dp"-->
+<!--        android:paddingTop="10dp"-->
+<!--        android:paddingBottom="10dp"-->
+<!--        android:text="XXL"-->
+<!--        android:textSize="18sp"-->
+<!--        android:background="@drawable/btn_open_pressed"-->
+<!--        android:layout_marginEnd="10dp"-->
+<!--        />-->
+
+<!--</LinearLayout>-->
 
     <View
         android:id="@+id/view2"
@@ -104,6 +180,7 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:textColor="@color/colorBlack"
+        android:textStyle="bold"
         android:text="@string/delivery_address"
         android:layout_marginStart="@dimen/_14sdp"
         android:layout_marginEnd="@dimen/_14sdp"
@@ -111,6 +188,7 @@
         app:layout_constraintStart_toStartOf="@+id/tv_product_title"
         app:layout_constraintEnd_toEndOf="@id/tv_product_title"
         android:layout_marginTop="@dimen/_5sdp" />
+
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -126,7 +204,33 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_"
         app:layout_constraintStart_toStartOf="parent"
         android:textSize="@dimen/_16sdp"/>
+    <LinearLayout
+        android:id="@+id/ln_add_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_adddresses">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/addexpense"
+            android:text="  Add Address"
+            android:textColor="@color/colorBlue1"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:alpha="0.4"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@color/colorGray1"
+        app:layout_constraintTop_toBottomOf="@+id/ln_add_address"/>
     <LinearLayout
         android:id="@+id/ll"
         android:orientation="vertical"
@@ -134,7 +238,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="@dimen/_14sdp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_adddresses"
+        app:layout_constraintTop_toBottomOf="@+id/ln_add_address"
         android:layout_marginStart="@dimen/_14sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_width="match_parent"
@@ -148,9 +252,43 @@
             android:weightSum="2" >
 
             <TextView
-                android:id="@+id/tv_name"
+                android:id="@+id/tv_estimate_delivery"
+                android:layout_width="0dp"
+                android:text="Estimate Delivery Time"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:id="@+id/tv_delivery_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="000"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/colorBlue1"/>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:alpha="0.4"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@color/colorGray1"
+            app:layout_constraintTop_toBottomOf="@+id/tv_attributes"/>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="horizontal" android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:weightSum="2" >
+
+            <TextView
+                android:id="@+id/tv_product_price"
                 android:layout_width="0dp"
                 android:text="Product Price"
+                android:textStyle="bold"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/colorBlack"/>
@@ -160,11 +298,88 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="end"
+                android:gravity="center_horizontal"
                 android:text="000"
+                android:textAppearance="?android:textAppearanceSmall"
                 android:textColor="@color/colorBlue1"/>
 
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:alpha="0.4"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@color/colorGray1"
+            app:layout_constraintTop_toBottomOf="@+id/tv_attributes"/>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="horizontal" android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:weightSum="2" >
+
+            <TextView
+                android:id="@+id/tv_shipping_name"
+                android:layout_width="0dp"
+                android:text="Shipping fees"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:id="@+id/tv_shipping"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="000"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/colorBlue1"/>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:alpha="0.4"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@color/colorGray1"
+            app:layout_constraintTop_toBottomOf="@+id/tv_attributes"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="horizontal" android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:weightSum="2" >
+
+            <TextView
+                android:id="@+id/tv_total"
+                android:layout_width="0dp"
+                android:text="Total"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:id="@+id/tv_total_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="000"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/colorBlue1"/>
+
+        </LinearLayout>
+
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:alpha="0.4"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@color/colorGray1"
+            app:layout_constraintTop_toBottomOf="@+id/tv_attributes"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="horizontal" android:layout_width="match_parent"
@@ -177,13 +392,14 @@
                 android:text="Payment Method"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textStyle="bold"
                 android:textColor="@color/colorBlack"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="end"
+                android:gravity="center"
                 android:text="Cash on delivery"
                 android:textColor="@color/colorBlue1"/>
 
@@ -206,3 +422,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -88,7 +88,29 @@ class UserRepository {
 
         return apiResponse
     }
+    fun updateUserAddress(registrationRequest: RegistrationRequest): LiveData<ApiResponse> {
+        val apiResponse = MutableLiveData<ApiResponse>()
+        val apiService = endpoints.getClient()!!.create(ApiInterface::class.java)
 
+        val call: Call<ApiResponse> = apiService.addNewAddress(registrationRequest)
+        call.enqueue(object : Callback<ApiResponse> {
+            override fun onFailure(call: Call<ApiResponse>?, t: Throwable?) {
+                apiResponse.postValue(ApiResponse(t!!))
+            }
+
+            override fun onResponse(call: Call<ApiResponse>?, response: Response<ApiResponse>?) {
+                if (response!!.isSuccessful) {
+                    apiResponse.postValue(response.body()!!)
+                } else {
+                    val body: ApiResponse = Gson().fromJson(response.errorBody()!!.string(), ApiResponse::class.java)
+                    apiResponse.postValue(body)
+                }
+            }
+
+        })
+
+        return apiResponse
+    }
     fun getBrands(): LiveData<ApiResponse> {
         val apiResponse = MutableLiveData<ApiResponse>()
         val apiService = endpoints.getClient()!!.create(ApiInterface::class.java)

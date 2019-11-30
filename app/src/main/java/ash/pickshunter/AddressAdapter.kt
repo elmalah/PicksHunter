@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.item_brand.view.*
 
 class AddressAdapter(var addresses: List<Address>,
                      val onClickListener: (Address, Int) -> Unit) :
-    RecyclerView.Adapter<AddressAdapter.BrandViewHolder>() {
+    RecyclerView.Adapter<AddressAdapter.AddressViewHolder>() {
 
     fun notifyChange(addresses: List<Address>) {
         this.addresses = addresses
@@ -23,13 +23,13 @@ class AddressAdapter(var addresses: List<Address>,
         notifyItemChanged(position)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BrandViewHolder {
-        return BrandViewHolder(parent.inflateView(R.layout.item_address))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AddressViewHolder {
+        return AddressViewHolder(parent.inflateView(R.layout.item_address))
     }
 
     override fun getItemCount(): Int = addresses.size
 
-    override fun onBindViewHolder(holder: BrandViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: AddressViewHolder, position: Int) {
         addresses[position].let {
 
             holder.itemView.tv_name.text = it.address1
@@ -45,11 +45,12 @@ class AddressAdapter(var addresses: List<Address>,
         }
     }
 
-    inner class BrandViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class AddressViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         init {
             view.setOnClickListener {
                 onClickListener.invoke(addresses[adapterPosition], adapterPosition)
             }
         }
+
     }
 }
