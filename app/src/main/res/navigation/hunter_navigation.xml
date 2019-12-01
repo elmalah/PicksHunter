@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/trip_navigation"
+    app:startDestination="@id/fragment_plan_trip">
+
+    <fragment
+        android:id="@+id/fragment_plan_trip"
+        tools:layout="@layout/fragment_plan_trip"
+        android:name="ash.pickshunter.PlanTripFragment"
+        android:label="PlanTripFragment" >
+        <action
+            android:id="@+id/action_navigate_to_go_to_trip_details"
+            app:destination="@id/fragment_go_to_trip_details" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_go_to_trip_details"
+        android:name="ash.pickshunter.GoToTripDetailsFragment"
+        android:label="GoToTripDetailsFragment" />
+<!--        tools:layout="@layout/fragment_go_to_trip_details"
+-->
+    <fragment
+        android:id="@+id/fragment_add_trip"
+        tools:layout="@layout/fragment_add_trip"
+        android:name="ash.pickshunter.AddTripFragment"
+        android:label="AddTripFragment" />
+
+
+    <fragment
+        android:id="@+id/fragment_trip"
+        tools:layout="@layout/fragment_trip"
+        android:name="ash.pickshunter.TripFragment"
+        android:label="TripFragment" />
+
+    <fragment
+        android:id="@+id/fragment_trip_stores"
+        tools:layout="@layout/fragment_trip_stores"
+        android:name="ash.pickshunter.TripStoresFragment"
+        android:label="TripStoresFragment" />
+
+    <fragment
+        android:id="@+id/fragment_new_product_step_one"
+        tools:layout="@layout/fragment_new_product_step_one"
+        android:name="ash.pickshunter.NewProductStepOneFragment"
+        android:label="NewProductStepOneFragment" />
+
+    <fragment
+        android:id="@+id/fragment_new_product_step_two"
+        tools:layout="@layout/fragment_new_product_step_two"
+        android:name="ash.pickshunter.NewProductStepTwoFragment"
+        android:label="NewProductStepTwoFragment" />
+
+    <fragment
+        android:id="@+id/fragment_product_pricing"
+        tools:layout="@layout/fragment_product_pricing"
+        android:name="ash.pickshunter.ProductPricingFragment"
+        android:label="ProductPricingFragment" />
+
+</navigation>

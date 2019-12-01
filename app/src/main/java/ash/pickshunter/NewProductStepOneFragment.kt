@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
-import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -24,10 +23,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_new_product_step_one.*
 import android.widget.AdapterView
 import androidx.core.content.ContextCompat.checkSelfPermission
-import androidx.core.net.toFile
 import androidx.navigation.fragment.NavHostFragment
-import com.esafirm.imagepicker.features.ImagePicker
-import com.esafirm.imagepicker.features.ReturnMode
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 
@@ -206,7 +202,7 @@ class NewProductStepOneFragment : Fragment() {
                 ProgressDialog.dismiss()
                 val bundle = Bundle()
                 bundle.putParcelable("product", it.products!![0])
-                NavHostFragment.findNavController(navigation_trip)
+                NavHostFragment.findNavController(main_navigation)
                     .navigate(R.id.fragment_new_product_step_two, bundle)
             }
         }

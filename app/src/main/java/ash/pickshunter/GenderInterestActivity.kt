@@ -82,6 +82,8 @@ class GenderInterestActivity : AppCompatActivity(), View.OnClickListener {
         viewModel.updateGenderInterest(ids, user.id).observe(this) {
             ProgressDialog.dismiss()
             startActivity(Intent(this, ChooseBrandActivity::class.java))
+
+
         }
     }
 }

@@ -14,7 +14,6 @@ import com.fly365.utils.injection.InjectorUtils
 import androidx.navigation.fragment.NavHostFragment
 import ash.pickshunter.country.Option
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_new_product_step_one.*
 import kotlinx.android.synthetic.main.fragment_new_product_step_one.bt_add_product
 import kotlinx.android.synthetic.main.fragment_new_product_step_two.*
 
@@ -92,6 +91,8 @@ class NewProductStepTwoFragment : Fragment() {
         viewModel.getProduct(product?.id!!.toInt()).observe(this) {
             ProgressDialog.dismiss()
             product = it!!.products!!.get(0)
+            product?.attributes = ArrayList<AttributeRequest>()
+            product?.productSpecificationAttributes = ArrayList<ProductSpecificationAttributes>()
         }
 
         bt_add_product.setOnClickListener {
@@ -114,7 +115,7 @@ class NewProductStepTwoFragment : Fragment() {
                 ProgressDialog.dismiss()
                 val bundle = Bundle()
                 bundle.putParcelable("product", product)
-                NavHostFragment.findNavController(navigation_trip)
+                NavHostFragment.findNavController(main_navigation)
                     .navigate(R.id.fragment_product_pricing, bundle)
             }
         }

@@ -1,6 +1,5 @@
 package ash.pickshunter
 
-import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import com.fly365.utils.injection.InjectorUtils
 import kotlinx.android.synthetic.main.activity_main.*
@@ -90,6 +88,8 @@ class ProductPricingFragment : Fragment() {
         viewModel.getProduct(product?.id!!.toInt()).observe(this) {
             ProgressDialog.dismiss()
             product = it!!.products!!.get(0)
+            product?.attributes = ArrayList<AttributeRequest>()
+            product?.productSpecificationAttributes = ArrayList<ProductSpecificationAttributes>()
         }
 
         btn_calculate.setOnClickListener {
@@ -152,7 +152,7 @@ class ProductPricingFragment : Fragment() {
                 Toast.makeText(requireContext(), "Product Updated Successfully", Toast.LENGTH_LONG)
                     .show()
 
-                NavHostFragment.findNavController(navigation_trip)
+                NavHostFragment.findNavController(main_navigation)
                     .navigate(R.id.fragment_go_to_trip_details)
             }
         }

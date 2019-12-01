@@ -1,18 +1,15 @@
 package ash.pickshunter
 
-import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import kotlinx.android.synthetic.main.fragment_trip.*
 import com.google.android.material.floatingactionbutton.*
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_trip_details.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -56,7 +53,7 @@ class TripFragment : Fragment() {
 
         fb_actions.setOnClickListener()
         {
-            NavHostFragment.findNavController(navigation_trip).navigate(R.id.fragment_trip_stores)
+            NavHostFragment.findNavController(main_navigation).navigate(R.id.fragment_trip_stores)
 
             //toggleButton(fb_add_expense)
             //toggleButton(fb_add_product)
@@ -70,7 +67,7 @@ class TripFragment : Fragment() {
         }
 
       // fb_checkin_store.setOnClickListener(){
-      //     NavHostFragment.findNavController(navigation_trip).navigate(R.id.fragment_trip_stores)
+      //     NavHostFragment.findNavController(navigation).navigate(R.id.fragment_trip_stores)
       // }
     }
 

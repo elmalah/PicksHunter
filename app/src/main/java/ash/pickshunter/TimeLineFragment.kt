@@ -1,6 +1,5 @@
 package ash.pickshunter
 
-import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -79,7 +78,7 @@ class TimeLineFragment : Fragment() {
     fun onClickListener(product: ProductView, index: Int) {
         val bundle = Bundle()
         bundle.putParcelable("product", product)
-        NavHostFragment.findNavController(navigation_trip)
+        NavHostFragment.findNavController(main_navigation)
             .navigate(R.id.fragment_product_details, bundle)
     }
 

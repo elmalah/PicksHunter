@@ -1,8 +1,6 @@
 package ash.pickshunter
 
 import android.app.AlertDialog
-import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,14 +10,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.NavHostFragment
 import ash.pickshunter.country.Option
 import com.fly365.utils.injection.InjectorUtils
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_choose_brand.*
-import kotlinx.android.synthetic.main.activity_sign_up_mobile.*
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.add_address_popup.view.*
 import kotlinx.android.synthetic.main.fragment_check_out.*
-import kotlinx.android.synthetic.main.fragment_new_product_step_two.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -81,6 +79,7 @@ class CheckOutFragment : Fragment(), View.OnClickListener {
         tv_product_title.text = product.productName
 
         tv_price.text = product.displayPrice
+        tv_delivery_time.text = product.toDate
 
         et_product_desc.text = product.description
 
@@ -96,24 +95,92 @@ class CheckOutFragment : Fragment(), View.OnClickListener {
         var userAddresses = PreferenceHelper(requireContext()).user.addresses
         tv_adddresses.adapter = addressAdapter
         addressAdapter.notifyChange(ArrayList(userAddresses))
-        selectedAddressId = userAddresses!!.get(0).id
+        if (userAddresses!!.count() > 0)
+            selectedAddressId = userAddresses!!.get(0)?.id
         ln_add_address.setOnClickListener(this)
 
-        var orderRequest = OrderRequest()
-        var order = Order()
 
-        
 
-        orderRequest.order
         bt_place_order.setOnClickListener() {
-            ProgressDialog.show(requireContext(), false)
-            viewModel.addOrder(orderRequest).observe(this) {
-                ProgressDialog.dismiss()
+            var valid = true
 
-                Toast.makeText(requireContext(), "Order placed successfully", Toast.LENGTH_LONG)
+            if (selectedAddressId == null || selectedAddressId == 0) {
+                Toast.makeText(requireContext(), "Please select or add address", Toast.LENGTH_LONG)
                     .show()
+                valid = false
+            }
+
+            for (att in product.productAttributesDetailed!!) {
+                if (att.options?.any() {
+                        it.selected
+                    } == false) {
+
+                    Toast.makeText(
+                        requireContext(),
+                        "Please select " + att.name,
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                    valid = false
+                }
+            }
+
+            if (valid) {
+                var orderRequest = prepareOrderRequest()
+
+                ProgressDialog.show(requireContext(), false)
+                viewModel.addOrder(orderRequest).observe(this) {
+                    ProgressDialog.dismiss()
+
+                    Toast.makeText(requireContext(), "Order placed successfully", Toast.LENGTH_LONG)
+                        .show()
+
+                    val bundle = Bundle()
+                    bundle.putParcelable("order", it.orders!![0])
+                    NavHostFragment.findNavController(main_navigation)
+                        .navigate(R.id.fragment_time_line, bundle)
+                }
             }
         }
+    }
+
+    fun prepareOrderRequest(): OrderRequest {
+        var orderRequest = OrderRequest()
+        var order = Order()
+        order.shippingMethod = "Ground"
+        order.shippingRateComputationMethodSystemName = "Shipping.FixedByWeightByTotal"
+        order.paymentMethodSystemName = "Payments.CashOnDelivery"
+        order.customerId = PreferenceHelper(requireContext()).user.id
+        order.orderTotal = product.price
+        order.billingAddressId = selectedAddressId
+        order.shippingAddressId = selectedAddressId
+
+        var orderItems = ArrayList<OrderItem>()
+        var orderItem = OrderItem()
+        orderItem.quantity = 1
+        orderItem.productId = product.productId
+
+        var productAttributes = ArrayList<ProductAttributeItem>()
+
+        for (att in product.productAttributesDetailed!!) {
+            var productAttributeItem = ProductAttributeItem()
+
+            productAttributeItem.id = att.productAttributeMappingId
+            productAttributeItem.value = att.options?.firstOrNull() {
+                it.selected == true
+            }?.key
+
+            productAttributes.add(productAttributeItem)
+
+        }
+
+        orderItem.productAttributes = productAttributes
+
+        orderItems.add(orderItem)
+        order.orderItems = orderItems
+        orderRequest.order = order
+
+        return orderRequest
     }
 
     fun onClickListener(address: Address, i: Int) {
@@ -173,6 +240,7 @@ class CheckOutFragment : Fragment(), View.OnClickListener {
                 addressAdapter.notifyChange(ArrayList(addresses))
                 var lastIndex = addresses.count() - 1
                 onClickListener(addresses[lastIndex], lastIndex)
+                selectedAddressId = addresses[lastIndex].id
                 Toast.makeText(requireContext(), "Address added successfully", Toast.LENGTH_LONG)
                     .show()
             } else {

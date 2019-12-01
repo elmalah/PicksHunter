@@ -55,7 +55,8 @@ class SplashActivity : AppCompatActivity() {
                     if (userType == null || userType == "") {
                         startActivity(Intent(this, PicksHunterTypeActivity::class.java))
                         finish()
-                    } else if (userType == "customer") {
+                    }
+                    else if (userType == "customer") {
                         userViewModel.checkIfIntrestsSaved(user!!.id.toString()).observe(this) {
                             if (it) {
                                 startActivity(Intent(this, MainActivity::class.java))
@@ -65,22 +66,25 @@ class SplashActivity : AppCompatActivity() {
                             finish()
                         }
                     } else if (userType == "hunter") {
-                        if (trip != null && trip?.tripId != null) {
-                            val intent =
-                                Intent(this, MainActivity::class.java).putExtra(
-                                    "type",
-                                    "tripDetails"
-                                )
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                            startActivity(intent)
-                        } else {
-                            val intent =
-                                Intent(this, MainActivity::class.java).putExtra("type", "hunter")
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                            startActivity(intent)
-                        }
+
+                        startActivity(Intent(this, MainActivity::class.java))
+
+                        //if (trip != null && trip?.tripId != null) {
+                        //    val intent =
+                        //        Intent(this, MainActivity::class.java).putExtra(
+                        //            "type",
+                        //            "tripDetails"
+                        //        )
+                        //    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        //    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        //    startActivity(intent)
+                        //} else {
+                        //    val intent =
+                        //        Intent(this, MainActivity::class.java).putExtra("type", "hunter")
+                        //    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        //    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        //    startActivity(intent)
+                        //}
                         finish()
 
                     }

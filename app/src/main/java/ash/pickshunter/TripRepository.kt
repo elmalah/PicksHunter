@@ -161,6 +161,7 @@ class TripRepository {
         val call: Call<OrderResponse> = apiService.addOrder(productRequest)
         call.enqueue(object : Callback<OrderResponse> {
             override fun onFailure(call: Call<OrderResponse>?, t: Throwable?) {
+                var error = t
             }
 
             override fun onResponse(

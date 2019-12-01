@@ -47,7 +47,7 @@ class ProductView() : Parcelable {
     var description: String? = null
 
     @SerializedName("Price")
-    var price: String? = null
+    var price: Double? = null
 
     @SerializedName("DisplayPrice")
     var displayPrice: String? = null

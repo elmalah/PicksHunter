@@ -66,21 +66,24 @@ class PicksHunterTypeActivity : AppCompatActivity(), View.OnClickListener {
                 if (PreferenceHelper(this).tripId == 0) {
                     val intent =
                         Intent(this, MainActivity::class.java).putExtra("type", "hunter")
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)
+                    finishAffinity()
                 }
 
                 viewModel.getTripDetails(user!!.id, "true").observe(this) {
-                    if (it[0] != null && it[0]?.tripId != null) {
+                    if (it.count() > 0 && it[0] != null && it[0]?.tripId != null) {
                         val intent =
                             Intent(this, MainActivity::class.java).putExtra("type", "tripDetails")
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)
+                        finishAffinity()
                     } else {
                         val intent =
                             Intent(this, MainActivity::class.java).putExtra("type", "hunter")
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)
+                        finishAffinity()
                     }
                 }
 

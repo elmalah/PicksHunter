@@ -1,15 +1,12 @@
 package ash.pickshunter
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.NavHostFragment
@@ -57,7 +54,7 @@ class TripStoresFragment : Fragment() {
         if (addProduct) {
             val bundle = Bundle()
             bundle.putParcelable("shop", shop)
-            NavHostFragment.findNavController(navigation_trip).navigate(R.id.fragment_new_product_step_one, bundle)
+            NavHostFragment.findNavController(main_navigation).navigate(R.id.fragment_new_product_step_one, bundle)
         }
         else
             checkOut(shop.tripShopId!!)
@@ -83,6 +80,7 @@ class TripStoresFragment : Fragment() {
     }
 
     private fun getStores() {
+        ProgressDialog.show(requireContext(), false)
         viewModel.getTripStores(tripId).observe(this) {
             ProgressDialog.dismiss()
             rv_stories.adapter = adapter

@@ -1,6 +1,5 @@
 package ash.pickshunter
 
-import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -108,7 +107,7 @@ class ProductDetailsFragment : Fragment() {
         fb_checkout.setOnClickListener {
             val bundle = Bundle()
             bundle.putParcelable("product", product)
-            NavHostFragment.findNavController(navigation_trip)
+            NavHostFragment.findNavController(main_navigation)
                 .navigate(R.id.fragment_check_out, bundle)
         }
     }

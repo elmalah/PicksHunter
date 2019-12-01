@@ -1,8 +1,10 @@
 package ash.pickshunter
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
-class Order {
+class Order() : Parcelable {
     @SerializedName("id")
     var id: Int? = null
 
@@ -29,6 +31,42 @@ class Order {
 
     @SerializedName("order_items")
     var orderItems: ArrayList<OrderItem>? = arrayListOf()
+
+    constructor(parcel: Parcel) : this() {
+        id = parcel.readValue(Int::class.java.classLoader) as? Int
+        shippingRateComputationMethodSystemName = parcel.readString()
+        shippingMethod = parcel.readString()
+        paymentMethodSystemName = parcel.readString()
+        customerId = parcel.readValue(Int::class.java.classLoader) as? Int
+        orderTotal = parcel.readValue(Double::class.java.classLoader) as? Double
+        billingAddressId = parcel.readValue(Int::class.java.classLoader) as? Int
+        shippingAddressId = parcel.readValue(Int::class.java.classLoader) as? Int
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeValue(id)
+        parcel.writeString(shippingRateComputationMethodSystemName)
+        parcel.writeString(shippingMethod)
+        parcel.writeString(paymentMethodSystemName)
+        parcel.writeValue(customerId)
+        parcel.writeValue(orderTotal)
+        parcel.writeValue(billingAddressId)
+        parcel.writeValue(shippingAddressId)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Order> {
+        override fun createFromParcel(parcel: Parcel): Order {
+            return Order(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Order?> {
+            return arrayOfNulls(size)
+        }
+    }
 }
 
 class OrderItem {

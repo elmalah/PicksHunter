@@ -58,7 +58,10 @@ class SignUpVerifyActivity : AppCompatActivity(), View.OnClickListener {
                 Toast.makeText(this, "Invalid verification code", Toast.LENGTH_LONG).show()
             }
             else {
-                startActivity(Intent(this, PicksHunterTypeActivity::class.java))
+                val intent = Intent(this, PicksHunterTypeActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                finishAffinity()
             }
         }
     }

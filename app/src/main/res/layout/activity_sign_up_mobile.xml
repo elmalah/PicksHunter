@@ -12,8 +12,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/loginlogo"
-        android:layout_margin="@dimen/_26sdp"/>
+        android:src="@drawable/loginlogo"/>
 
 
     <ImageView

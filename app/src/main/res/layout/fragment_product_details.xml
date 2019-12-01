@@ -117,14 +117,14 @@
 
                     <TextView
                         android:id="@+id/tv_returnsIn"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:singleLine="true"
                         android:textColor="@color/colorGray2"
+                        android:layout_marginStart="8dp"
                         android:textSize="@dimen/_10sdp"
                         app:layout_constraintBottom_toBottomOf="@+id/iv_fly"
-                        app:layout_constraintEnd_toStartOf="@+id/iv_brand_icon"
-                        app:layout_constraintStart_toStartOf="@+id/guildLine2"
+                        app:layout_constraintStart_toEndOf="@+id/iv_fly"
                         tools:text="USA, Florida 22/Oct/2019" />
 
                     <!--         <TextView

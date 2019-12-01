@@ -1,17 +1,12 @@
 package ash.pickshunter
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_check_out.*
 import kotlinx.android.synthetic.main.fragment_plan_trip.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -56,7 +51,7 @@ class PlanTripFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         bt_plan_trip.setOnClickListener {
-            NavHostFragment.findNavController(navigation_trip).navigate(R.id.fragment_add_trip)
+            NavHostFragment.findNavController(main_navigation).navigate(R.id.fragment_add_trip)
         }
     }
 

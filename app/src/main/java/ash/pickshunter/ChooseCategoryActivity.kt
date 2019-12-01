@@ -60,9 +60,9 @@ class ChooseCategoryActivity : AppCompatActivity(), View.OnClickListener {
         viewModel.saveCategories(ids, user.id).observe(this) {
             ProgressDialog.dismiss()
             val intent = Intent(this, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
-//            startActivity(Intent(this, MainActivity::class.java))
+            finishAffinity()
         }
     }
 }

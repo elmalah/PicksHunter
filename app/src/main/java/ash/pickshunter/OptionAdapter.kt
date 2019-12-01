@@ -3,6 +3,7 @@ package ash.pickshunter
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import ash.pickshunter.R
 import ash.pickshunter.country.Option
@@ -35,12 +36,17 @@ class OptionAdapter(var options: List<Option>,
             holder.itemView.iv_option.text = if (it.name != null) it.name else it.value
 
             if (it.selected) {
-                holder.itemView.ll_bg.backgroundTintList =
-                    holder.itemView.resources.getColorStateList(R.color.colorOrange)
+                holder.itemView.ll_bg.background.setColorFilter(
+                    ContextCompat.getColor(
+                        holder.itemView.context,
+                        R.color.colorOrange
+                    ), android.graphics.PorterDuff.Mode.MULTIPLY
+                );
+
+
             }
             else {
-                holder.itemView.ll_bg.backgroundTintList =
-                    holder.itemView.resources.getColorStateList(R.color.colorGray2)
+                holder.itemView.ll_bg.background.clearColorFilter()
             }
         }
     }

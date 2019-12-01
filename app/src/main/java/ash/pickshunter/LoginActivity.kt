@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
-        when(p0) {
+        when (p0) {
             tv_sign_up -> {
                 startActivity(Intent(this, SignUpActivity::class.java))
             }
@@ -36,11 +36,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun validateLogin() {
         if (!et_email.text.toString().isEmailValid()) {
-            Toast.makeText(this, getString(R.string.please_enter_valid_email), Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.please_enter_valid_email), Toast.LENGTH_LONG)
+                .show()
             return
-        }
-        else if (et_password.text.isEmpty()) {
-            Toast.makeText(this, getString(R.string.please_enter_password), Toast.LENGTH_LONG).show()
+        } else if (et_password.text.isEmpty()) {
+            Toast.makeText(this, getString(R.string.please_enter_password), Toast.LENGTH_LONG)
+                .show()
             return
         }
         val loginRequest = LoginRequest()
@@ -52,13 +53,19 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             if (it.isSucceeded) {
                 PreferenceHelper(this).putUser(it.user)
                 if (!it.user!!.isPhoneVerified) {
-                    startActivity(Intent(this, SignUpMobileActivity::class.java).putExtra("user", it.user))
+                    val intent = Intent(this, SignUpMobileActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    intent.putExtra("user", it.user)
+                    startActivity(intent)
+                    finishAffinity()
+                } else {
+                    val intent = Intent(this, PicksHunterTypeActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    intent.putExtra("user", it.user)
+                    startActivity(intent)
+                    finishAffinity()
                 }
-                else {
-                    startActivity(Intent(this, PicksHunterTypeActivity::class.java).putExtra("user", it.user))
-                }
-            }
-            else {
+            } else {
                 Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
             }
         }

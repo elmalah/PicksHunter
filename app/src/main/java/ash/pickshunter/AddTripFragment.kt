@@ -2,23 +2,23 @@ package ash.pickshunter
 
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.NavHostFragment
 import ash.pickshunter.country.CountryActivity
-import ash.pickshunter.country.ShopActivity
 import com.fly365.utils.injection.InjectorUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_add_trip.*
+import kotlinx.android.synthetic.main.webview_layout.*
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -68,10 +68,6 @@ class AddTripFragment : Fragment() {
             pickDate(startDateView = true)
         }
 
-        cb_terms.setOnCheckedChangeListener { buttonView, isChecked ->
-            bt_add_trip.isEnabled = cb_terms.isChecked
-        }
-
         et_end_date.setOnClickListener {
             pickDate(false)
         }
@@ -84,20 +80,59 @@ class AddTripFragment : Fragment() {
             startActivityForResult(Intent(requireActivity(), CountryActivity::class.java), 200)
         }
 
+        cb_terms.setOnCheckedChangeListener { buttonView, isChecked ->
+            bt_add_trip.isEnabled = cb_terms.isChecked
+        }
+
+        tv_termsandconditions.setOnClickListener {
+
+            var dialog = Dialog(requireContext())
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.webview_layout);
+            var wv = dialog.findViewById<WebView>(R.id.webView)
+            wv.minimumHeight = 300
+            wv.minimumWidth = 300
+
+            wv.loadUrl("http://pickshunter-dev1.halfhardy.com/t-popup/ConditionsOfUse")
+            wv.setWebViewClient(object : WebViewClient() {
+                override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+                    view.loadUrl(url)
+                    return true
+                }
+            })
+
+            val lp = WindowManager.LayoutParams()
+            lp.copyFrom(dialog.getWindow().getAttributes())
+            lp.width = WindowManager.LayoutParams.MATCH_PARENT
+            lp.height = WindowManager.LayoutParams.MATCH_PARENT
+            dialog.show()
+            dialog.getWindow().setAttributes(lp);
+
+            dialog.setOnKeyListener { v, actionId, event ->
+                if (actionId == KeyEvent.KEYCODE_BACK) {
+                    dialog.dismiss()
+                    true
+                } else {
+                    false
+                }
+            }
+
+        }
+
         bt_add_trip.setOnClickListener {
-            if(et_from.text.toString().isEmpty()) {
+            if (et_from.text.toString().isEmpty()) {
                 Toast.makeText(requireContext(), "Please Enter Country", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
-            if(et_to.text.toString().isEmpty()) {
+            if (et_to.text.toString().isEmpty()) {
                 Toast.makeText(requireContext(), "Please Enter Country", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
-            if(et_start_date.text.toString().isEmpty()) {
+            if (et_start_date.text.toString().isEmpty()) {
                 Toast.makeText(requireContext(), "Please Enter Date", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
-            if(et_end_date.text.toString().isEmpty()) {
+            if (et_end_date.text.toString().isEmpty()) {
                 Toast.makeText(requireContext(), "Please Enter Date", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
@@ -110,10 +145,14 @@ class AddTripFragment : Fragment() {
                 if (it!!.id != null) {
                     val bundle = Bundle()
                     bundle.putParcelable("trip", it)
-                    NavHostFragment.findNavController(navigation_trip).navigate(R.id.fragment_go_to_trip_details, bundle)
-                }
-                else {
-                    Toast.makeText(requireContext(), "Trip date is conflicting with other trip", Toast.LENGTH_LONG).show()
+                    NavHostFragment.findNavController(main_navigation)
+                        .navigate(R.id.fragment_go_to_trip_details, bundle)
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Trip date is conflicting with other trip",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
         }
@@ -140,7 +179,8 @@ class AddTripFragment : Fragment() {
 
     private fun pickDate(startDateView: Boolean) {
         val newCalendar = Calendar.getInstance()
-        val mDatePickerDialog = DatePickerDialog(requireContext(),
+        val mDatePickerDialog = DatePickerDialog(
+            requireContext(),
             DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                 val newDate = Calendar.getInstance()
                 newDate.set(year, monthOfYear, dayOfMonth)

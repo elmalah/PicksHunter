@@ -16,6 +16,7 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
 
     private var tripDetailsResponse: MutableLiveData<ArrayList<TripDetailsResponse>> =
         MutableLiveData()
+
     var attributeApiResponse: MutableLiveData<AttributeResponse> = MutableLiveData()
 
     var createTripApiResponse: MutableLiveData<Trip> = MutableLiveData()

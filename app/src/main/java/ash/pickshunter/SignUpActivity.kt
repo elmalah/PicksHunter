@@ -1,14 +1,28 @@
 package ash.pickshunter
 
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
+import android.view.Window
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.observe
 import com.fly365.utils.injection.InjectorUtils
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import kotlinx.android.synthetic.main.activity_sign_up.cb_terms
+import kotlinx.android.synthetic.main.activity_sign_up.tv_termsandconditions
+import kotlinx.android.synthetic.main.fragment_add_trip.*
+import android.view.WindowManager
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 class SignUpActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -21,10 +35,49 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_sign_up)
         tv_login.setOnClickListener(this)
         btn_sign_up.setOnClickListener(this)
+
+        cb_terms.setOnCheckedChangeListener { buttonView, isChecked ->
+            btn_sign_up.isEnabled = cb_terms.isChecked
+        }
+
+        tv_termsandconditions.setOnClickListener {
+
+            var dialog = Dialog(this)
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.webview_layout);
+            var wv = dialog.findViewById<WebView>(R.id.webView)
+            wv.minimumHeight = 300
+            wv.minimumWidth = 300
+
+            wv.loadUrl("http://pickshunter-dev1.halfhardy.com/t-popup/ConditionsOfUse")
+            wv.setWebViewClient(object : WebViewClient() {
+                override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+                    view.loadUrl(url)
+                    return true
+                }
+            })
+
+            val lp = WindowManager.LayoutParams()
+            lp.copyFrom(dialog.getWindow().getAttributes())
+            lp.width = WindowManager.LayoutParams.MATCH_PARENT
+            lp.height = WindowManager.LayoutParams.MATCH_PARENT
+            dialog.show()
+            dialog.getWindow().setAttributes(lp);
+
+            dialog.setOnKeyListener { v, actionId, event ->
+                if (actionId == KeyEvent.KEYCODE_BACK) {
+                    dialog.dismiss()
+                    true
+                } else {
+                    false
+                }
+            }
+
+        }
     }
 
     override fun onClick(p0: View?) {
-        when(p0) {
+        when (p0) {
             tv_login -> {
                 startActivity(Intent(this, LoginActivity::class.java))
             }
@@ -36,22 +89,26 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun validate() {
         if (et_first_name.text.isEmpty()) {
-            Toast.makeText(this, getString(R.string.please_enter_valid_name), Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.please_enter_valid_name), Toast.LENGTH_LONG)
+                .show()
             return
         }
 
         if (et_last_name.text.isEmpty()) {
-            Toast.makeText(this, getString(R.string.please_enter_valid_name), Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.please_enter_valid_name), Toast.LENGTH_LONG)
+                .show()
             return
         }
 
         if (!et_email.text.toString().isEmailValid()) {
-            Toast.makeText(this, getString(R.string.please_enter_valid_email), Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.please_enter_valid_email), Toast.LENGTH_LONG)
+                .show()
             return
         }
 
         if (et_password.text.isEmpty()) {
-            Toast.makeText(this, getString(R.string.please_enter_password), Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.please_enter_password), Toast.LENGTH_LONG)
+                .show()
             return
         }
 
@@ -65,9 +122,13 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         viewModel.register(registrationRequest).observe(this) {
             ProgressDialog.dismiss()
             if (it.users != null && it.users!!.isNotEmpty()) {
-                startActivity(Intent(this, SignUpMobileActivity::class.java).putExtra("user", it.users!![0]))
-            }
-            else {
+                startActivity(
+                    Intent(this, SignUpMobileActivity::class.java).putExtra(
+                        "user",
+                        it.users!![0]
+                    )
+                )
+            } else {
                 Toast.makeText(this, it.errors!!.Email!![0], Toast.LENGTH_LONG).show()
             }
         }
