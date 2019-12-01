@@ -71,7 +71,7 @@ class TripFragment : Fragment() {
         initRecycler()
         fb_actions.setOnClickListener()
         {
-            NavHostFragment.findNavController(navigation_trip).navigate(R.id.fragment_trip_stores)
+            NavHostFragment.findNavController(main_navigation).navigate(R.id.fragment_trip_stores)
 
             //toggleButton(fb_add_expense)
             //toggleButton(fb_add_product)
