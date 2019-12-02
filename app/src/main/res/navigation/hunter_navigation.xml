@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/fragment_plan_trip"
         tools:layout="@layout/fragment_plan_trip"
-        android:name="ash.pickshunter.PlanTripFragment"
+        android:name="ash.pickshunter.fragment.PlanTripFragment"
         android:label="PlanTripFragment" >
         <action
             android:id="@+id/action_navigate_to_go_to_trip_details"
@@ -17,45 +17,51 @@
 
     <fragment
         android:id="@+id/fragment_go_to_trip_details"
-        android:name="ash.pickshunter.GoToTripDetailsFragment"
+        android:name="ash.pickshunter.fragment.GoToTripDetailsFragment"
         android:label="GoToTripDetailsFragment" />
 <!--        tools:layout="@layout/fragment_go_to_trip_details"
 -->
     <fragment
         android:id="@+id/fragment_add_trip"
         tools:layout="@layout/fragment_add_trip"
-        android:name="ash.pickshunter.AddTripFragment"
+        android:name="ash.pickshunter.fragment.AddTripFragment"
         android:label="AddTripFragment" />
 
 
     <fragment
         android:id="@+id/fragment_trip"
         tools:layout="@layout/fragment_trip"
-        android:name="ash.pickshunter.TripFragment"
+        android:name="ash.pickshunter.fragment.TripFragment"
         android:label="TripFragment" />
+
+    <fragment
+        android:id="@+id/fragment_product_details"
+        tools:layout="@layout/fragment_product_details"
+        android:name="ash.pickshunter.fragment.ProductDetailsFragment"
+        android:label="ProductDetailsFragment" />
 
     <fragment
         android:id="@+id/fragment_trip_stores"
         tools:layout="@layout/fragment_trip_stores"
-        android:name="ash.pickshunter.TripStoresFragment"
+        android:name="ash.pickshunter.fragment.TripStoresFragment"
         android:label="TripStoresFragment" />
 
     <fragment
         android:id="@+id/fragment_new_product_step_one"
         tools:layout="@layout/fragment_new_product_step_one"
-        android:name="ash.pickshunter.NewProductStepOneFragment"
+        android:name="ash.pickshunter.fragment.NewProductStepOneFragment"
         android:label="NewProductStepOneFragment" />
 
     <fragment
         android:id="@+id/fragment_new_product_step_two"
         tools:layout="@layout/fragment_new_product_step_two"
-        android:name="ash.pickshunter.NewProductStepTwoFragment"
+        android:name="ash.pickshunter.fragment.NewProductStepTwoFragment"
         android:label="NewProductStepTwoFragment" />
 
     <fragment
         android:id="@+id/fragment_product_pricing"
         tools:layout="@layout/fragment_product_pricing"
-        android:name="ash.pickshunter.ProductPricingFragment"
+        android:name="ash.pickshunter.fragment.ProductPricingFragment"
         android:label="ProductPricingFragment" />
 
 </navigation>

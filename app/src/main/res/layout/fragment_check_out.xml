@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="@dimen/_15sdp"
-        tools:context=".CheckOutFragment">
+        tools:context=".fragment.CheckOutFragment">
 
         <ImageView
             android:id="@+id/iv_arrow"
@@ -41,6 +41,7 @@
             android:layout_marginStart="@dimen/_14sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:src="@drawable/placeholder"
+            android:scaleType="fitStart"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_arrow" />
 
@@ -317,7 +318,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:alpha="0.4"
                 android:background="@color/colorGray1"
-                app:layout_constraintTop_toBottomOf="@+id/tv_attributes" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_product_price" />
 
             <!--    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                    android:layout_width="match_parent"

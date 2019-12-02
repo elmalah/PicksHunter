@@ -8,19 +8,19 @@
     <fragment
         android:id="@+id/fragment_time_line"
         tools:layout="@layout/fragment_time_line"
-        android:name="ash.pickshunter.TimeLineFragment"
+        android:name="ash.pickshunter.fragment.TimeLineFragment"
         android:label="TimeLineFragment" />
 
     <fragment
         android:id="@+id/fragment_product_details"
         tools:layout="@layout/fragment_product_details"
-        android:name="ash.pickshunter.ProductDetailsFragment"
+        android:name="ash.pickshunter.fragment.ProductDetailsFragment"
         android:label="ProductDetailsFragment" />
 
     <fragment
         android:id="@+id/fragment_check_out"
         tools:layout="@layout/fragment_check_out"
-        android:name="ash.pickshunter.CheckOutFragment"
+        android:name="ash.pickshunter.fragment.CheckOutFragment"
         android:label="CheckOutFragment" />
 
 </navigation>

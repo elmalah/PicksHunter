@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#f2f2f2"
-    tools:context=".TimeLineFragment"
+    tools:context=".fragment.TimeLineFragment"
     android:paddingTop="3.5dp">
 
     <!-- TODO: Update blank fragment layout -->
