@@ -13,36 +13,36 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".activity.MainActivity" android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
         <activity
-            android:name=".ChooseCategoryActivity"
+            android:name=".activity.ChooseCategoryActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".country.CountryActivity"
+            android:name=".activity.CountryActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ChooseBrandActivity"
+            android:name=".activity.ChooseBrandActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".GenderInterestActivity"
+            android:name=".activity.GenderInterestActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".PicksHunterTypeActivity"
+            android:name=".activity.PicksHunterTypeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SignUpVerifyActivity"
+            android:name=".activity.SignUpVerifyActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SignUpMobileActivity"
+            android:name=".activity.SignUpMobileActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".activity.SignUpActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
@@ -50,7 +50,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".SplashActivity"
+            android:name=".activity.SplashActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

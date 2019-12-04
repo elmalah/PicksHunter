@@ -9,7 +9,10 @@
                 android:icon="@android:drawable/ic_menu_rotate"
                 android:title="Switch Mode"/>
 
-
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@android:drawable/ic_menu_revert"
+            android:title="Logout"/>
 
     </group>
 

@@ -5,15 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    tools:context=".SignUpActivity">
+    tools:context=".activity.SignUpActivity">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/loginlogo"
-        android:layout_margin="@dimen/_26sdp"/>
+        android:src="@drawable/loginlogo"/>
 
 
     <ImageView
@@ -94,18 +93,40 @@
         app:layout_constraintEnd_toEndOf="@+id/et_email"
         app:layout_constraintTop_toBottomOf="@+id/et_email"/>
 
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/cb_terms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/i_agree_to_the"
+        android:textColor="@color/colorGray2"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintStart_toStartOf="@+id/et_password"
+        app:layout_constraintTop_toBottomOf="@+id/et_password" />
+
+    <TextView
+        android:id="@+id/tv_termsandconditions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_4sdp"
+        android:text="@string/terms_conditions"
+        android:textColor="@color/colorBlue1"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/cb_terms"
+        app:layout_constraintStart_toEndOf="@+id/cb_terms"
+        app:layout_constraintTop_toTopOf="@+id/cb_terms" />
+
     <Button
         android:id="@+id/btn_sign_up"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/sign_up"
-        android:backgroundTint="@color/colorBlue1"
         android:background="@drawable/shap_btn"
+        android:backgroundTint="@color/colorBlue1"
+        android:enabled="false"
+        android:text="@string/sign_up"
         android:textColor="@color/colorWhite"
-        android:layout_marginTop="@dimen/_16sdp"
-        app:layout_constraintStart_toStartOf="@id/et_email"
         app:layout_constraintEnd_toEndOf="@+id/et_email"
-        app:layout_constraintTop_toBottomOf="@+id/et_password"/>
+        app:layout_constraintStart_toStartOf="@id/et_email"
+        app:layout_constraintTop_toBottomOf="@+id/cb_terms" />
 
     <TextView
         android:id="@+id/already_have_an_account"

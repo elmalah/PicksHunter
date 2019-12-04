@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".AddTripFragment" >
+    tools:context=".fragment.AddTripFragment" >
 
     <ImageView
         android:id="@+id/iv_arrow"
@@ -151,16 +151,16 @@
         android:layout_marginTop="@dimen/_28sdp" />
 
     <TextView
+        android:id="@+id/tv_termsandconditions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/ll_dates"
-        app:layout_constraintStart_toEndOf="@+id/cb_terms"
         android:layout_marginStart="@dimen/_4sdp"
-        android:layout_marginEnd="@dimen/_14sdp"
-        android:layout_marginTop="@dimen/_32sdp"
-        android:textSize="@dimen/_12ssp"
+        android:text="@string/terms_conditions"
         android:textColor="@color/colorBlue1"
-        android:text="@string/terms_conditions"/>
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/cb_terms"
+        app:layout_constraintStart_toEndOf="@+id/cb_terms"
+        app:layout_constraintTop_toTopOf="@+id/cb_terms" />
 
     <Button
         android:id="@+id/bt_add_trip"

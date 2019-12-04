@@ -10,7 +10,7 @@
 
         <variable
                 name="countryAdapter"
-                type="ash.pickshunter.country.CountryAdapter" />
+                type="ash.pickshunter.adapter.CountryAdapter" />
 
         <variable
                 name="viewType"

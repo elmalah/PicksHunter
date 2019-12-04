@@ -1,11 +1,10 @@
 package com.fly365.utils.injection
 
 import android.content.Context
-import androidx.fragment.app.FragmentActivity
-import ash.pickshunter.TripRepository
-import ash.pickshunter.TripViewModelFactory
-import ash.pickshunter.UserRepository
-import ash.pickshunter.UserViewModelFactory
+import ash.pickshunter.repository.TripRepository
+import ash.pickshunter.viewModel.TripViewModelFactory
+import ash.pickshunter.repository.UserRepository
+import ash.pickshunter.viewModel.UserViewModelFactory
 
 object InjectorUtils {
 

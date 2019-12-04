@@ -1,21 +1,12 @@
 package com.fly365.shared.service
 
-import android.media.Image
-import ash.pickshunter.*
+import ash.pickshunter.model.*
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
-import java.io.File
 
 interface ApiInterface {
-
-//    @Headers("authorization: XXu5WbKbM6XHbU5VKNETr6AMnNaVNd9E")
-//    @GET("api/suggest/airport/search")
-//    fun searchAirline(
-//        @Query("q") searchKey: String
-//    ): Call<ArrayList<Airport>>
 
     @Headers(
         "Content-Type: application/x-www-form-urlencoded",
@@ -271,8 +262,13 @@ interface ApiInterface {
     )
     @GET("api/trip/customer-trips/{id}")
     fun getTripDetails(
-        @Path("id") id: Int, @Query("latest") isLatest: String
-    ): Call<ArrayList<TripDetailsResponse>>
+        @Path("id") id: Int,
+        @Query("latest") isLatest: String,
+        @Query("getProducts") getProducts: String,
+        @Query("getShops") getShops: String,
+        @Query("getOrders") getOrders: String
+
+        ): Call<ArrayList<TripDetailsResponse>>
 
 
     @Headers(
@@ -283,33 +279,4 @@ interface ApiInterface {
     fun addOrder(
         @Body params: OrderRequest
     ): Call<OrderResponse>
-
-
-//    @Headers("authorization: XXu5WbKbM6XHbU5VKNETr6AMnNaVNd9E")
-//    @POST("api/flight/cart")
-//    fun createCart(
-//        @Body itinerary: Itinerary
-//    ): Call<Cart>
-//
-//    @Headers("authorization: XXu5WbKbM6XHbU5VKNETr6AMnNaVNd9E")
-//    @POST("api/flight/cart/{flightCartId}/passenger")
-//    fun addPassengers(
-//        @Body addPassengersPost: AddPassengersPost, @Path("flightCartId") flightCartId: String
-//    ): Call<Cart>
-//
-//    @Headers("authorization: XXu5WbKbM6XHbU5VKNETr6AMnNaVNd9E")
-//    @POST("api/flight/cart/{flightCartId}/checkout")
-//    fun checkout(
-//        @Body checkout: Checkout, @Path("flightCartId") flightCartId: String
-//    ): Call<CheckoutResponse>
-//
-//    @Headers("authorization: XXu5WbKbM6XHbU5VKNETr6AMnNaVNd9E")
-//    @GET("api/cms/country?page=1&pageSize=1000")
-//    fun getCountries(): Call<CountryResponse>
-//
-//    @Headers("authorization: XXu5WbKbM6XHbU5VKNETr6AMnNaVNd9E")
-//    @GET("api/user/order/find")
-//    fun getOrder(
-//        @Query("orderId") orderId: String, @Query("orderNumber") orderNumber: String
-//    ): Call<Cart>
 }

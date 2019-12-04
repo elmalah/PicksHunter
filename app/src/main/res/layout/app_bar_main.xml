@@ -6,7 +6,7 @@
               android:fitsSystemWindows="true"
               android:orientation="vertical"
 
-              tools:context=".MainActivity">
+              tools:context=".activity.MainActivity">
 
 <include layout="@layout/main_view_toolbar"/>
     <include layout="@layout/activity_main"/>

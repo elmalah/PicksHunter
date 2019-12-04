@@ -15,296 +15,360 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-        <LinearLayout
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center_vertical">
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_weight="0.7"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/_10sdp">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="textView text View"
-        android:textColor="@color/colorBlue1"
-        android:layout_marginStart="@dimen/_5sdp"
-        android:layout_marginBottom="@dimen/_5sdp"
-        android:textAppearance="?android:textAppearanceMedium"
-        />
-        <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="textView text View"
-        android:textColor="@color/colorGray1"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginBottom="@dimen/_5sdp"
-            />
-    </LinearLayout>
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/iv_country_flag"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_marginEnd="@dimen/_18sdp"
-            android:src="@drawable/usa_livetrip"
-            app:civ_border_color="@color/colorGray2"
-            android:layout_gravity="center_vertical"
-             />
+            android:layout_height="match_parent">
 
-</LinearLayout>
-        <LinearLayout
-            android:id="@+id/ln_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/_10sdp">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:orientation="vertical"
-                android:gravity="center_horizontal">
-
-                <ImageView
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:src="@drawable/wallet" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Earning"
-                    android:gravity="center_horizontal"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Text View"
-                    android:gravity="center_horizontal"
-                    android:textColor="@color/colorBlue1"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:orientation="vertical"
-                android:gravity="center_horizontal">
-
-                <ImageView
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:src="@drawable/scale" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Weight"
-                    android:gravity="center_horizontal"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Text View"
-                    android:gravity="center_horizontal"
-                    android:textColor="@color/colorBlue1"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:orientation="vertical"
-                android:gravity="center_horizontal">
-
-                <ImageView
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:src="@drawable/expenses" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Expenses"
-                    android:gravity="center_horizontal"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Text View"
-                    android:gravity="center_horizontal"
-                    android:textColor="@color/colorBlue1"/>
-            </LinearLayout>
-        </LinearLayout>
-            <View
-                android:id="@+id/view"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:alpha="0.4"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:background="@color/colorGray1"
-                app:layout_constraintTop_toBottomOf="@+id/ln_container"/>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                >
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/_5sdp">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.5"
-                    android:layout_height="wrap_content"
-                    android:text="Requests"
-                    android:textColor="@color/colorGray"
-                    android:textStyle="bold"/>
-                    <TextView
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="0.5"
-                    android:layout_height="wrap_content"
-                    android:text="Show All "
-                        android:drawableEnd="@drawable/ic_right_arrow"
-                        android:layout_marginEnd="@dimen/_10sdp"
-                    android:textColor="@color/colorBlue1"
-                    android:textStyle="bold"
-                        android:gravity="end"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_10sdp">
+
+                        <TextView
+                            android:id="@+id/tv_trip_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:textAppearance="?android:textAppearanceMedium"
+                            android:textColor="@color/colorBlue1" />
+
+                        <TextView
+                            android:id="@+id/tv_time_remaining"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:textColor="@color/colorGray1" />
+                    </LinearLayout>
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/iv_country_flag"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="@dimen/_18sdp"
+                        android:src="@drawable/usa_livetrip"
+                        app:civ_border_color="@color/colorGray2" />
+
                 </LinearLayout>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_parent"
+
+                <LinearLayout
+                    android:id="@+id/ln_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:src="@drawable/wallet" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Earning" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="0 EGP"
+                            android:textColor="@color/colorBlue1" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:src="@drawable/scale" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Weight" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="0 KG"
+                            android:textColor="@color/colorBlue1" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:src="@drawable/expenses" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Expenses" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="0"
+                            android:textColor="@color/colorBlue1" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:alpha="0.4"
+                    android:background="@color/colorGray1"
+                    app:layout_constraintTop_toBottomOf="@+id/ln_container" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:padding="20dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    tools:layout_editor_absoluteX="74dp" />
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/_5sdp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:text="Trip Products"
+                            android:textColor="@color/colorGray"
+                            android:textStyle="bold" />
+
+<!--                        <TextView-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginEnd="@dimen/_10sdp"-->
+<!--                            android:layout_weight="0.5"-->
+<!--                            android:drawableEnd="@drawable/ic_right_arrow"-->
+<!--                            android:gravity="end"-->
+<!--                            android:text="Show All "-->
+<!--                            android:textColor="@color/colorBlue1"-->
+<!--                            android:textStyle="bold" />-->
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_trip_products"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        tools:layout_editor_absoluteX="74dp" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-</ScrollView>
+        </ScrollView>
     </androidx.core.widget.NestedScrollView>
 
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fb_actions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginEnd="@dimen/_20sdp"
-        android:layout_marginBottom="@dimen/_20sdp"
-        android:orientation="vertical"
-        app:backgroundTint="@android:color/holo_blue_dark"
-        app:icon="@drawable/checkinstore"
-        app:iconSize="32dp"
-        app:iconTint="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_20sdp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-
-        <!--  <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-              android:id="@+id/fb_add_product"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_margin="8dp"
-              app:backgroundTint="@android:color/white"
-              app:icon="@android:drawable/ic_delete"
-              app:iconTint="@android:color/holo_blue_dark" />
-
-          <TextView
-              android:id="@+id/text_add_product"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="add product" />
-
-          <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-              android:id="@+id/fb_end_trip"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_margin="8dp"
-              app:backgroundTint="@android:color/white"
-              app:icon="@android:drawable/ic_delete"
-              app:iconTint="@android:color/holo_blue_dark" />
-
-          <TextView
-              android:id="@+id/text_end_trip"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="end trip" />
-
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/fb_checkin_store"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:backgroundTint="@android:color/white"
-            app:icon="@android:drawable/ic_delete"
-            app:iconTint="@android:color/holo_blue_dark" />
-
-        <TextView
-            android:id="@+id/text_checkin_store"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="stores" />
-
- <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fb_add_expense"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
+        android:id="@+id/fb_add_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:layout_marginBottom="20dp"
         app:backgroundTint="@android:color/white"
-        app:icon="@android:drawable/ic_delete"
-        app:iconTint="@android:color/holo_blue_dark" />
+        app:fabSize="mini"
+        android:src="@drawable/addproduct"
+        android:visibility="invisible"
+        app:tint="@color/colorBlue1"
+        app:layout_constraintBottom_toTopOf="@+id/fb_end_trip"
+        app:layout_constraintEnd_toEndOf="@+id/fb_end_trip"
+        app:layout_constraintStart_toStartOf="@+id/fb_end_trip" />
 
-    <TextView
+    <androidx.cardview.widget.CardView
+        android:id="@+id/text_add_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:padding="5dp"
+        android:text="add product"
+        android:visibility="invisible"
+        android:textColor="@color/colorBlue1"
+        app:layout_constraintBottom_toBottomOf="@+id/fb_add_product"
+        app:layout_constraintEnd_toStartOf="@+id/fb_add_product"
+        app:layout_constraintTop_toTopOf="@+id/fb_add_product" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="add product"
+            android:textColor="@color/colorBlue1" />
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fb_end_trip"
+        app:fabSize="mini"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginBottom="20dp"
+        app:tint="@color/colorBlue1"
+        app:backgroundTint="@android:color/white"
+        android:src="@drawable/endtrip"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/fb_checkin_store"
+        app:layout_constraintEnd_toEndOf="@+id/fb_checkin_store"
+        app:layout_constraintStart_toStartOf="@+id/fb_checkin_store" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/text_end_trip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:padding="5dp"
+        android:visibility="invisible"
+        android:textColor="@color/colorBlue1"
+        app:layout_constraintBottom_toBottomOf="@+id/fb_end_trip"
+        app:layout_constraintEnd_toStartOf="@+id/fb_end_trip"
+        app:layout_constraintTop_toTopOf="@+id/fb_end_trip">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="end trip"
+            android:textColor="@color/colorBlue1" />
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        app:fabSize="mini"
+        android:id="@+id/fb_checkin_store"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginBottom="20dp"
+        app:tint="@color/colorBlue1"
+        app:backgroundTint="@android:color/white"
+        android:src="@drawable/checkinstore"
+        android:visibility="invisible"
+        app:iconTint="@color/colorBlue1"
+        app:layout_constraintBottom_toTopOf="@+id/fb_add_expense"
+        app:layout_constraintEnd_toEndOf="@+id/fb_add_expense"
+        app:layout_constraintStart_toStartOf="@+id/fb_add_expense" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/text_checkin_store"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:padding="5dp"
+        android:visibility="invisible"
+        android:textColor="@color/colorBlue1"
+        app:layout_constraintBottom_toBottomOf="@+id/fb_checkin_store"
+        app:layout_constraintEnd_toStartOf="@+id/fb_checkin_store"
+        app:layout_constraintTop_toTopOf="@+id/fb_checkin_store" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="stores"
+            android:textColor="@color/colorBlue1"
+            app:layout_constraintBottom_toBottomOf="@+id/fb_checkin_store"
+            app:layout_constraintEnd_toStartOf="@+id/fb_checkin_store"
+            app:layout_constraintTop_toTopOf="@+id/fb_checkin_store" />
+    </androidx.cardview.widget.CardView>
+
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fb_add_expense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:visibility="invisible"
+        app:fabSize="mini"
+        app:tint="@color/colorBlue1"
+        app:backgroundTint="@android:color/white"
+        android:src="@drawable/addexpense"
+        app:layout_constraintBottom_toTopOf="@+id/fb_actions"
+        app:layout_constraintEnd_toEndOf="@+id/fb_actions"
+        app:layout_constraintStart_toStartOf="@+id/fb_actions" />
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/text_add_expense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="add expense" />-->
+        android:layout_marginEnd="20dp"
+        android:padding="5dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/fb_add_expense"
+        app:layout_constraintEnd_toStartOf="@+id/fb_add_expense"
+        app:layout_constraintTop_toTopOf="@+id/fb_add_expense">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="add expense"
+            android:textColor="@color/colorBlue1" />
+    </androidx.cardview.widget.CardView>
 
-
-    </LinearLayout>
-
-    <!--<com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fb_actions"
         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        app:icon="@android:drawable/ic_input_add"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
         android:tint="@color/colorWhite"
-        android:layout_marginBottom="@dimen/_50sdp"
+        app:backgroundTint="@color/colorBlue1"
+        app:icon="@android:drawable/ic_input_add"
+        app:iconTint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="@dimen/_20sdp"/>-->
-
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
