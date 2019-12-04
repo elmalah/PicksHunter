@@ -159,7 +159,7 @@ class CheckOutFragment : Fragment(), View.OnClickListener {
 //        }
     }
 
-    fun postNewAddress(name: String, city: String) {
+    private fun postNewAddress(name: String, city: String) {
         val registrationRequest = RegistrationRequest()
         registrationRequest.customer.id = PreferenceHelper(requireContext()).user.id
         registrationRequest.customer.addresses.add(Address(name, city))
