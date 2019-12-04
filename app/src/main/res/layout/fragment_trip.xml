@@ -186,20 +186,62 @@
                             android:textColor="@color/colorGray"
                             android:textStyle="bold" />
 
-<!--                        <TextView-->
-<!--                            android:layout_width="0dp"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginEnd="@dimen/_10sdp"-->
-<!--                            android:layout_weight="0.5"-->
-<!--                            android:drawableEnd="@drawable/ic_right_arrow"-->
-<!--                            android:gravity="end"-->
-<!--                            android:text="Show All "-->
-<!--                            android:textColor="@color/colorBlue1"-->
-<!--                            android:textStyle="bold" />-->
                     </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_trip_products"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        tools:layout_editor_absoluteX="74dp" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view_requests"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:alpha="0.4"
+                    android:background="@color/colorGray1"
+                    app:layout_constraintTop_toBottomOf="@+id/ln_container" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/_5sdp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:text="Trip Products"
+                            android:textColor="@color/colorGray"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_showAll"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:drawableEnd="@drawable/ic_right_arrow"
+                            android:text="Show all "
+                            android:textColor="@color/colorBlue1" />
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_trip_requests"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
@@ -214,20 +256,20 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        style="@style/Widget.MaterialComponents.FloatingActionButton"
         android:id="@+id/fb_add_product"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_marginBottom="20dp"
-        app:backgroundTint="@android:color/white"
-        app:fabSize="mini"
         android:src="@drawable/addproduct"
         android:visibility="invisible"
-        app:tint="@color/colorBlue1"
+        app:backgroundTint="@android:color/white"
+        app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/fb_end_trip"
         app:layout_constraintEnd_toEndOf="@+id/fb_end_trip"
-        app:layout_constraintStart_toStartOf="@+id/fb_end_trip" />
+        app:layout_constraintStart_toStartOf="@+id/fb_end_trip"
+        app:tint="@color/colorBlue1" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/text_add_product"
@@ -236,11 +278,12 @@
         android:layout_marginEnd="20dp"
         android:padding="5dp"
         android:text="add product"
-        android:visibility="invisible"
         android:textColor="@color/colorBlue1"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/fb_add_product"
         app:layout_constraintEnd_toStartOf="@+id/fb_add_product"
-        app:layout_constraintTop_toTopOf="@+id/fb_add_product" >
+        app:layout_constraintTop_toTopOf="@+id/fb_add_product">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -251,18 +294,18 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fb_end_trip"
-        app:fabSize="mini"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_marginBottom="20dp"
-        app:tint="@color/colorBlue1"
-        app:backgroundTint="@android:color/white"
         android:src="@drawable/endtrip"
         android:visibility="invisible"
+        app:backgroundTint="@android:color/white"
+        app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/fb_checkin_store"
         app:layout_constraintEnd_toEndOf="@+id/fb_checkin_store"
-        app:layout_constraintStart_toStartOf="@+id/fb_checkin_store" />
+        app:layout_constraintStart_toStartOf="@+id/fb_checkin_store"
+        app:tint="@color/colorBlue1" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/text_end_trip"
@@ -270,11 +313,12 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:padding="5dp"
-        android:visibility="invisible"
         android:textColor="@color/colorBlue1"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/fb_end_trip"
         app:layout_constraintEnd_toStartOf="@+id/fb_end_trip"
         app:layout_constraintTop_toTopOf="@+id/fb_end_trip">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -284,20 +328,20 @@
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        app:fabSize="mini"
         android:id="@+id/fb_checkin_store"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_marginBottom="20dp"
-        app:tint="@color/colorBlue1"
-        app:backgroundTint="@android:color/white"
         android:src="@drawable/checkinstore"
         android:visibility="invisible"
+        app:backgroundTint="@android:color/white"
+        app:fabSize="mini"
         app:iconTint="@color/colorBlue1"
         app:layout_constraintBottom_toTopOf="@+id/fb_add_expense"
         app:layout_constraintEnd_toEndOf="@+id/fb_add_expense"
-        app:layout_constraintStart_toStartOf="@+id/fb_add_expense" />
+        app:layout_constraintStart_toStartOf="@+id/fb_add_expense"
+        app:tint="@color/colorBlue1" />
 
 
     <androidx.cardview.widget.CardView
@@ -306,11 +350,12 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:padding="5dp"
-        android:visibility="invisible"
         android:textColor="@color/colorBlue1"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/fb_checkin_store"
         app:layout_constraintEnd_toStartOf="@+id/fb_checkin_store"
-        app:layout_constraintTop_toTopOf="@+id/fb_checkin_store" >
+        app:layout_constraintTop_toTopOf="@+id/fb_checkin_store">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -323,21 +368,19 @@
     </androidx.cardview.widget.CardView>
 
 
-
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fb_add_expense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:visibility="invisible"
-        app:fabSize="mini"
-        app:tint="@color/colorBlue1"
-        app:backgroundTint="@android:color/white"
         android:src="@drawable/addexpense"
+        android:visibility="invisible"
+        app:backgroundTint="@android:color/white"
+        app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/fb_actions"
         app:layout_constraintEnd_toEndOf="@+id/fb_actions"
-        app:layout_constraintStart_toStartOf="@+id/fb_actions" />
+        app:layout_constraintStart_toStartOf="@+id/fb_actions"
+        app:tint="@color/colorBlue1" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/text_add_expense"
@@ -349,6 +392,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/fb_add_expense"
         app:layout_constraintEnd_toStartOf="@+id/fb_add_expense"
         app:layout_constraintTop_toTopOf="@+id/fb_add_expense">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -47,6 +47,7 @@ class TripFragment : Fragment() {
     private var param2: String? = null
     private var trip: TripDetailsResponse? = null
     lateinit var tripProductsRecyclerView: RecyclerView
+    lateinit var tripRequestsRecyclerView: RecyclerView
 
 
     private val viewModel: TripViewModel by viewModels {
@@ -92,11 +93,14 @@ class TripFragment : Fragment() {
         fb_add_product.setOnClickListener() {
             NavHostFragment.findNavController(main_navigation).navigate(R.id.fragment_trip_stores)
         }
+        tv_showAll.setOnClickListener() {
+            NavHostFragment.findNavController(main_navigation).navigate(R.id.fragment_hunter_requests_list)
+        }
 
         getTripDetails()
     }
 
-    fun getTripDetails() {
+    private fun getTripDetails() {
 
         ProgressDialog.show(requireContext(), false)
 
@@ -133,16 +137,27 @@ class TripFragment : Fragment() {
             adapter = TripDetailsProductAdapter(trip?.products!!, ::onProductClickListener)
         }
 
+        // Implement Requests RecyclerView
+        tripRequestsRecyclerView = rv_trip_requests as RecyclerView
+
+        tripRequestsRecyclerView.apply {
+            layoutManager = LinearLayoutManager(
+                requireContext(),
+                RecyclerView.HORIZONTAL, false
+            )
+            adapter = TripDetailsProductAdapter(trip?.products!!, ::onProductClickListener)
+        }
+
     }
 
-    fun onProductClickListener(product: ProductView, index: Int) {
+    private fun onProductClickListener(product: ProductView, index: Int) {
         val bundle = Bundle()
         bundle.putParcelable("product", product)
         NavHostFragment.findNavController(main_navigation)
             .navigate(R.id.fragment_product_details, bundle)
     }
 
-    fun toggleButton(button: FloatingActionButton) {
+   private fun toggleButton(button: FloatingActionButton) {
         if (button.isShown()) {
             button.hide();
         } else {
