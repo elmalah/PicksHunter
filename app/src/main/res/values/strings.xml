@@ -90,4 +90,6 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="requests_txt">Requests</string>
+    <string name="request_approve">Approve</string>
+    <string name="request_reject">Reject</string>
 </resources>
