@@ -21,7 +21,6 @@ import com.fly365.utils.injection.InjectorUtils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_product_details.*
-import kotlinx.android.synthetic.main.item_product.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment inproductialization parameters, e.g. ARG_ITEM_NUMBER
@@ -64,7 +63,7 @@ class ProductDetailsFragment : Fragment() {
         if(PreferenceHelper(requireContext()).userType == "hunter")
             fb_checkout.hide()
 
-        date.text = product.date
+        tv_check_post.text = product.date
         tv_name.text = product.shopperName
         if (product.productImages != null && product.productImages!!.isNotEmpty())
             Picasso.get().load(product.productImages!!.getOrNull(0))
@@ -104,7 +103,7 @@ class ProductDetailsFragment : Fragment() {
         var adapter2 = AttributeViewAdapter(arrayListOf())
         adapter2.notifyChange(product.productAttributes!! + product.specificationAttributes!!)
 
-        rv_attributes.adapter = adapter2
+        rv_specification_attributes.adapter = adapter2
 
         tv_post.setOnClickListener {
             if (et_comment.text.isNotEmpty()) {

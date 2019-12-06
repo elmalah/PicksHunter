@@ -26,9 +26,10 @@
         android:backgroundTint="@color/colorBlack"
         app:layout_constraintBottom_toBottomOf="parent"
         android:background="@color/colorBlack"
-        app:itemIconTint="@color/colorOrange"
-        app:itemTextColor="@color/colorOrange"
-        app:menu="@menu/bottom_navigation_main">
+        app:itemIconTint="#66676A"
+        app:itemTextColor="#66676A"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation_hunter">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 

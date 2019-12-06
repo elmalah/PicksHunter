@@ -3,21 +3,27 @@ package ash.pickshunter.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import ash.pickshunter.fragment.RequestsDoneFragment
-import ash.pickshunter.fragment.RequestsPendingFragment
-import ash.pickshunter.fragment.RequestsRejectedFragment
+import ash.pickshunter.fragment.RequestsListTabFragment
 
 
-class MyPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class RequestsListTabAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
+
+//Unknown = 0,
+//PendingApproval = 1,
+//Purchased = 2,
+//DeliveredToCustomer = 3,
+//Rejected = 4,
+//Canceled = 5
+
         return when (position) {
             0 -> {
-                RequestsDoneFragment()
+                RequestsListTabFragment(1)
             }
-            1 -> RequestsPendingFragment()
+            1 -> RequestsListTabFragment(2)
             else -> {
-                return RequestsRejectedFragment()
+                return RequestsListTabFragment(4)
             }
         }
     }
@@ -28,8 +34,8 @@ class MyPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getPageTitle(position: Int): CharSequence {
         return when (position) {
-            0 -> "Done"
-            1 -> "Pending"
+            0 -> "Pending"
+            1 -> "Done"
             else -> {
                 return "Rejected"
             }

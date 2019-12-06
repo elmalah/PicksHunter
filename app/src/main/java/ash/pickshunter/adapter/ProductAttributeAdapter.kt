@@ -32,7 +32,7 @@ class ProductAttributeAdapter(var attributes: List<Attribute>,
             val adapter =
                 OptionAdapter(it.options!!, ::onClickListener, position)
 
-            holder.itemView.rv_attributes.adapter = adapter
+            holder.itemView.rv_specification_attributes.adapter = adapter
         }
     }
 

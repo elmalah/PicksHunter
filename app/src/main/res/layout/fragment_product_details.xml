@@ -63,7 +63,7 @@
                         tools:text="Ahmed Shafeek" />
 
                     <TextView
-                        android:id="@+id/date"
+                        android:id="@+id/tv_check_post"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_4sdp"
@@ -280,7 +280,7 @@
                 android:background="@color/colorGray2" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_attributes"
+                android:id="@+id/rv_specification_attributes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_14sdp"

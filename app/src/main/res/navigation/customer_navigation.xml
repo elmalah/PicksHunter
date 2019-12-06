@@ -23,4 +23,10 @@
         android:name="ash.pickshunter.fragment.CheckOutFragment"
         android:label="CheckOutFragment" />
 
+    <fragment
+        android:id="@+id/fragment_order_list"
+        tools:layout="@layout/fragment_order_list"
+        android:name="ash.pickshunter.fragment.OrderFragment"
+        android:label="OrderFragment" />
+
 </navigation>

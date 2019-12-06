@@ -13,7 +13,7 @@ import androidx.lifecycle.observe
 import com.fly365.utils.injection.InjectorUtils
 import androidx.navigation.fragment.NavHostFragment
 import ash.pickshunter.*
-import ash.pickshunter.adapter.AttributeAdapter
+import ash.pickshunter.adapter.SpecificationAttributeAdapter
 import ash.pickshunter.adapter.ProductAttributeAdapter
 import ash.pickshunter.model.Option
 import ash.pickshunter.model.*
@@ -44,8 +44,9 @@ class NewProductStepTwoFragment : Fragment() {
     private var param2: String? = null
     private var shop: Shop? = null
     private var product: Product? = null
-    lateinit var adapter1: AttributeAdapter
-    lateinit var adapter2: ProductAttributeAdapter
+    lateinit var specificationAttributeAdapter: SpecificationAttributeAdapter
+    lateinit var productAttributeAdapter: ProductAttributeAdapter
+
     //lateinit var adapter3: ManufacturerAdapter
     private var manufacturerId: Int = 0
 
@@ -78,20 +79,22 @@ class NewProductStepTwoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter1 =
-            AttributeAdapter(arrayListOf(), ::onOptionSelectedListener)
-        adapter2 =
+        specificationAttributeAdapter =
+            SpecificationAttributeAdapter(arrayListOf(), ::onOptionSelectedListener)
+        productAttributeAdapter =
             ProductAttributeAdapter(arrayListOf(), ::onOptionClickListener)
+
+
         //adapter3 = ManufacturerAdapter(arrayListOf(), ::onClickListener)
 
         ProgressDialog.show(requireContext(), false)
         viewModel.getAttributes(product?.categoryIds!![0]).observe(this) {
             ProgressDialog.dismiss()
-            rv_attributes.adapter = adapter1
-            adapter1.notifyChange(ArrayList(it.specificationAttributes))
+            rv_specification_attributes.adapter = specificationAttributeAdapter
+            specificationAttributeAdapter.notifyChange(ArrayList(it.specificationAttributes))
 
-            rv_attributes_product.adapter = adapter2
-            adapter2.notifyChange(ArrayList(it.productAttributes))
+            rv_product_attributes.adapter = productAttributeAdapter
+            productAttributeAdapter.notifyChange(ArrayList(it.productAttributes))
         }
 
         getManufacturers()
@@ -136,7 +139,7 @@ class NewProductStepTwoFragment : Fragment() {
 
     }
 
-    fun onOptionSelectedListener(option: Option, optionPos: Int, attPos: Int) {
+    fun onOptionSelectedListener(option: Option, optionPos: Int, attPos: Int, temp: Boolean) {
         if (product!!.productSpecificationAttributes!!.size >= attPos)
             product!!.productSpecificationAttributes!!.add(
                 attPos,

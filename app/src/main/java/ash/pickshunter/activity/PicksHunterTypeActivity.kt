@@ -47,7 +47,9 @@ class PicksHunterTypeActivity : AppCompatActivity(), View.OnClickListener {
 //                startActivity(intent)
                 PreferenceHelper(this).putUserType("customer")
 
+                ProgressDialog.show(this, false)
                 userViewModel.checkIfIntrestsSaved(user!!.id.toString()).observe(this) {
+                    ProgressDialog.dismiss()
                     if (it) {
                         startActivity(Intent(this, MainActivity::class.java))
                     } else {
@@ -73,6 +75,7 @@ class PicksHunterTypeActivity : AppCompatActivity(), View.OnClickListener {
                     finishAffinity()
                 }
 
+                ProgressDialog.show(this, false)
                 viewModel.getTripDetails(
                     user!!.id,
                     false,
@@ -80,6 +83,7 @@ class PicksHunterTypeActivity : AppCompatActivity(), View.OnClickListener {
                     false,
                     false
                 ).observe(this) {
+                    ProgressDialog.dismiss()
                     if (it.count() > 0 && it[0] != null && it[0]?.tripId != null) {
                         val intent =
                             Intent(this, MainActivity::class.java).putExtra("type", "tripDetails")
@@ -100,7 +104,6 @@ class PicksHunterTypeActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
 
-        ProgressDialog.dismiss()
     }
 
 }

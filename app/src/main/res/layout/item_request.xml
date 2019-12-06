@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/_10sdp"
+    android:layout_marginTop="3.5dp"
+    android:layout_marginBottom="3.5dp"
+    android:background="@drawable/card_background">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginStart="@dimen/_18sdp"
+        android:layout_marginTop="23dp"
+        android:src="@drawable/placeholder"
+        app:civ_border_color="@color/colorGray1"
+        app:civ_border_width="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/guildLine"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+        app:layout_constraintTop_toTopOf="@+id/iv_avatar" />
+
+    <TextView
+        android:id="@+id/tv_customer_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/colorBlue1"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintBottom_toTopOf="@+id/guildLine"
+        app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+        tools:text="Ahmed Shafeek" />
+
+    <TextView
+        android:id="@+id/tv_order_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/colorGray1"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/guildLine"
+        tools:text="Pending approval" />
+
+    <TextView
+        android:id="@+id/tv_order_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:textColor="@color/colorGray2"
+        android:textSize="@dimen/_8sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_customer_name"
+        app:layout_constraintStart_toEndOf="@+id/tv_customer_name"
+        app:layout_constraintTop_toTopOf="@+id/tv_customer_name"
+        tools:text="two days ago" />
+
+    <TextView
+        android:id="@+id/tv_check_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="18dp"
+        android:drawableEnd="@drawable/ic_right_arrow"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/guildLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guildLine"
+        tools:text="Check Post " />
+
+
+    <ImageView
+        android:id="@+id/iv_product_img"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_120sdp"
+        android:layout_marginStart="@dimen/_14sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/placeholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_avatar" />
+
+<!--<LinearLayout-->
+<!--    android:layout_width="0dp"-->
+<!--    android:layout_height="match_parent"-->
+<!--    app:layout_constraintStart_toEndOf="@+id/iv_product_img"-->
+<!--    app:layout_constraintEnd_toEndOf="parent"-->
+<!--    app:layout_constraintBottom_toBottomOf="@+id/iv_product_img"-->
+<!--    app:layout_constraintTop_toTopOf="@+id/iv_product_img"-->
+<!--    android:orientation="vertical"></LinearLayout>-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_product_img"
+        app:layout_constraintEnd_toEndOf="@+id/ll_buttons"
+        app:layout_constraintStart_toEndOf="@+id/iv_product_img"
+        app:layout_constraintTop_toTopOf="@+id/iv_product_img">
+
+        <TextView
+            android:id="@+id/tv_product_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:text="product_title"
+            android:textColor="@color/colorGray1"
+            android:textSize="18sp"
+            app:layout_constraintHorizontal_weight="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_hunter_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Request ID"
+            app:layout_constraintHorizontal_weight="0.5"
+            app:layout_constraintStart_toStartOf="@+id/tv_product_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_product_title" />
+
+        <TextView
+            android:id="@+id/tv_request_id_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:gravity="end"
+            android:text="order_id_value"
+            android:textColor="@color/colorBlue1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_hunter_name"
+            app:layout_constraintTop_toTopOf="@+id/tv_hunter_name" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Product ID"
+            app:layout_constraintHorizontal_weight="0.5"
+            app:layout_constraintStart_toStartOf="@+id/tv_hunter_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hunter_name" />
+
+        <TextView
+            android:id="@+id/tv_product_id_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:gravity="end"
+            android:text="product_id_value"
+            android:textColor="@color/colorBlue1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_price"
+            app:layout_constraintTop_toTopOf="@+id/tv_price" />
+
+        <!-- Size -->
+        <TextView
+            android:id="@+id/tv_size"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Size"
+            app:layout_constraintHorizontal_weight="0.5"
+            app:layout_constraintStart_toStartOf="@+id/tv_price"
+            app:layout_constraintTop_toBottomOf="@+id/tv_price" />
+
+        <TextView
+            android:id="@+id/tv_size_id_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:gravity="end"
+            android:textColor="@color/colorBlue1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_size"
+            app:layout_constraintTop_toTopOf="@+id/tv_size" />
+
+        <!-- Total Price -->
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Total Price"
+            app:layout_constraintHorizontal_weight="0.5"
+            app:layout_constraintStart_toStartOf="@+id/tv_size"
+            app:layout_constraintTop_toBottomOf="@+id/tv_size" />
+
+        <TextView
+            android:id="@+id/tv_total_price_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="price_value"
+            android:textColor="@color/colorBlue1"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_status"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_status"
+            app:layout_constraintTop_toTopOf="@+id/tv_status" />
+
+        <!-- Comession -->
+        <TextView
+            android:id="@+id/comission_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Comission"
+            app:layout_constraintHorizontal_weight="0.5"
+            app:layout_constraintStart_toStartOf="@+id/tv_status"
+            app:layout_constraintTop_toBottomOf="@+id/tv_status" />
+
+        <TextView
+            android:id="@+id/tv_comission_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:gravity="end"
+            android:text="comission_value"
+            android:textColor="@color/colorBlue1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="0.5"
+            app:layout_constraintStart_toEndOf="@+id/comission_id"
+            app:layout_constraintTop_toTopOf="@+id/comission_id" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_14sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+
+        android:layout_marginEnd="18dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/iv_product_img"
+        app:layout_constraintTop_toBottomOf="@+id/iv_product_img">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_done"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/light_round_shap_btn"
+            android:backgroundTint="@color/colorBlue1"
+            android:padding="@dimen/_10sdp">
+
+            <ImageView
+                android:id="@+id/image_reject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ef_ic_done_white"
+                android:tint="@color/colorWhite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_reject"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_reject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:text="Done"
+                android:textColor="@color/colorWhite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/image_reject"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_reject"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/light_round_shap_btn"
+            android:backgroundTint="@color/colorBlack"
+            android:padding="@dimen/_10sdp">
+
+            <ImageView
+                android:id="@+id/image_approve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:src="@drawable/reject"
+                android:tint="@color/colorWhite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_approve"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_approve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@string/request_reject"
+                android:textColor="@color/colorWhite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/image_approve"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

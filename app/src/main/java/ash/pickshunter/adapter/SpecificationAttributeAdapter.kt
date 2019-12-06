@@ -11,9 +11,9 @@ import ash.pickshunter.model.Option
 import ash.pickshunter.utils.inflateView
 import kotlinx.android.synthetic.main.item_specification_attributes.view.*
 
-class AttributeAdapter(var attributes: List<Attribute>,
-                       val onOptionSelectedListener: (Option, Int, Int) -> Unit) :
-    RecyclerView.Adapter<AttributeAdapter.BrandViewHolder>() {
+class SpecificationAttributeAdapter(var attributes: List<Attribute>,
+                                    val onOptionSelectedListener: (Option, Int, Int, Boolean) -> Unit) :
+    RecyclerView.Adapter<SpecificationAttributeAdapter.BrandViewHolder>() {
 
     fun notifyChange(attributes: List<Attribute>) {
         this.attributes = attributes
@@ -42,7 +42,7 @@ class AttributeAdapter(var attributes: List<Attribute>,
                     pos: Int,
                     id: Long
                 ) {
-                    onOptionSelectedListener.invoke(attributes[position].options!![pos], pos, position)
+                    onOptionSelectedListener.invoke(attributes[position].options!![pos], pos, position, false)
                 }
 
                 override fun onNothingSelected(parentView: AdapterView<*>) {

@@ -30,6 +30,8 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
 
     var shops: MutableLiveData<ArrayList<Shop>> = MutableLiveData()
 
+    var orders: MutableLiveData<ArrayList<OrderView>> = MutableLiveData()
+
     fun createTrip(tripRequest: TripRequest): LiveData<Trip> {
         createTripApiResponse = repository.createTrip(tripRequest) as MutableLiveData<Trip>
         return createTripApiResponse
@@ -126,6 +128,14 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
         return repository.addComment(params)
     }
 
+    fun updateOrderStatus(
+        orderId: Int?,
+        liveOrderStatusId: Int?,
+        liveOrderRejectionReasonId: Int?
+    ): LiveData<ResponseBody> {
+        return repository.updateOrderStatus(orderId, liveOrderStatusId, liveOrderRejectionReasonId)
+    }
+
     fun getTripDetails(
         userId: Int,
         isLatest: Boolean,
@@ -141,5 +151,12 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
             getOrders
         ) as MutableLiveData<ArrayList<TripDetailsResponse>>
         return tripDetailsResponse
+    }
+
+    fun getCustomerOrders(customerId: Int): MutableLiveData<ArrayList<OrderView>> {
+        orders = repository.getCustomerOrders(
+            customerId
+        ) as MutableLiveData<ArrayList<OrderView>>
+        return orders
     }
 }
