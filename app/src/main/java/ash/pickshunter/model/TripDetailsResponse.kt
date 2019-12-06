@@ -27,6 +27,9 @@ class TripDetailsResponse() : Parcelable {
     @SerializedName("Products")
     var products: ArrayList<ProductView>? = null
 
+    @SerializedName("Orders")
+    var orders: ArrayList<OrderView>? = null
+
     @SerializedName("From")
     var from: StateProvince? = null
 

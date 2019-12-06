@@ -92,8 +92,8 @@ class ProductPricingFragment : Fragment() {
         viewModel.getProduct(product?.id!!.toInt()).observe(this) {
             ProgressDialog.dismiss()
             product = it!!.products!!.get(0)
-            product?.attributes = ArrayList<AttributeRequest>()
-            product?.productSpecificationAttributes = ArrayList<ProductSpecificationAttributes>()
+            product?.productAttributes = ArrayList<ProductAttributeRequest>()
+            product?.specificationAttributes = ArrayList<SpecificationAttributeRequest>()
         }
 
         btn_calculate.setOnClickListener {

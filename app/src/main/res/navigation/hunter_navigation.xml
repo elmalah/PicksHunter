@@ -53,8 +53,8 @@
         android:label="NewProductStepOneFragment" />
     <fragment
         android:id="@+id/fragment_hunter_requests_list"
-        tools:layout="@layout/fragment_hunter_requests_list"
-        android:name="ash.pickshunter.fragment.HunterRequestsListFragment"
+        tools:layout="@layout/fragment_requests_list"
+        android:name="ash.pickshunter.fragment.TripRequestsListFragment"
         android:label="NewProductStepOneFragment" />
 
     <fragment

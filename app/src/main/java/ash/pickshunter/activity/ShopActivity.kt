@@ -39,11 +39,12 @@ class ShopActivity : AppCompatActivity() {
             )
         rv_countries.adapter = adapter
         binding.progressBar.visibility = View.VISIBLE
-        binding.svCountry.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+        binding.svCountry.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String): Boolean {
                 if (newText.isEmpty()) {
-//                    val countries = viewModel.
-//                    adapter!!.notifyChange(countries)
+                    //val countries = viewModel.
+                    //adapter!!.notifyChange(countries)
                     return true
                 }
                 binding.progressBar.visibility = View.VISIBLE
@@ -68,7 +69,8 @@ class ShopActivity : AppCompatActivity() {
 
     private fun search(text: String) {
         val states = viewModel.shops.value
-        val countries :  ArrayList<Shop>  = ArrayList(states?.filter { it.name!!.toLowerCase().contains(text.toLowerCase()) })
+        val countries: ArrayList<Shop> =
+            ArrayList(states?.filter { it.name!!.toLowerCase().contains(text.toLowerCase()) })
         adapter!!.notifyChange(countries)
         binding.progressBar.visibility = View.GONE
     }

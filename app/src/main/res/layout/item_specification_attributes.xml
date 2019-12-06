@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -9,25 +9,26 @@
         android:id="@+id/tv_spinner_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
         android:background="@android:color/transparent"
-        android:textColor="@color/colorBlack"
         android:text="@string/choose_category"
-        app:layout_constraintTop_toBottomOf="@+id/et_product_desc"
-        app:layout_constraintStart_toStartOf="@+id/tv_product_title"
-        app:layout_constraintEnd_toEndOf="@id/tv_product_title"
-        android:layout_marginTop="@dimen/_5sdp" />
+        android:textColor="@color/colorBlack"
+        app:layout_constraintBottom_toTopOf="@id/spinner_specification_attribute"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spinner_category"
+        android:id="@+id/spinner_specification_attribute"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_spinner_name"
+        android:layout_marginBottom="3dp"
         android:background="@drawable/shape_edit_text"
-        android:textColor="@color/colorGray2"
-        android:padding="@dimen/_10sdp"
         android:hint="@string/write_a_description"
-        app:layout_constraintTop_toBottomOf="@+id/tv_spinner"
-        app:layout_constraintStart_toStartOf="@+id/tv_product_title"
-        app:layout_constraintEnd_toEndOf="@id/tv_product_title"
-        android:layout_marginTop="@dimen/_10sdp" />
+        android:padding="@dimen/_10sdp"
+        android:textColor="@color/colorGray2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_spinner_name" />
 
-</RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

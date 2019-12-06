@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_home"
+        android:enabled="true"
+        android:icon="@mipmap/ic_home"
+        android:title="@string/home"
+        app:showAsAction="withText"
+         />
+
+    <item
+        android:id="@+id/action_search"
+        android:enabled="true"
+        android:icon="@mipmap/ic_search"
+        android:title="@string/search"
+        app:showAsAction="withText"
+        android:visible="false"   />
+
+    <item
+        android:id="@+id/action_live_trips"
+        android:enabled="true"
+        android:icon="@mipmap/ic_hot"
+        android:title="Live Trips"
+        app:showAsAction="withText"
+        android:visible="false"  />
+
+
+    <item
+        android:id="@+id/action_my_picks"
+        android:enabled="true"
+        android:icon="@mipmap/ic_cart"
+        android:title="My Picks"
+        app:showAsAction="withText"
+        />
+
+    <item
+        android:id="@+id/action_account"
+        android:enabled="true"
+        android:icon="@mipmap/ic_account"
+        android:title="Account"
+        app:showAsAction="withText"
+        android:visible="false" />
+
+</menu>

@@ -3,7 +3,6 @@ package ash.pickshunter.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import ash.pickshunter.model.Option
 import ash.pickshunter.model.*
 import ash.pickshunter.repository.TripRepository
 import okhttp3.ResponseBody
@@ -30,6 +29,8 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
 
     var shops: MutableLiveData<ArrayList<Shop>> = MutableLiveData()
 
+    var orders: MutableLiveData<ArrayList<OrderView>> = MutableLiveData()
+
     fun createTrip(tripRequest: TripRequest): LiveData<Trip> {
         createTripApiResponse = repository.createTrip(tripRequest) as MutableLiveData<Trip>
         return createTripApiResponse
@@ -43,10 +44,12 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
     fun getAttributes(id: Int): LiveData<AttributeResponse> {
         attributeApiResponse =
             repository.getAttributes(id.toString()) as MutableLiveData<AttributeResponse>
+
+
         return attributeApiResponse
     }
 
-    fun onOptionChange(option: Option, optionPos: Int, attPos: Int) {
+    fun onOptionChange(option: ProductAttributeOption, optionPos: Int, attPos: Int) {
         val attributes = attributeApiResponse.value!!
         attributes.productAttributes!![attPos].options!![optionPos].selected = !option.selected
         attributeApiResponse.postValue(attributes)
@@ -126,6 +129,14 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
         return repository.addComment(params)
     }
 
+    fun updateOrderStatus(
+        orderId: Int?,
+        liveOrderStatusId: Int?,
+        liveOrderRejectionReasonId: Int?
+    ): LiveData<ResponseBody> {
+        return repository.updateOrderStatus(orderId, liveOrderStatusId, liveOrderRejectionReasonId)
+    }
+
     fun getTripDetails(
         userId: Int,
         isLatest: Boolean,
@@ -141,5 +152,12 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
             getOrders
         ) as MutableLiveData<ArrayList<TripDetailsResponse>>
         return tripDetailsResponse
+    }
+
+    fun getCustomerOrders(customerId: Int): MutableLiveData<ArrayList<OrderView>> {
+        orders = repository.getCustomerOrders(
+            customerId
+        ) as MutableLiveData<ArrayList<OrderView>>
+        return orders
     }
 }

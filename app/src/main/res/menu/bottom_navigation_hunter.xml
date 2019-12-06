@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_home"
+        android:enabled="true"
+        android:icon="@mipmap/ic_home"
+        android:title="@string/home"
+        app:showAsAction="withText"
+
+        />
+
+    <item
+        android:id="@+id/action_stores"
+        android:enabled="true"
+        android:icon="@mipmap/ic_store"
+        android:title="Stores"
+        app:showAsAction="withText"
+        />
+
+    <item
+        android:id="@+id/action_my_trips"
+        android:enabled="true"
+        android:icon="@mipmap/ic_plane"
+        android:title="Trip"
+        app:showAsAction="withText"
+        />
+
+
+    <item
+        android:id="@+id/action_my_requests"
+        android:enabled="true"
+        android:icon="@mipmap/ic_cart"
+        android:title="Requests"
+        app:showAsAction="withText"
+        />
+
+    <item
+        android:id="@+id/action_account"
+        android:enabled="true"
+        android:icon="@mipmap/ic_account"
+        android:title="Account"
+        app:showAsAction="withText"
+        android:visible="false"  />
+
+</menu>

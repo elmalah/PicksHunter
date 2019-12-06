@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="rejectionReasons">
+        <item>Item not available</item>
+        <item>Offer ended</item>
+        <item>Hunter not available</item>
+    </array>
+</resources>

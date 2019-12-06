@@ -25,5 +25,18 @@
         <item name="searchHintIcon">@null</item>
         <item name="colorControlActivated">@color/colorGray</item>
     </style>
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+    </style>
 
+    <style name="NegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/colorGray1</item>
+        <item name="android:background">@color/colorWhite</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/colorBlue1</item>
+        <item name="android:background">@color/colorWhite</item>
+    </style>
 </resources>

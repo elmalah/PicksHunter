@@ -359,6 +359,61 @@ class TripRepository {
         return apiResponse
     }
 
+    fun getCustomerOrders(customerId: Int): LiveData<ArrayList<OrderView>> {
+        val apiResponse = MutableLiveData<ArrayList<OrderView>>()
+        val apiService = endpoints.getClient()!!.create(ApiInterface::class.java)
+
+        val call: Call<ArrayList<OrderView>> = apiService.getCustomerOrders(customerId)
+        call.enqueue(object : Callback<ArrayList<OrderView>> {
+            override fun onFailure(call: Call<ArrayList<OrderView>>?, t: Throwable?) {
+                apiResponse.postValue(apiResponse.value)
+            }
+
+            override fun onResponse(
+                call: Call<ArrayList<OrderView>>?,
+                response: Response<ArrayList<OrderView>>?
+            ) {
+                if (response!!.isSuccessful) {
+                    apiResponse.postValue(response.body()!!)
+                } else {
+
+                }
+            }
+
+        })
+
+        return apiResponse
+    }
+
+    fun updateOrderStatus(
+        orderId: Int?,
+        liveOrderStatusId: Int?,
+        liveOrderRejectionReasonId: Int?
+    ): LiveData<ResponseBody> {
+        val apiResponse = MutableLiveData<ResponseBody>()
+        val apiService = endpoints.getClient()!!.create(ApiInterface::class.java)
+
+        val call: Call<ResponseBody> =
+            apiService.updateOrderStatus(orderId, liveOrderStatusId, liveOrderRejectionReasonId)
+
+        call.enqueue(object : Callback<ResponseBody> {
+            override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
+
+            }
+
+            override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
+                if (response!!.isSuccessful) {
+                    apiResponse.postValue(response.body()!!)
+                } else {
+
+                }
+            }
+
+        })
+
+        return apiResponse
+    }
+
     fun getAttributes(id: String): LiveData<AttributeResponse> {
         val apiResponse = MutableLiveData<AttributeResponse>()
         val apiService = endpoints.getClient()!!.create(ApiInterface::class.java)

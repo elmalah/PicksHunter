@@ -9,8 +9,10 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.observe
+import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import ash.pickshunter.*
 import ash.pickshunter.model.TripDetailsResponse
 import ash.pickshunter.model.User
@@ -42,11 +44,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val userType = PreferenceHelper(this).userType
 
+        bottomNavigation.menu.clear()
+
         if (userType == "customer") {
             NavHostFragment.findNavController(main_navigation)
                 .setGraph(R.navigation.customer_navigation)
 
+            bottomNavigation.inflateMenu(R.menu.bottom_navigation_customer)
+
         } else if (userType == "hunter") {
+            bottomNavigation.inflateMenu(R.menu.bottom_navigation_hunter)
+
             if (user != null) {
                 viewModel.getTripDetails(
                     user!!.id,
@@ -114,6 +122,31 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finishAffinity()
+                }
+                R.id.action_search -> {
+
+                }
+                R.id.action_live_trips -> {
+                }
+                R.id.action_my_picks -> {
+
+                    NavHostFragment.findNavController(main_navigation)
+                        .navigate(R.id.fragment_order_list)
+
+                }
+                R.id.action_account -> {
+                }
+                R.id.action_my_requests -> {
+                    NavHostFragment.findNavController(main_navigation)
+                        .navigate(R.id.fragment_hunter_requests_list)
+                }
+                R.id.action_my_trips -> {
+                    NavHostFragment.findNavController(main_navigation)
+                        .navigate(R.id.fragment_trip)
+                }
+                R.id.action_stores -> {
+                    NavHostFragment.findNavController(main_navigation)
+                        .navigate(R.id.fragment_trip_stores)
                 }
             }
             false

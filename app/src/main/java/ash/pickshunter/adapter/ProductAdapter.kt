@@ -7,7 +7,6 @@ import ash.pickshunter.model.ProductView
 import ash.pickshunter.R
 import ash.pickshunter.utils.inflateView
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_product_details.*
 import kotlinx.android.synthetic.main.item_product.view.*
 
 class ProductAdapter(
@@ -30,7 +29,7 @@ class ProductAdapter(
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         products[position].let {
 
-            holder.itemView.date.text = it.date
+            holder.itemView.tv_check_post.text = it.date
             holder.itemView.tv_name.text = it.shopperName
             if (it.productImages != null && it.productImages!!.isNotEmpty())
                 Picasso.get().load(it.productImages!![0])

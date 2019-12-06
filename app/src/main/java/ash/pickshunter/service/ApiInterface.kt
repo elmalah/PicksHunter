@@ -268,8 +268,27 @@ interface ApiInterface {
         @Query("getShops") getShops: String,
         @Query("getOrders") getOrders: String
 
-        ): Call<ArrayList<TripDetailsResponse>>
+    ): Call<ArrayList<TripDetailsResponse>>
 
+    @Headers(
+        "Content-Type: application/x-www-form-urlencoded",
+        "Authorization: bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE1NzI4MzkxNTMsImV4cCI6MTg4ODE5OTE1MywiaXNzIjoiaHR0cDovL3BpY2tzaHVudGVyLWRldjEuaGFsZmhhcmR5LmNvbSIsImF1ZCI6WyJodHRwOi8vcGlja3NodW50ZXItZGV2MS5oYWxmaGFyZHkuY29tL3Jlc291cmNlcyIsIm5vcF9hcGkiXSwiY2xpZW50X2lkIjoiZWM2MTJkMmMtN2I4ZC00MmJiLWFmYjEtYzVjNTEyOGM5MjNlIiwic3ViIjoiZWM2MTJkMmMtN2I4ZC00MmJiLWFmYjEtYzVjNTEyOGM5MjNlIiwiYXV0aF90aW1lIjoxNTcyODM4OTM0LCJpZHAiOiJsb2NhbCIsInNjb3BlIjpbIm5vcF9hcGkiLCJvZmZsaW5lX2FjY2VzcyJdLCJhbXIiOlsicHdkIl19.N-g4uaOYTGWfO6-0JlX4WDBjn_z7qbKEGgZRozl2LyeUUXJH7ezEzzP04jY7lzeMU0tlRdlZIZ8vR_1aAiCT6YspseZ90KgZtSaDl2cDcoH76mNQJMqmFA3DVcAVKu0xW7ZaekIN2mKGBxT2RXZ9oZZocJXMnE7dC7J0YqC8a_Oy8yVNthmT2YeJXip8m9LEasRDgtmuX7bLChTRd8G26qPI6tFOkydBZelOvt1DUFbSSpspPfJpHr0ynnigDXJekGTg1mgEUnInIVXBM5n4OaDoEtEj5GulgnkRrPE52PrFXWhdCgBtEOY2S-ENw-z_TZuFwgUljAG6BVsZ7sqU8g"
+    )
+    @GET("api/orders/customer-orders/{customerId}")
+    fun getCustomerOrders(
+        @Path("customerId") customerId: Int
+    ): Call<ArrayList<OrderView>>
+
+    @Headers(
+        "Content-Type: application/x-www-form-urlencoded",
+        "Authorization: bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE1NzI4MzkxNTMsImV4cCI6MTg4ODE5OTE1MywiaXNzIjoiaHR0cDovL3BpY2tzaHVudGVyLWRldjEuaGFsZmhhcmR5LmNvbSIsImF1ZCI6WyJodHRwOi8vcGlja3NodW50ZXItZGV2MS5oYWxmaGFyZHkuY29tL3Jlc291cmNlcyIsIm5vcF9hcGkiXSwiY2xpZW50X2lkIjoiZWM2MTJkMmMtN2I4ZC00MmJiLWFmYjEtYzVjNTEyOGM5MjNlIiwic3ViIjoiZWM2MTJkMmMtN2I4ZC00MmJiLWFmYjEtYzVjNTEyOGM5MjNlIiwiYXV0aF90aW1lIjoxNTcyODM4OTM0LCJpZHAiOiJsb2NhbCIsInNjb3BlIjpbIm5vcF9hcGkiLCJvZmZsaW5lX2FjY2VzcyJdLCJhbXIiOlsicHdkIl19.N-g4uaOYTGWfO6-0JlX4WDBjn_z7qbKEGgZRozl2LyeUUXJH7ezEzzP04jY7lzeMU0tlRdlZIZ8vR_1aAiCT6YspseZ90KgZtSaDl2cDcoH76mNQJMqmFA3DVcAVKu0xW7ZaekIN2mKGBxT2RXZ9oZZocJXMnE7dC7J0YqC8a_Oy8yVNthmT2YeJXip8m9LEasRDgtmuX7bLChTRd8G26qPI6tFOkydBZelOvt1DUFbSSpspPfJpHr0ynnigDXJekGTg1mgEUnInIVXBM5n4OaDoEtEj5GulgnkRrPE52PrFXWhdCgBtEOY2S-ENw-z_TZuFwgUljAG6BVsZ7sqU8g"
+    )
+    @PUT("api/orders/update-status/{id}")
+    fun updateOrderStatus(
+        @Path("id") id: Int?,
+        @Query("liveOrderStatusId") liveOrderStatusId: Int?,
+        @Query("liveOrderRejectionReasonId") liveOrderRejectionReasonId: Int?
+    ): Call<ResponseBody>
 
     @Headers(
         "Content-Type: application/x-www-form-urlencoded",

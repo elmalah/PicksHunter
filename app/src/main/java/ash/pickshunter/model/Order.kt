@@ -69,22 +69,5 @@ class Order() : Parcelable {
     }
 }
 
-class OrderItem {
-    @SerializedName("quantity")
-    var quantity: Int? = null
 
-    @SerializedName("product_id")
-    var productId: Int? = null
 
-    @SerializedName("product_attributes")
-    var productAttributes: ArrayList<ProductAttributeItem>? = arrayListOf()
-}
-
-class ProductAttributeItem{
-    @SerializedName("id")
-    var id: Int? = null
-
-    @SerializedName("value")
-    var value: Int? = null
-
-}

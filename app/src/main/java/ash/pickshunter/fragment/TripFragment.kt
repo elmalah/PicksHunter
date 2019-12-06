@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ash.pickshunter.*
 import ash.pickshunter.adapter.TripDetailsProductAdapter
+import ash.pickshunter.adapter.TripDetailsRequestAdapter
+import ash.pickshunter.model.OrderView
 import ash.pickshunter.model.ProductView
 import ash.pickshunter.model.Trip
 import ash.pickshunter.model.TripDetailsResponse
@@ -109,7 +111,7 @@ class TripFragment : Fragment() {
             true,
             true,
             true,
-            false
+            true
         ).observe(this) {
             ProgressDialog.dismiss()
             trip = it.getOrNull(0)
@@ -121,6 +123,7 @@ class TripFragment : Fragment() {
                 .placeholder(R.drawable.placeholder).into(iv_country_flag)
 
             loadTripProducts()
+            loadTripRequests()
         }
 
 
@@ -137,6 +140,9 @@ class TripFragment : Fragment() {
             adapter = TripDetailsProductAdapter(trip?.products!!, ::onProductClickListener)
         }
 
+    }
+
+    private fun loadTripRequests(){
         // Implement Requests RecyclerView
         tripRequestsRecyclerView = rv_trip_requests as RecyclerView
 
@@ -145,9 +151,8 @@ class TripFragment : Fragment() {
                 requireContext(),
                 RecyclerView.HORIZONTAL, false
             )
-            adapter = TripDetailsProductAdapter(trip?.products!!, ::onProductClickListener)
+            adapter = TripDetailsRequestAdapter(trip?.orders!!, ::onRequestClickListener)
         }
-
     }
 
     private fun onProductClickListener(product: ProductView, index: Int) {
@@ -155,6 +160,13 @@ class TripFragment : Fragment() {
         bundle.putParcelable("product", product)
         NavHostFragment.findNavController(main_navigation)
             .navigate(R.id.fragment_product_details, bundle)
+    }
+
+    private fun onRequestClickListener(order: OrderView, index: Int) {
+        val bundle = Bundle()
+        bundle.putParcelable("order", order)
+        NavHostFragment.findNavController(main_navigation)
+            .navigate(R.id.fragment_hunter_requests_list, bundle)
     }
 
    private fun toggleButton(button: FloatingActionButton) {
