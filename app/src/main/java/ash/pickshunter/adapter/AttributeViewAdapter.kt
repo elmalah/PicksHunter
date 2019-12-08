@@ -4,14 +4,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ash.pickshunter.R
-import ash.pickshunter.model.Option
+import ash.pickshunter.model.AttributeOptionView
 import ash.pickshunter.utils.inflateView
 import kotlinx.android.synthetic.main.item_attributes.view.*
 
-class AttributeViewAdapter(var attributes: List<Option>) :
+class AttributeViewAdapter(var attributes: List<AttributeOptionView>) :
     RecyclerView.Adapter<AttributeViewAdapter.BrandViewHolder>() {
 
-    fun notifyChange(attributes: List<Option>) {
+    fun notifyChange(attributes: List<AttributeOptionView>) {
         this.attributes = attributes
         notifyDataSetChanged()
     }
@@ -25,7 +25,7 @@ class AttributeViewAdapter(var attributes: List<Option>) :
     override fun onBindViewHolder(holder: BrandViewHolder, position: Int) {
         attributes[position].let {
 
-            holder.itemView.tv_name.text = it.name
+            holder.itemView.tv_name.text = it.name.toString()
             holder.itemView.tv_value.text = it.value
 
 

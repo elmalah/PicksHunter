@@ -61,78 +61,50 @@ class ProductView() : Parcelable {
     var comments: ArrayList<Comment>? = null
 
     @SerializedName("SpecificationAttributes")
-    var specificationAttributes: ArrayList<Option>? = null
+    var specificationAttributes: ArrayList<AttributeOptionView>? = null
 
     @SerializedName("ProductAttributes")
-    var productAttributes: ArrayList<Option>? = null
+    var productAttributes: ArrayList<AttributeOptionView>? = null
 
     @SerializedName("ProductAttributesDetailed")
-    var productAttributesDetailed: ArrayList<Attribute>? = null
+    var productAttributesDetailed: ArrayList<ProductAttributeDetailed>? = null
 
     constructor(parcel: Parcel) : this() {
-        //productId = parcel.readValue(Int::class.java.classLoader) as? Int
-        productId = parcel.readInt()
-
-        //shopperName = parcel.readString()
-        //productName = parcel.readString()
-        //date = parcel.readString()
-        //fromCountryAndState = parcel.readString()
-        //toCountryAndState = parcel.readString()
-        //tripCountryFlag = parcel.readString()
-        //fromDate = parcel.readString()
-        //toDate = parcel.readString()
-        //shopName = parcel.readString()
-        //description = parcel.readString()
-        //price = parcel.readString()
-        //shoperAvatar = parcel.readString()
-        //productAttributesDetailed =
-        //    parcel.readValue(Array<Attribute>::class.java.classLoader) as? java.util.ArrayList<Attribute>
-        //productAttributes =
-        //    parcel.readValue(Array<Option>::class.java.classLoader) as? java.util.ArrayList<Option>
-        //specificationAttributes =
-        //    parcel.readValue(Array<Option>::class.java.classLoader) as? java.util.ArrayList<Option>
-        //comments =
-        //    parcel.readValue(Array<Comment>::class.java.classLoader) as? java.util.ArrayList<Comment>
-        //shoperAvatar = parcel.readString()
-        //displayPrice = parcel.readString()
-        //price = parcel.readString()
-        //description = parcel.readString()
-        //productImages =
-        //    parcel.readValue(Array<String>::class.java.classLoader) as? java.util.ArrayList<String>
-        //shopName = parcel.readString()
-        //returnsIn = parcel.readString()
-        //toDate = parcel.readString()
-        //fromDate = parcel.readString()
-        //tripCountryFlag = parcel.readString()
-        //toCountryAndState = parcel.readString()
-        //fromCountryAndState = parcel.readString()
-        //date = parcel.readString()
-        //productName = parcel.readString()
-        //shopperName = parcel.readString()
+        productId = parcel.readValue(Int::class.java.classLoader) as? Int
+        shopperName = parcel.readString()
+        productName = parcel.readString()
+        category = parcel.readString()
+        date = parcel.readString()
+        fromCountryAndState = parcel.readString()
+        toCountryAndState = parcel.readString()
+        tripCountryFlag = parcel.readString()
+        fromDate = parcel.readString()
+        toDate = parcel.readString()
+        returnsIn = parcel.readString()
+        shopName = parcel.readString()
+        description = parcel.readString()
+        price = parcel.readValue(Double::class.java.classLoader) as? Double
+        displayPrice = parcel.readString()
+        shoperAvatar = parcel.readString()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeValue(productId)
-
-        //parcel.writeValue(productAttributesDetailed)
-        //parcel.writeValue(productAttributes)
-        //parcel.writeValue(specificationAttributes)
-        //parcel.writeValue(comments)
-        //parcel.writeString(shoperAvatar)
-        //parcel.writeString(displayPrice)
-        //parcel.writeString(price)
-        //parcel.writeString(description)
-        //parcel.writeValue(productImages)
-        //parcel.writeString(shopName)
-        //parcel.writeString(returnsIn)
-        //parcel.writeString(toDate)
-        //parcel.writeString(fromDate)
-        //parcel.writeString(tripCountryFlag)
-        //parcel.writeString(toCountryAndState)
-        //parcel.writeString(fromCountryAndState)
-        //parcel.writeString(date)
-        //parcel.writeString(productName)
-        //parcel.writeString(shopperName)
+        parcel.writeString(shopperName)
+        parcel.writeString(productName)
+        parcel.writeString(category)
+        parcel.writeString(date)
+        parcel.writeString(fromCountryAndState)
+        parcel.writeString(toCountryAndState)
+        parcel.writeString(tripCountryFlag)
+        parcel.writeString(fromDate)
+        parcel.writeString(toDate)
+        parcel.writeString(returnsIn)
+        parcel.writeString(shopName)
+        parcel.writeString(description)
+        parcel.writeValue(price)
+        parcel.writeString(displayPrice)
+        parcel.writeString(shoperAvatar)
     }
 
     override fun describeContents(): Int {
@@ -148,4 +120,6 @@ class ProductView() : Parcelable {
             return arrayOfNulls(size)
         }
     }
+
+
 }

@@ -2,7 +2,7 @@ package ash.pickshunter.model
 
 import com.google.gson.annotations.SerializedName
 
-class AttributeRequest {
+class ProductAttributeRequest {
 
     @SerializedName("product_attribute_id")
     var productAttributeId: Int? = null
@@ -14,15 +14,15 @@ class AttributeRequest {
     var attributeControlTypeId: Int = 1
 
     @SerializedName("attribute_values")
-    var attribute_values: ArrayList<AttributeValues> = arrayListOf()
+    var productAttributeValues: ArrayList<ProductAttributeValues> = arrayListOf()
 
-    constructor(productAttributeId: Int?, attribute_values: ArrayList<AttributeValues>) {
+    constructor(productAttributeId: Int?, productAttributeValues: ArrayList<ProductAttributeValues>) {
         this.productAttributeId = productAttributeId
-        this.attribute_values = attribute_values
+        this.productAttributeValues = productAttributeValues
     }
 }
 
-class AttributeValues {
+class ProductAttributeValues {
 
     @SerializedName("type_id")
     var typeId = 0

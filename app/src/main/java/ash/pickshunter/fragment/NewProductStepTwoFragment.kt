@@ -15,7 +15,6 @@ import androidx.navigation.fragment.NavHostFragment
 import ash.pickshunter.*
 import ash.pickshunter.adapter.SpecificationAttributeAdapter
 import ash.pickshunter.adapter.ProductAttributeAdapter
-import ash.pickshunter.model.Option
 import ash.pickshunter.model.*
 import ash.pickshunter.utils.ProgressDialog
 import ash.pickshunter.viewModel.TripViewModel
@@ -47,7 +46,9 @@ class NewProductStepTwoFragment : Fragment() {
     lateinit var specificationAttributeAdapter: SpecificationAttributeAdapter
     lateinit var productAttributeAdapter: ProductAttributeAdapter
 
-    //lateinit var adapter3: ManufacturerAdapter
+    var productAttributes: ArrayList<ProductAttribute>? = ArrayList()
+    var specificationAttributes: ArrayList<SpecificationAttribute>? = ArrayList()
+
     private var manufacturerId: Int = 0
 
     private val viewModel: TripViewModel by viewModels {
@@ -64,6 +65,7 @@ class NewProductStepTwoFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
         shop = arguments?.getParcelable("shop")
         product = arguments?.getParcelable("product")
     }
@@ -79,54 +81,39 @@ class NewProductStepTwoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        specificationAttributeAdapter =
-            SpecificationAttributeAdapter(arrayListOf(), ::onOptionSelectedListener)
         productAttributeAdapter =
             ProductAttributeAdapter(arrayListOf(), ::onOptionClickListener)
 
+        specificationAttributeAdapter =
+            SpecificationAttributeAdapter(arrayListOf(), ::onOptionSelectedListener)
 
-        //adapter3 = ManufacturerAdapter(arrayListOf(), ::onClickListener)
+        getProduct()
 
-        ProgressDialog.show(requireContext(), false)
-        viewModel.getAttributes(product?.categoryIds!![0]).observe(this) {
-            ProgressDialog.dismiss()
-            rv_specification_attributes.adapter = specificationAttributeAdapter
-            specificationAttributeAdapter.notifyChange(ArrayList(it.specificationAttributes))
-
-            rv_product_attributes.adapter = productAttributeAdapter
-            productAttributeAdapter.notifyChange(ArrayList(it.productAttributes))
-        }
+        getAttributes()
 
         getManufacturers()
-
-        ProgressDialog.show(requireContext(), false)
-        viewModel.getProduct(product?.id!!.toInt()).observe(this) {
-            ProgressDialog.dismiss()
-            product = it!!.products!!.get(0)
-            product?.attributes = ArrayList<AttributeRequest>()
-            product?.productSpecificationAttributes = ArrayList<ProductSpecificationAttributes>()
-        }
 
         bt_add_product.setOnClickListener {
             ProgressDialog.show(requireContext(), false)
 
             val productRequest = ProductRequest()
 
-            viewModel.attributeApiResponse.value!!.productAttributes!!.map { att ->
+            productAttributes!!.map { att ->
                 val option = att.options?.filter { it.selected }
-                var attribute_values: ArrayList<AttributeValues> = arrayListOf()
+                var productAttributeValues: ArrayList<ProductAttributeValues> = arrayListOf()
                 option?.map {
-                    attribute_values.add(AttributeValues(it.name))
+                    productAttributeValues.add(ProductAttributeValues(it.name))
                 }
-                product!!.attributes!!.add(
-                    AttributeRequest(
+                product!!.productAttributes!!.add(
+                    ProductAttributeRequest(
                         att.id,
-                        attribute_values
+                        productAttributeValues
                     )
                 )
             }
 
             product!!.manufacturerIds?.add(0, manufacturerId)
+
             productRequest.product = product!!
             viewModel.updateProduct(productRequest, product!!.id!!).observe(this) {
                 ProgressDialog.dismiss()
@@ -139,19 +126,54 @@ class NewProductStepTwoFragment : Fragment() {
 
     }
 
-    fun onOptionSelectedListener(option: Option, optionPos: Int, attPos: Int, temp: Boolean) {
-        if (product!!.productSpecificationAttributes!!.size >= attPos)
-            product!!.productSpecificationAttributes!!.add(
-                attPos,
-                ProductSpecificationAttributes(option.id!!)
-            )
-        else
-            product!!.productSpecificationAttributes!![attPos] =
-                ProductSpecificationAttributes(option.id!!)
+    private fun onOptionSelectedListener(
+        option: SpecificationAttributeOption,
+        optionPos: Int,
+        attPos: Int
+    ) {
+
+        product!!.specificationAttributes!!.getOrElse(attPos,
+            {
+                product!!.specificationAttributes!!.add(
+                    attPos,
+                    SpecificationAttributeRequest(option.id!!)
+                )
+            })
+
+        product!!.specificationAttributes!![attPos] = SpecificationAttributeRequest(option.id!!)
     }
 
-    fun onOptionClickListener(option: Option, optionPos: Int, attPos: Int) {
-        viewModel.onOptionChange(option, optionPos, attPos)
+    private fun onOptionClickListener(option: ProductAttributeOption, optionPos: Int, attPos: Int) {
+        //viewModel.onOptionChange(option, optionPos, attPos)
+
+        productAttributes!![attPos].options!![optionPos].selected = !option.selected
+        productAttributeAdapter.notifyChange(productAttributes!!)
+    }
+
+    fun getAttributes() {
+        ProgressDialog.show(requireContext(), false)
+        viewModel.getAttributes(product?.categoryIds!![0]).observe(this) {
+            ProgressDialog.dismiss()
+
+            specificationAttributes = it.specificationAttributes
+            rv_specification_attributes.adapter = specificationAttributeAdapter
+            specificationAttributeAdapter.notifyChange(ArrayList(specificationAttributes))
+
+            //add first option of each attribute by default
+            var index: Int = 0
+            for (att in specificationAttributes!!) {
+                product!!.specificationAttributes!!.add(
+                    index,
+                    SpecificationAttributeRequest(att.options!![0].id!!)
+                )
+
+                index++
+            }
+
+            productAttributes = it.productAttributes
+            rv_product_attributes.adapter = productAttributeAdapter
+            productAttributeAdapter.notifyChange(ArrayList(productAttributes))
+        }
     }
 
     fun getManufacturers() {
@@ -184,19 +206,15 @@ class NewProductStepTwoFragment : Fragment() {
         }
     }
 
-    //fun getBrands() {
-    //    ProgressDialog.show(requireContext(), false)
-    //    userViewModel.getBrands().observe(this) {
-    //        ProgressDialog.dismiss()
-    //        val options = it.manufacturers
-    //        val adapter: ArrayAdapter<Manufacturer> = ArrayAdapter<Manufacturer>(
-    //            requireContext(),
-    //            android.R.layout.simple_spinner_item,
-    //            options
-    //        )
-    //        rv_brands.adapter = adapter
-    //    }
-    //}
+    fun getProduct() {
+        ProgressDialog.show(requireContext(), false)
+        viewModel.getProduct(product?.id!!.toInt()).observe(this) {
+            ProgressDialog.dismiss()
+            product = it!!.products!!.get(0)
+            product?.productAttributes = ArrayList()
+            product?.specificationAttributes = ArrayList()
+        }
+    }
 
     /**
      * This interface must be implemented by activities that contain this

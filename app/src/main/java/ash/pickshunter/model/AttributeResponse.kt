@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName
 class AttributeResponse {
 
     @SerializedName("SpecificationAttributes")
-    var specificationAttributes: ArrayList<Attribute>? = null
+    var specificationAttributes: ArrayList<SpecificationAttribute>? = null
 
     @SerializedName("ProductAttributes")
-    var productAttributes: ArrayList<Attribute>? = null
+    var productAttributes: ArrayList<ProductAttribute>? = null
 }

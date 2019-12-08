@@ -6,16 +6,18 @@ import androidx.recyclerview.widget.RecyclerView
 import ash.pickshunter.R
 import ash.pickshunter.model.ProductAttributeOption
 import ash.pickshunter.model.ProductAttribute
+import ash.pickshunter.model.ProductAttributeDetailed
+import ash.pickshunter.model.ProductAttributeDetailedOption
 import ash.pickshunter.utils.inflateView
 import kotlinx.android.synthetic.main.item_product_attributes.view.*
 
-class ProductAttributeAdapter(
-    var attributes: List<ProductAttribute>,
-    val onOptionClickListener: (ProductAttributeOption, Int, Int) -> Unit
+class CheckoutProductAttributeAdapter(
+    var attributes: List<ProductAttributeDetailed>,
+    val onOptionClickListener: (ProductAttributeDetailedOption, Int, Int) -> Unit
 ) :
-    RecyclerView.Adapter<ProductAttributeAdapter.ProductAttributeViewHolder>() {
+    RecyclerView.Adapter<CheckoutProductAttributeAdapter.ProductAttributeViewHolder>() {
 
-    fun notifyChange(attributes: List<ProductAttribute>) {
+    fun notifyChange(attributes: List<ProductAttributeDetailed>) {
         this.attributes = attributes
         notifyDataSetChanged()
     }
@@ -31,13 +33,13 @@ class ProductAttributeAdapter(
 
             holder.itemView.tv_name.text = it.name
 
-            val adapter = ProductAttributeOptionAdapter(it.options!!, ::onClickListener, position)
+            val adapter = CheckoutProductAttributeOptionAdapter(it.options!!, ::onClickListener, position)
 
             holder.itemView.rv_product_attributes.adapter = adapter
         }
     }
 
-    private fun onClickListener(option: ProductAttributeOption, position: Int, attributePos: Int) {
+    private fun onClickListener(option: ProductAttributeDetailedOption, position: Int, attributePos: Int) {
         onOptionClickListener.invoke(option, position, attributePos)
     }
 

@@ -13,8 +13,8 @@ import androidx.lifecycle.observe
 import androidx.navigation.fragment.NavHostFragment
 import ash.pickshunter.*
 import ash.pickshunter.adapter.AddressAdapter
-import ash.pickshunter.adapter.ProductAttributeAdapter
-import ash.pickshunter.model.Option
+import ash.pickshunter.adapter.CheckoutProductAttributeAdapter
+import ash.pickshunter.model.AttributeOptionView
 import ash.pickshunter.model.*
 import ash.pickshunter.utils.PreferenceHelper
 import ash.pickshunter.utils.ProgressDialog
@@ -47,7 +47,7 @@ class CheckOutFragment : Fragment(), View.OnClickListener {
     private var param1: String? = null
     private var param2: String? = null
     lateinit var product: ProductView
-    lateinit var adapter2: ProductAttributeAdapter
+    lateinit var checkoutProductAttributeAdapter: CheckoutProductAttributeAdapter
     lateinit var addressAdapter: AddressAdapter
 
     private val viewModel: TripViewModel by viewModels {
@@ -84,18 +84,15 @@ class CheckOutFragment : Fragment(), View.OnClickListener {
                 .placeholder(R.drawable.placeholder).into(iv_product)
 
         tv_product_title.text = product.productName
-
         tv_price.text = product.displayPrice
         tv_delivery_time.text = product.toDate
-
         et_product_desc.text = product.description
 
 
-        adapter2 =
-            ProductAttributeAdapter(arrayListOf(), ::onOptionClickListener)
+        checkoutProductAttributeAdapter = CheckoutProductAttributeAdapter(arrayListOf(), ::onOptionClickListener)
 
-        tv_attributes.adapter = adapter2
-        adapter2.notifyChange(ArrayList(product.productAttributesDetailed))
+        tv_attributes.adapter = checkoutProductAttributeAdapter
+        checkoutProductAttributeAdapter.notifyChange(ArrayList(product.productAttributesDetailed))
 
 
         addressAdapter = AddressAdapter(arrayListOf(), ::onClickListener)
@@ -200,10 +197,10 @@ class CheckOutFragment : Fragment(), View.OnClickListener {
         addressAdapter.notifyChange(ArrayList(user.addresses))
     }
 
-    fun onOptionClickListener(option: Option, optionPos: Int, attPos: Int) {
+    fun onOptionClickListener(option: ProductAttributeDetailedOption, optionPos: Int, attPos: Int) {
         product.productAttributesDetailed!!.map { it.options?.map { it.selected = false } }
         product.productAttributesDetailed!![attPos].options!![optionPos].selected = true
-        adapter2.notifyChange(ArrayList(product.productAttributesDetailed))
+        checkoutProductAttributeAdapter.notifyChange(ArrayList(product.productAttributesDetailed))
     }
 
     fun addAddressPopupShow() {
@@ -227,11 +224,6 @@ class CheckOutFragment : Fragment(), View.OnClickListener {
 //            mainInfoTv.setText("Name:"+ name +"\nEmail: "+ email +"\nPassword: "+ password)
             postNewAddress(name, city)
         }
-        //cancel button click of custom layout
-//        mDialogView.dialogAddBtn.setOnClickListener {
-//            //dismiss dialog
-//            mAlertDialog.dismiss()
-//        }
     }
 
     private fun postNewAddress(name: String, city: String) {
@@ -251,8 +243,6 @@ class CheckOutFragment : Fragment(), View.OnClickListener {
                 selectedAddressId = addresses[lastIndex].id
                 Toast.makeText(requireContext(), "Address added successfully", Toast.LENGTH_LONG)
                     .show()
-            } else {
-                //Toast.makeText(requireContext(), "No", Toast.LENGTH_LONG).show()
             }
         }
     }

@@ -5,17 +5,19 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
-import ash.pickshunter.model.Attribute
 import ash.pickshunter.R
-import ash.pickshunter.model.Option
+import ash.pickshunter.model.SpecificationAttributeOption
+import ash.pickshunter.model.SpecificationAttribute
 import ash.pickshunter.utils.inflateView
 import kotlinx.android.synthetic.main.item_specification_attributes.view.*
 
-class SpecificationAttributeAdapter(var attributes: List<Attribute>,
-                                    val onOptionSelectedListener: (Option, Int, Int, Boolean) -> Unit) :
+class SpecificationAttributeAdapter(
+    var attributes: List<SpecificationAttribute>,
+    val onOptionSelectedListener: (SpecificationAttributeOption, Int, Int) -> Unit
+) :
     RecyclerView.Adapter<SpecificationAttributeAdapter.BrandViewHolder>() {
 
-    fun notifyChange(attributes: List<Attribute>) {
+    fun notifyChange(attributes: List<SpecificationAttribute>) {
         this.attributes = attributes
         notifyDataSetChanged()
     }
@@ -31,25 +33,37 @@ class SpecificationAttributeAdapter(var attributes: List<Attribute>,
 
             holder.itemView.tv_spinner_name.text = it.name
 
-            val adapter : ArrayAdapter<Option> =  ArrayAdapter<Option>(holder.itemView.context, android.R.layout.simple_spinner_item, it.options)
-            holder.itemView.spinner_category.adapter = adapter
-            holder.itemView.spinner_category.setSelection(0)
+            var options = it.options!!.map {
+                it.name
+            }.toTypedArray()
 
-            holder.itemView.spinner_category.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parentView: AdapterView<*>,
-                    selectedItemView: View,
-                    pos: Int,
-                    id: Long
-                ) {
-                    onOptionSelectedListener.invoke(attributes[position].options!![pos], pos, position, false)
+            val adapter: ArrayAdapter<String?> =
+                ArrayAdapter(holder.itemView.context, android.R.layout.simple_spinner_item, options)
+
+
+            holder.itemView.spinner_specification_attribute.adapter = adapter
+            holder.itemView.spinner_specification_attribute.setSelection(0)
+
+            holder.itemView.spinner_specification_attribute.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(
+                        parentView: AdapterView<*>,
+                        selectedItemView: View,
+                        pos: Int,
+                        id: Long
+                    ) {
+                        onOptionSelectedListener.invoke(
+                            attributes[position].options!![pos],
+                            pos,
+                            position
+                        )
+                    }
+
+                    override fun onNothingSelected(parentView: AdapterView<*>) {
+                        // your code here
+                    }
+
                 }
-
-                override fun onNothingSelected(parentView: AdapterView<*>) {
-                    // your code here
-                }
-
-            }
         }
     }
 

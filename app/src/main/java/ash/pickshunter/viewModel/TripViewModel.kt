@@ -3,7 +3,6 @@ package ash.pickshunter.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import ash.pickshunter.model.Option
 import ash.pickshunter.model.*
 import ash.pickshunter.repository.TripRepository
 import okhttp3.ResponseBody
@@ -45,10 +44,12 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
     fun getAttributes(id: Int): LiveData<AttributeResponse> {
         attributeApiResponse =
             repository.getAttributes(id.toString()) as MutableLiveData<AttributeResponse>
+
+
         return attributeApiResponse
     }
 
-    fun onOptionChange(option: Option, optionPos: Int, attPos: Int) {
+    fun onOptionChange(option: ProductAttributeOption, optionPos: Int, attPos: Int) {
         val attributes = attributeApiResponse.value!!
         attributes.productAttributes!![attPos].options!![optionPos].selected = !option.selected
         attributeApiResponse.postValue(attributes)

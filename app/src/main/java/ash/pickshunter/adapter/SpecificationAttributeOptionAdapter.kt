@@ -5,19 +5,19 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import ash.pickshunter.R
-import ash.pickshunter.model.Option
+import ash.pickshunter.model.SpecificationAttributeOption
 import ash.pickshunter.utils.inflateView
 import kotlinx.android.synthetic.main.item_brand.view.*
 import kotlinx.android.synthetic.main.item_option.view.*
 
-class OptionAdapter(
-    var options: List<Option>,
-    val onClickListener: (Option, Int, Int) -> Unit,
+class SpecificationAttributeOptionAdapter(
+    var options: List<SpecificationAttributeOption>,
+    val onClickListener: (SpecificationAttributeOption, Int, Int) -> Unit,
     var pos: Int
 ) :
-    RecyclerView.Adapter<OptionAdapter.OptionViewHolder>() {
+    RecyclerView.Adapter<SpecificationAttributeOptionAdapter.OptionViewHolder>() {
 
-    fun notifyChange(options: List<Option>) {
+    fun notifyChange(options: List<SpecificationAttributeOption>) {
         this.options = options
         notifyDataSetChanged()
     }
@@ -31,7 +31,7 @@ class OptionAdapter(
     override fun onBindViewHolder(holder: OptionViewHolder, position: Int) {
         options[position].let {
 
-            holder.itemView.iv_option.text = if (it.name != null) it.name else it.value
+            holder.itemView.iv_option.text = if (it.name != null) it.name else it.name
 
             if (it.selected) {
                 holder.itemView.ll_option_bg.background.setColorFilter(

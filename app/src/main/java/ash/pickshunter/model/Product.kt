@@ -25,10 +25,10 @@ class Product() : Parcelable {
     var manufacturerIds: ArrayList<Int>? = arrayListOf()
 
     @SerializedName("product_specification_attributes")
-    var productSpecificationAttributes: ArrayList<ProductSpecificationAttributes>? = arrayListOf()
+    var specificationAttributes: ArrayList<SpecificationAttributeRequest>? = arrayListOf()
 
     @SerializedName("attributes")
-    var attributes: ArrayList<AttributeRequest>? = arrayListOf()
+    var productAttributes: ArrayList<ProductAttributeRequest>? = arrayListOf()
 
     @SerializedName("id")
     var id: Int? = null
@@ -49,10 +49,10 @@ class Product() : Parcelable {
         //productCost = parcel.readDouble()
         //price = parcel.readDouble()
         //published = parcel.readByte() != 0.toByte()
-        //attributes =
-        //    parcel.readValue(Array<AttributeRequest>::class.java.classLoader) as? java.util.ArrayList<AttributeRequest>
-        //productSpecificationAttributes =
-        //    parcel.readValue(Array<ProductSpecificationAttributes>::class.java.classLoader) as? java.util.ArrayList<ProductSpecificationAttributes>
+        //productAttributes =
+        //    parcel.readValue(Array<ProductAttributeRequest>::class.java.classLoader) as? java.util.ArrayList<ProductAttributeRequest>
+        //specificationAttributes =
+        //    parcel.readValue(Array<SpecificationAttributeRequest>::class.java.classLoader) as? java.util.ArrayList<SpecificationAttributeRequest>
         //manufacturerIds =
         //    parcel.readValue(Array<Int>::class.java.classLoader) as? java.util.ArrayList<Int>
         //categoryIds =
@@ -69,8 +69,8 @@ class Product() : Parcelable {
         //parcel.writeValue(productCost)
         //parcel.writeValue(price)
         //parcel.writeByte(if (published) 1 else 0)
-        //parcel.writeValue(attributes)
-        //parcel.writeValue(productSpecificationAttributes)
+        //parcel.writeValue(productAttributes)
+        //parcel.writeValue(specificationAttributes)
         //parcel.writeValue(manufacturerIds)
         //parcel.writeValue(categoryIds)
         //parcel.writeString(shortDescription)

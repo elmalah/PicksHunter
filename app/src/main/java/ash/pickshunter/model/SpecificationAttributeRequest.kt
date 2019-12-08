@@ -2,7 +2,7 @@ package ash.pickshunter.model
 
 import com.google.gson.annotations.SerializedName
 
-class ProductSpecificationAttributes {
+class SpecificationAttributeRequest {
 
     @SerializedName("attribute_type_id")
     var attributeTypeId: Int = 0
