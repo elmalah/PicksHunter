@@ -67,6 +67,8 @@
             android:backgroundTint="@color/colorBlue1"
             android:gravity="center"
             android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true"
             android:padding="@dimen/_10sdp">
 
             <ImageView
@@ -99,6 +101,8 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/light_round_shap_btn"
             android:backgroundTint="@color/colorBlue1"
+            android:clickable="true"
+            android:focusable="true"
             android:padding="@dimen/_10sdp">
 
             <ImageView

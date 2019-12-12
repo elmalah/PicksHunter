@@ -1,5 +1,6 @@
 package ash.pickshunter.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ash.pickshunter.model.Shop
@@ -216,6 +217,49 @@ class TripRepository {
         return apiResponse
     }
 
+    fun addPictures(pictureRequests: ArrayList<PictureRequest>): LiveData<ArrayList<PictureResponse>> {
+        val apiResponse = MutableLiveData<ArrayList<PictureResponse>>()
+        val apiService = endpoints.getClient()!!.create(ApiInterface::class.java)
+
+        var pics:MutableList<MultipartBody.Part> = ArrayList()
+
+        for(pictureRequest in pictureRequests){
+            // create RequestBody instance from file
+            val requestFile =
+                RequestBody.create(MediaType.parse("image/jpeg"), pictureRequest.file)
+
+            // MultipartBody.Part is used to send also the actual file name
+            val body =
+                MultipartBody.Part.createFormData("file", pictureRequest.file?.getName(), requestFile)
+
+            pics.add(body)
+        }
+
+
+        val call: Call<ArrayList<PictureResponse>> = apiService.addPictures(pics)
+        call.enqueue(object : Callback<ArrayList<PictureResponse>> {
+            override fun onFailure(call: Call<ArrayList<PictureResponse>>?, t: Throwable?) {
+                var xx = t!!
+
+            }
+
+            override fun onResponse(
+                call: Call<ArrayList<PictureResponse>>?,
+                response: Response<ArrayList<PictureResponse>>?
+            ) {
+                if (response!!.isSuccessful) {
+                    apiResponse.postValue(response.body()!!)
+                } else {
+//                    val body: ApiResponse = Gson().fromJson(response.errorBody()!!.string(), ApiResponse::class.java)
+//                    apiResponse.postValue(body)
+                }
+            }
+
+        })
+
+        return apiResponse
+    }
+
 
     fun getTimelineProduct(): LiveData<ArrayList<ProductView>> {
         val apiResponse = MutableLiveData<ArrayList<ProductView>>()
@@ -225,6 +269,7 @@ class TripRepository {
         call.enqueue(object : Callback<ArrayList<ProductView>> {
             override fun onFailure(call: Call<ArrayList<ProductView>>?, t: Throwable?) {
 //                apiResponse.postValue(ApiResponse(t!!))
+                Log.e("Error:","Failure")
             }
 
             override fun onResponse(
@@ -236,6 +281,7 @@ class TripRepository {
                 } else {
 //                    val body: ApiResponse = Gson().fromJson(response.errorBody()!!.string(), ApiResponse::class.java)
 //                    apiResponse.postValue(body)
+                    Log.e("Error:","OnSuccess null")
                 }
             }
 

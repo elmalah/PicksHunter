@@ -52,10 +52,11 @@
         android:name="ash.pickshunter.fragment.NewProductStepOneFragment"
         android:label="NewProductStepOneFragment" />
     <fragment
-        android:id="@+id/fragment_new_product_select_images"
-        tools:layout="@layout/fragment_new_product_select_images"
-        android:name="ash.pickshunter.fragment.PickProductImagesFragment"
-        android:label="PickProductImagesFragment" />
+        android:id="@+id/fragment_product_pictures"
+        tools:layout="@layout/fragment_product_pictures"
+        android:name="ash.pickshunter.fragment.ProductPicturesFragment"
+        android:label="ProductPicturesFragment" />
+
     <fragment
         android:id="@+id/fragment_hunter_requests_list"
         tools:layout="@layout/fragment_requests_list"
@@ -67,6 +68,11 @@
         tools:layout="@layout/fragment_new_product_step_two"
         android:name="ash.pickshunter.fragment.NewProductStepTwoFragment"
         android:label="NewProductStepTwoFragment" />
+<!--    <fragment-->
+<!--        android:id="@+id/fragment_customer_profile"-->
+<!--        tools:layout="@layout/fragment_customer_profile"-->
+<!--        android:name="ash.pickshunter.fragment.CustomerProfileFragment"-->
+<!--        android:label="CustomerProfileFragment" />-->
 
     <fragment
         android:id="@+id/fragment_product_pricing"

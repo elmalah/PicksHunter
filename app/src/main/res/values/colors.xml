@@ -14,4 +14,6 @@
     <color name="colorBlack2">#242529</color>
     <color name="colorGray2">#BABABA</color>
     <color name="colorGreen">#4BD37B</color>
+    <color name="fabColor">#4071BB</color>
+
 </resources>

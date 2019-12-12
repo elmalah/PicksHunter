@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.NavHostFragment
@@ -121,7 +122,13 @@ class ProductDetailsFragment : Fragment() {
                 }
             }
         }
-
+        iv_product.setOnClickListener{
+            Toast.makeText(requireContext(),"Test Profile",Toast.LENGTH_LONG).show()
+            val bundle = Bundle()
+            bundle.putParcelable("product", product)
+            NavHostFragment.findNavController(main_navigation)
+                .navigate(R.id.fragment_customer_profile, bundle)
+        }
         fb_checkout.setOnClickListener() {
             val bundle = Bundle()
             bundle.putParcelable("product", product)

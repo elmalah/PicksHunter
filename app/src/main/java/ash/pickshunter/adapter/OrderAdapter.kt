@@ -9,7 +9,6 @@ import ash.pickshunter.R
 
 
 import ash.pickshunter.fragment.OrderFragment.OnListFragmentInteractionListener
-import ash.pickshunter.fragment.dummy.DummyContent.DummyItem
 import ash.pickshunter.model.OrderView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_order.view.*

@@ -1,6 +1,8 @@
 package ash.pickshunter.viewModel
 
+import android.content.Context
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ash.pickshunter.model.*
@@ -75,6 +77,11 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
         addPictureApiResponse =
             repository.addPicture(pictureRequest) as MutableLiveData<PictureResponse>
         return addPictureApiResponse
+    }
+
+
+    fun addPictures(pictureRequests: ArrayList<PictureRequest>): LiveData<ArrayList<PictureResponse>> {
+        return repository.addPictures(pictureRequests) as MutableLiveData<ArrayList<PictureResponse>>
     }
 
     fun getProduct(id: Int): LiveData<ProductResponse> {

@@ -29,4 +29,10 @@
         android:name="ash.pickshunter.fragment.OrderFragment"
         android:label="OrderFragment" />
 
+    <fragment
+        android:id="@+id/fragment_customer_profile"
+        tools:layout="@layout/fragment_customer_profile"
+        android:name="ash.pickshunter.fragment.CustomerProfileFragment"
+        android:label="CustomerProfileFragment" />
+
 </navigation>

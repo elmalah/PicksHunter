@@ -13,9 +13,6 @@ import androidx.lifecycle.observe
 import ash.pickshunter.R
 import ash.pickshunter.adapter.OrderAdapter
 import ash.pickshunter.adapter.RequestAdapter
-
-import ash.pickshunter.fragment.dummy.DummyContent
-import ash.pickshunter.fragment.dummy.DummyContent.DummyItem
 import ash.pickshunter.model.OrderView
 import ash.pickshunter.utils.PreferenceHelper
 import ash.pickshunter.viewModel.TripViewModel

@@ -58,7 +58,6 @@ class NewProductStepOneFragment : Fragment() {
     }
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -71,70 +70,6 @@ class NewProductStepOneFragment : Fragment() {
         //shop!!.tripShopId = 85
         //shop!!.name = "dds"
 
-    }
-
-    private fun pickImageFromGallery() {
-        //Intent to pick image
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent,
-            IMAGE_PICK_CODE
-        )
-    }
-
-
-    //handle requested permission result
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        when (requestCode) {
-            PERMISSION_CODE -> {
-                if (grantResults.size > 0 && grantResults[0] ==
-                    PackageManager.PERMISSION_GRANTED
-                ) {
-                    //permission from popup granted
-                    pickImageFromGallery()
-                } else {
-                    //permission from popup denied
-                    Toast.makeText(requireContext(), "Permission denied", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
-
-    //handle result of picked image
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
-            iv_product.setImageURI(data?.data)
-
-            ProgressDialog.show(requireContext(), false)
-
-            val pictureRequest = PictureRequest()
-            pictureRequest.file = File(getRealPathFromUri(requireContext(), data?.data!!))
-            pictureRequest.fileUri = data?.data.toString()
-
-            viewModel.addPicture(pictureRequest).observe(this) {
-                ProgressDialog.dismiss()
-                pictureId = it.PictureId
-            }
-        }
-    }
-
-    fun getRealPathFromUri(context: Context, contentUri: Uri): String {
-        var cursor: Cursor? = null
-        try {
-            val proj = arrayOf(MediaStore.Images.Media.DATA)
-            cursor = context.getContentResolver().query(contentUri, proj, null, null, null)
-            val column_index = cursor!!.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-            cursor!!.moveToFirst()
-            return cursor!!.getString(column_index)
-        } finally {
-            if (cursor != null) {
-                cursor!!.close()
-            }
-        }
     }
 
     override fun onCreateView(
@@ -154,32 +89,9 @@ class NewProductStepOneFragment : Fragment() {
             .placeholder(R.drawable.placeholder).into(iv_store)
 
         iv_product.setOnClickListener {
-            //check runtime permission
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                if (checkSelfPermission(
-//                        requireContext(),
-//                        Manifest.permission.READ_EXTERNAL_STORAGE
-//                    ) ==
-//                    PackageManager.PERMISSION_DENIED
-//                ) {
-//                    //permission denied
-//                    val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE);
-//                    //show popup to request runtime permission
-//                    requestPermissions(permissions,
-//                        PERMISSION_CODE
-//                    );
-//                } else {
-//                    //permission already granted
-//                    pickImageFromGallery();
-//                }
-//            } else {
-//                //system OS is < Marshmallow
-//                pickImageFromGallery();
-//            }
 
-            val bundle = Bundle()
-            bundle.putParcelable("shop", shop)
-            NavHostFragment.findNavController(main_navigation).navigate(R.id.fragment_new_product_select_images, bundle)
+            NavHostFragment.findNavController(main_navigation)
+                .navigate(R.id.fragment_product_pictures)
         }
 
         bt_add_product.setOnClickListener {
@@ -284,9 +196,5 @@ class NewProductStepOneFragment : Fragment() {
                 }
             }
 
-        //image pick code
-        private val IMAGE_PICK_CODE = 1000;
-        //Permission code
-        private val PERMISSION_CODE = 1001;
     }
 }
