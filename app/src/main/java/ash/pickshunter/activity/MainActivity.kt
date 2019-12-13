@@ -1,7 +1,6 @@
 package ash.pickshunter.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
@@ -9,23 +8,23 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.observe
-import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
 import ash.pickshunter.*
 import ash.pickshunter.model.TripDetailsResponse
 import ash.pickshunter.model.User
 import ash.pickshunter.utils.PreferenceHelper
 import ash.pickshunter.viewModel.TripViewModel
-import com.fly365.utils.injection.InjectorUtils
+import ash.pickshunter.utils.InjectorUtils
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.phelat.navigationresult.FragmentResultActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.main_view_toolbar.*
 
+class MainActivity : FragmentResultActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    override fun getNavHostFragmentId(): Int = R.id.main_navigation
 
     private val viewModel: TripViewModel by viewModels {
         InjectorUtils.provideTripViewModelFactory(this)

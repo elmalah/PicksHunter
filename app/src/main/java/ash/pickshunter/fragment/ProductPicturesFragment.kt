@@ -2,14 +2,11 @@ package ash.pickshunter.fragment
 
 import android.Manifest
 import android.app.Activity
-import android.content.ContentResolver
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
 import android.os.Build
@@ -19,33 +16,24 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.observe
-import androidx.navigation.fragment.NavHostFragment
 
 import ash.pickshunter.R
-import ash.pickshunter.activity.MainActivity
 import ash.pickshunter.adapter.SliderAdapter
 import ash.pickshunter.model.PictureRequest
-import ash.pickshunter.model.PictureResponse
 import ash.pickshunter.utils.ProgressDialog
 import ash.pickshunter.viewModel.TripViewModel
-import com.fly365.utils.injection.InjectorUtils
+import ash.pickshunter.utils.InjectorUtils
 import com.smarteist.autoimageslider.IndicatorAnimations
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
-import com.smarteist.autoimageslider.SliderViewAdapter
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_new_product_step_one.*
 import kotlinx.android.synthetic.main.fragment_product_pictures.*
-import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileNotFoundException
 import com.coursion.freakycoder.mediapicker.galleries.Gallery
+import com.phelat.navigationresult.navigateUp
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -156,8 +144,8 @@ class ProductPicturesFragment : Fragment() {
     private fun onClickListener(image: String, position: Int) {
         images.removeAt(position)
         adapter!!.notifyChange(images)
-        if (images.count() > 0)
-            imageSlider.currentPagePosition = images.count() - 1
+//        if (images.count() > 0)
+//            imageSlider.currentPagePosition = 0
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -178,7 +166,8 @@ class ProductPicturesFragment : Fragment() {
                 selectionResult.forEach {
                     try {
                         Log.d("MyApp", "Image Path : " + it)
-                        val uriFromPath = Uri.fromFile(File(it))
+                        var file = File(it)
+                        val uriFromPath = Uri.fromFile(file)
                         Log.d("MyApp", "Image URI : " + uriFromPath)
 
                         images.add(it)
@@ -190,33 +179,31 @@ class ProductPicturesFragment : Fragment() {
                 }
             }
         } else if (resultCode == Activity.RESULT_OK) {
-            images.add(image_uri.toString())
+            val imgUri = getRealPathFromUri(requireContext(), image_uri!!)
+            images.add(imgUri)
             adapter!!.notifyChange(images)
         }
     }
 
-
-    val pictureLiveData: MutableLiveData<PictureResponse> = MutableLiveData()
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
         when (item.itemId) {
             R.id.item_save_pictures -> {
 
-                MediatorLiveData<List<String>>().apply {
-                    this.addSource(pictureLiveData) {
-
-
-                    }
+                if (images == null || images.count() == 0) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Please add 1 image at least",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    return false
                 }
 
                 var pictureRequests = ArrayList<PictureRequest>()
 
-                images.forEach() {
+                for (it in images) {
                     val pictureRequest = PictureRequest()
                     if (!it.isNullOrBlank()) {
-                        pictureRequest.file =
-                            File(getRealPathFromUri(requireContext(), Uri.parse(it)))
+                        pictureRequest.file = File(it)
                         pictureRequest.fileUri = it
 
                         pictureRequests.add(pictureRequest)
@@ -230,8 +217,15 @@ class ProductPicturesFragment : Fragment() {
                         uploadedPictureIds.add(it.PictureId!!)
                     }
 
+
+
                     ProgressDialog.dismiss()
-                    NavHostFragment.findNavController(main_navigation).popBackStack()
+
+                    val bundle = Bundle().apply {
+                        putIntegerArrayList(UPLOADED_PICTURES_IDS, uploadedPictureIds)
+                        putString(COVER_IMAGE, images.firstOrNull())
+                    }
+                    navigateUp(NewProductStepOneFragment.REQUEST_CODE, bundle)
                 }
 
             }
@@ -275,7 +269,7 @@ class ProductPicturesFragment : Fragment() {
         startActivityForResult(cameraIntent, IMAGE_CAPTURE_CODE)
     }
 
-    fun getRealPathFromUri(context: Context, contentUri: Uri): String {
+    private fun getRealPathFromUri(context: Context, contentUri: Uri): String {
         var cursor: Cursor? = null
         try {
             val proj = arrayOf(MediaStore.Images.Media.DATA)
@@ -356,15 +350,12 @@ class ProductPicturesFragment : Fragment() {
                 }
             }
 
-
-        //image pick code
-        private val IMAGE_PICK_CODE = 1000;
-        //Permission code
-        private val PERMISSION_CODE = 1001;
-
         private val OPEN_MEDIA_PICKER = 1  // Request code
 
         private val MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE =
             100 // Request code for read external storage
+
+        public val UPLOADED_PICTURES_IDS = "UPLOADED_PICTURES_IDS"
+        public val COVER_IMAGE = "COVER_IMAGE"
     }
 }

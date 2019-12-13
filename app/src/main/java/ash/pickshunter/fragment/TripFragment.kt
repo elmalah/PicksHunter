@@ -16,18 +16,15 @@ import ash.pickshunter.adapter.TripDetailsProductAdapter
 import ash.pickshunter.adapter.TripDetailsRequestAdapter
 import ash.pickshunter.model.OrderView
 import ash.pickshunter.model.ProductView
-import ash.pickshunter.model.Trip
 import ash.pickshunter.model.TripDetailsResponse
 import ash.pickshunter.utils.PreferenceHelper
 import ash.pickshunter.utils.ProgressDialog
 import ash.pickshunter.viewModel.TripViewModel
-import com.fly365.utils.injection.InjectorUtils
+import ash.pickshunter.utils.InjectorUtils
 import kotlinx.android.synthetic.main.fragment_trip.*
 import com.google.android.material.floatingactionbutton.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_go_trip_details.*
-import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

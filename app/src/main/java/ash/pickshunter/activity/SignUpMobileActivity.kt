@@ -13,7 +13,7 @@ import ash.pickshunter.model.User
 import ash.pickshunter.utils.PreferenceHelper
 import ash.pickshunter.utils.ProgressDialog
 import ash.pickshunter.viewModel.UserViewModel
-import com.fly365.utils.injection.InjectorUtils
+import ash.pickshunter.utils.InjectorUtils
 import kotlinx.android.synthetic.main.activity_sign_up_mobile.*
 
 class SignUpMobileActivity : AppCompatActivity(), View.OnClickListener {

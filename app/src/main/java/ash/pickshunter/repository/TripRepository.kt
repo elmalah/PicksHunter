@@ -8,8 +8,8 @@ import ash.pickshunter.model.Trip
 import ash.pickshunter.model.TripDetailsResponse
 import ash.pickshunter.model.TripRequest
 import ash.pickshunter.model.*
-import com.fly365.shared.service.ApiClient
-import com.fly365.shared.service.ApiInterface
+import ash.pickshunter.service.ApiClient
+import ash.pickshunter.service.ApiInterface
 import com.google.gson.Gson
 import okhttp3.MediaType
 import okhttp3.ResponseBody
@@ -126,7 +126,6 @@ class TripRepository {
         return apiResponse
     }
 
-
     fun addProduct(productRequest: ProductRequest, id: String): LiveData<ProductResponse> {
         val apiResponse = MutableLiveData<ProductResponse>()
         val apiService = endpoints.getClient()!!.create(ApiInterface::class.java)
@@ -226,11 +225,11 @@ class TripRepository {
         for(pictureRequest in pictureRequests){
             // create RequestBody instance from file
             val requestFile =
-                RequestBody.create(MediaType.parse("image/jpeg"), pictureRequest.file)
+                RequestBody.create(MediaType.parse("image/jpeg"), pictureRequest.file!!)
 
             // MultipartBody.Part is used to send also the actual file name
             val body =
-                MultipartBody.Part.createFormData("file", pictureRequest.file?.getName(), requestFile)
+                MultipartBody.Part.createFormData("files", pictureRequest.file?.getName(), requestFile)
 
             pics.add(body)
         }
@@ -239,7 +238,6 @@ class TripRepository {
         val call: Call<ArrayList<PictureResponse>> = apiService.addPictures(pics)
         call.enqueue(object : Callback<ArrayList<PictureResponse>> {
             override fun onFailure(call: Call<ArrayList<PictureResponse>>?, t: Throwable?) {
-                var xx = t!!
 
             }
 
@@ -250,8 +248,7 @@ class TripRepository {
                 if (response!!.isSuccessful) {
                     apiResponse.postValue(response.body()!!)
                 } else {
-//                    val body: ApiResponse = Gson().fromJson(response.errorBody()!!.string(), ApiResponse::class.java)
-//                    apiResponse.postValue(body)
+
                 }
             }
 
@@ -259,7 +256,6 @@ class TripRepository {
 
         return apiResponse
     }
-
 
     fun getTimelineProduct(): LiveData<ArrayList<ProductView>> {
         val apiResponse = MutableLiveData<ArrayList<ProductView>>()

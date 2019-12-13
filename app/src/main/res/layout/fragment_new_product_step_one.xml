@@ -42,7 +42,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/iv_product"
+        android:id="@+id/iv_avatar"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_100sdp"
         android:layout_marginStart="@dimen/_14sdp"
@@ -61,8 +61,8 @@
         android:textColor="@color/colorGray2"
         android:textSize="@dimen/_14sdp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_product"
-        app:layout_constraintTop_toTopOf="@+id/iv_product" />
+        app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+        app:layout_constraintTop_toTopOf="@+id/iv_avatar" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_product_desc"

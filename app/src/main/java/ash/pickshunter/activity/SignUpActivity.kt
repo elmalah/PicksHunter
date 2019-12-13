@@ -12,7 +12,7 @@ import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.observe
-import com.fly365.utils.injection.InjectorUtils
+import ash.pickshunter.utils.InjectorUtils
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.activity_sign_up.cb_terms
 import kotlinx.android.synthetic.main.activity_sign_up.tv_termsandconditions

@@ -5,21 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.ProductPicturesFragment">
+    tools:context=".fragment.ProductPicturesFragment"
+    android:layout_weight="3">
 
     <com.smarteist.autoimageslider.SliderView
         android:id="@+id/imageSlider"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/placeholder"
+        android:background="#f2f2f2"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:sliderAnimationDuration="600"
-        app:sliderAutoCycleDirection="back_and_forth"
-        app:sliderAutoCycleEnabled="true"
-        app:sliderCircularHandlerEnabled="true"
+        app:sliderCircularHandlerEnabled="false"
         app:sliderIndicatorAnimationDuration="0"
         app:sliderIndicatorGravity="center_horizontal|bottom"
         app:sliderIndicatorMargin="15dp"
@@ -29,7 +28,20 @@
         app:sliderIndicatorSelectedColor="#5A5A5A"
         app:sliderIndicatorUnselectedColor="#FFF"
         app:sliderScrollTimeInSec="1"
-        app:sliderStartAutoCycle="true" />
+        app:sliderStartAutoCycle="true" >
+
+
+    </com.smarteist.autoimageslider.SliderView>
+
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView5"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/imageSlider"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/imageSlider"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/imageSlider"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/imageSlider"-->
+<!--        tools:src="@tools:sample/avatars[0]" />-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
@@ -46,28 +58,27 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
-            android:layout_marginEnd="2dp"
             android:padding="@dimen/_15sdp"
             android:text="Gallery"
             android:textColor="@color/colorGray1"
             app:backgroundTint="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/view3"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
-            android:id="@+id/btn_pick_video"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:layout_marginEnd="3dp"
-            android:padding="@dimen/_15sdp"
-            android:text="@string/ef_video"
-            android:textColor="@color/colorGray1"
-            app:backgroundTint="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/view3" />
+<!--        <Button-->
+<!--            android:id="@+id/btn_pick_video"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="2dp"-->
+<!--            android:layout_marginEnd="3dp"-->
+<!--            android:padding="@dimen/_15sdp"-->
+<!--            android:text="@string/ef_video"-->
+<!--            android:textColor="@color/colorGray1"-->
+<!--            app:backgroundTint="@android:color/white"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/view3" />-->
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_camera"

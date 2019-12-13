@@ -29,7 +29,7 @@ class ProductAdapter(
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         products[position].let {
 
-            holder.itemView.tv_check_post.text = it.date
+            holder.itemView.tv_location.text = it.date
             holder.itemView.tv_name.text = it.shopperName
             if (it.productImages != null && it.productImages!!.isNotEmpty())
                 Picasso.get().load(it.productImages!![0])
@@ -56,8 +56,8 @@ class ProductAdapter(
             holder.itemView.tv_comments_count.text = it.comments!!.count().toString()
 
 
-            Picasso.get().load(it.shoperAvatar)
-                .placeholder(R.drawable.placeholder).into(holder.itemView.iv_product)
+            Picasso.get().load(it.shopperAvatar)
+                .placeholder(R.drawable.placeholder).into(holder.itemView.iv_avatar)
 
         }
     }

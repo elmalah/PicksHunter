@@ -1,4 +1,4 @@
-package com.fly365.utils.injection
+package ash.pickshunter.utils
 
 import android.content.Context
 import ash.pickshunter.repository.TripRepository

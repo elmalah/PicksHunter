@@ -12,7 +12,7 @@ import ash.pickshunter.utils.PreferenceHelper
 import ash.pickshunter.utils.ProgressDialog
 import ash.pickshunter.R
 import ash.pickshunter.viewModel.TripViewModel
-import com.fly365.utils.injection.InjectorUtils
+import ash.pickshunter.utils.InjectorUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_go_trip_details.*
 

@@ -14,7 +14,7 @@ import ash.pickshunter.*
 import ash.pickshunter.model.*
 import ash.pickshunter.utils.ProgressDialog
 import ash.pickshunter.viewModel.TripViewModel
-import com.fly365.utils.injection.InjectorUtils
+import ash.pickshunter.utils.InjectorUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_product_pricing.*
 

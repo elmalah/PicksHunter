@@ -1,15 +1,7 @@
 package ash.pickshunter.fragment
 
-import android.Manifest
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.database.Cursor
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,18 +10,17 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
-import com.fly365.utils.injection.InjectorUtils
+import ash.pickshunter.utils.InjectorUtils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_new_product_step_one.*
 import android.widget.AdapterView
-import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.navigation.fragment.NavHostFragment
 import ash.pickshunter.*
 import ash.pickshunter.model.*
 import ash.pickshunter.utils.ProgressDialog
 import ash.pickshunter.viewModel.TripViewModel
+import com.phelat.navigationresult.BundleFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import java.io.File
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -45,13 +36,15 @@ private const val ARG_PARAM2 = "param2"
  * Use the [NewProductStepOneFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class NewProductStepOneFragment : Fragment() {
+class NewProductStepOneFragment : BundleFragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     private var shop: Shop? = null
     private var categoryId: Int = 0
     private var pictureId: Int? = null
+    var uploadedPictureIds: ArrayList<Int> = arrayListOf()
+    var coverPicture: String? = null
 
     private val viewModel: TripViewModel by viewModels {
         InjectorUtils.provideTripViewModelFactory(requireContext())
@@ -65,11 +58,6 @@ class NewProductStepOneFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
         shop = arguments?.getParcelable("shop")
-        //shop = Shop()
-        //shop!!.id = 85
-        //shop!!.tripShopId = 85
-        //shop!!.name = "dds"
-
     }
 
     override fun onCreateView(
@@ -88,10 +76,9 @@ class NewProductStepOneFragment : Fragment() {
         Picasso.get().load(shop!!.logo)
             .placeholder(R.drawable.placeholder).into(iv_store)
 
-        iv_product.setOnClickListener {
+        iv_avatar.setOnClickListener {
 
-            NavHostFragment.findNavController(main_navigation)
-                .navigate(R.id.fragment_product_pictures)
+            navigate(R.id.fragment_product_pictures, REQUEST_CODE)
         }
 
         bt_add_product.setOnClickListener {
@@ -111,15 +98,25 @@ class NewProductStepOneFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            var productPicture = ProductPicture()
-            productPicture.pictureId = pictureId
+            if (uploadedPictureIds == null || uploadedPictureIds.count() == 0) {
+                Toast.makeText(
+                    requireContext(),
+                    "Please add 1 image at least",
+                    Toast.LENGTH_LONG
+                ).show()
+                return@setOnClickListener
+            }
 
             ProgressDialog.show(requireContext(), false)
             val productRequest = ProductRequest()
             productRequest.product.name = tv_product_title.text.toString()
             productRequest.product.shortDescription = et_product_desc.text.toString()
             productRequest.product.categoryIds?.add(0, categoryId)
-            productRequest.product.images?.add(productPicture)
+            uploadedPictureIds.forEach() {
+                val productPicture = ProductPicture()
+                productPicture.pictureId = it
+                productRequest.product.images?.add(productPicture)
+            }
             viewModel.addProduct(productRequest, shop!!.tripShopId!!).observe(this) {
                 ProgressDialog.dismiss()
                 val bundle = Bundle()
@@ -129,6 +126,16 @@ class NewProductStepOneFragment : Fragment() {
             }
         }
         getCategories()
+    }
+
+    override fun onFragmentResult(requestCode: Int, bundle: Bundle) {
+        if (requestCode == REQUEST_CODE) {
+            uploadedPictureIds =
+                bundle.getIntegerArrayList(ProductPicturesFragment.UPLOADED_PICTURES_IDS)!!
+            coverPicture = bundle.getString(ProductPicturesFragment.COVER_IMAGE)
+
+            iv_avatar.setImageURI(Uri.parse(coverPicture))
+        }
     }
 
     fun getCategories() {
@@ -196,5 +203,6 @@ class NewProductStepOneFragment : Fragment() {
                 }
             }
 
+        const val REQUEST_CODE = 1000
     }
 }

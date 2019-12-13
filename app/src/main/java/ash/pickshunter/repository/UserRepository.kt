@@ -5,8 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import ash.pickshunter.model.RegistrationRequest
 import ash.pickshunter.model.ApiResponse
 import ash.pickshunter.model.LoginRequest
-import com.fly365.shared.service.ApiClient
-import com.fly365.shared.service.ApiInterface
+import ash.pickshunter.model.Profile
+import ash.pickshunter.service.ApiClient
+import ash.pickshunter.service.ApiInterface
+import ash.pickshunter.utils.PreferenceHelper
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
@@ -80,7 +82,8 @@ class UserRepository {
                 if (response!!.isSuccessful) {
                     apiResponse.postValue(response.body()!!)
                 } else {
-                    val body: ApiResponse = Gson().fromJson(response.errorBody()!!.string(), ApiResponse::class.java)
+                    val body: ApiResponse =
+                        Gson().fromJson(response.errorBody()!!.string(), ApiResponse::class.java)
                     apiResponse.postValue(body)
                 }
             }
@@ -94,7 +97,8 @@ class UserRepository {
         val apiResponse = MutableLiveData<ApiResponse>()
         val apiService = endpoints.getClient()!!.create(ApiInterface::class.java)
 
-        val call: Call<ApiResponse> = apiService.updateUser(registrationRequest, registrationRequest.customer.id.toString())
+        val call: Call<ApiResponse> =
+            apiService.updateUser(registrationRequest, registrationRequest.customer.id.toString())
         call.enqueue(object : Callback<ApiResponse> {
             override fun onFailure(call: Call<ApiResponse>?, t: Throwable?) {
                 apiResponse.postValue(ApiResponse(t!!))
@@ -104,7 +108,8 @@ class UserRepository {
                 if (response!!.isSuccessful) {
                     apiResponse.postValue(response.body()!!)
                 } else {
-                    val body: ApiResponse = Gson().fromJson(response.errorBody()!!.string(), ApiResponse::class.java)
+                    val body: ApiResponse =
+                        Gson().fromJson(response.errorBody()!!.string(), ApiResponse::class.java)
                     apiResponse.postValue(body)
                 }
             }
@@ -154,7 +159,8 @@ class UserRepository {
                 if (response!!.isSuccessful) {
                     apiResponse.postValue(response.body()!!)
                 } else {
-                    val body: ApiResponse = Gson().fromJson(response.errorBody()!!.string(), ApiResponse::class.java)
+                    val body: ApiResponse =
+                        Gson().fromJson(response.errorBody()!!.string(), ApiResponse::class.java)
                     apiResponse.postValue(body)
                 }
             }
@@ -178,7 +184,8 @@ class UserRepository {
                 if (response!!.isSuccessful) {
                     apiResponse.postValue(response.body()!!)
                 } else {
-                    val body: ApiResponse = Gson().fromJson(response.errorBody()!!.string(), ApiResponse::class.java)
+                    val body: ApiResponse =
+                        Gson().fromJson(response.errorBody()!!.string(), ApiResponse::class.java)
                     apiResponse.postValue(body)
                 }
             }
@@ -202,7 +209,8 @@ class UserRepository {
                 if (response!!.isSuccessful) {
                     apiResponse.postValue(response.body()!!)
                 } else {
-                    val body: ApiResponse = Gson().fromJson(response.errorBody()!!.string(), ApiResponse::class.java)
+                    val body: ApiResponse =
+                        Gson().fromJson(response.errorBody()!!.string(), ApiResponse::class.java)
                     apiResponse.postValue(body)
                 }
             }
@@ -327,6 +335,29 @@ class UserRepository {
             }
 
             override fun onResponse(call: Call<ApiResponse>?, response: Response<ApiResponse>?) {
+                if (response!!.isSuccessful) {
+                    apiResponse.postValue(response.body()!!)
+                } else {
+                    apiResponse.postValue(null)
+                }
+            }
+
+        })
+
+        return apiResponse
+    }
+
+    fun getHunterProfile(userId: Int, profileCustomerId: Int): LiveData<Profile> {
+        val apiResponse = MutableLiveData<Profile>()
+        val apiService = endpoints.getClient()!!.create(ApiInterface::class.java)
+
+        val call = apiService.getHunterProfile(userId, profileCustomerId)
+        call.enqueue(object : Callback<Profile> {
+            override fun onFailure(call: Call<Profile>?, t: Throwable?) {
+
+            }
+
+            override fun onResponse(call: Call<Profile>?, response: Response<Profile>?) {
                 if (response!!.isSuccessful) {
                     apiResponse.postValue(response.body()!!)
                 } else {

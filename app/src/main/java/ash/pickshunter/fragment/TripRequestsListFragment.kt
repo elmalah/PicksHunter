@@ -8,9 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import ash.pickshunter.*
 import ash.pickshunter.adapter.RequestsListTabAdapter
-import ash.pickshunter.utils.PreferenceHelper
 import ash.pickshunter.viewModel.TripViewModel
-import com.fly365.utils.injection.InjectorUtils
+import ash.pickshunter.utils.InjectorUtils
 import kotlinx.android.synthetic.main.fragment_requests_list.*
 
 

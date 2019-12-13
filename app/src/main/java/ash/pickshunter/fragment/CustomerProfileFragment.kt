@@ -13,9 +13,14 @@ import ash.pickshunter.adapter.ProductAdapter
 import ash.pickshunter.model.ProductView
 import ash.pickshunter.R
 import ash.pickshunter.viewModel.TripViewModel
-import com.fly365.utils.injection.InjectorUtils
+import ash.pickshunter.utils.InjectorUtils
+import ash.pickshunter.utils.PreferenceHelper
+import ash.pickshunter.viewModel.UserViewModel
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_customer_profile.*
 import kotlinx.android.synthetic.main.fragment_time_line.*
+import kotlinx.android.synthetic.main.fragment_time_line.rv_products
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,9 +39,10 @@ class CustomerProfileFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var profileCustomerId: Int? = null
 
-    private val viewModel: TripViewModel by viewModels {
-        InjectorUtils.provideTripViewModelFactory(requireContext())
+    private val viewModel: UserViewModel by viewModels {
+        InjectorUtils.provideUserViewModelFactory(requireContext())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +51,9 @@ class CustomerProfileFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+        profileCustomerId = arguments!!.getInt("profileCustomerId")
+
     }
 
     override fun onCreateView(
@@ -67,16 +76,32 @@ class CustomerProfileFragment : Fragment() {
 
     fun loadData() {
         val adapter = ProductAdapter(arrayListOf(), ::onClickListener)
+
 //        swiperefresh.isRefreshing = true
-        //ProgressDialog.show(requireContext(), false)
-        viewModel.getTimelineProduct().observe(this) {
-            //ProgressDialog.dismiss()
+        viewModel.getHunterProfile(PreferenceHelper(requireContext()).user.id, profileCustomerId!!)
+            .observe(this) {
 //            swiperefresh.isRefreshing = false
 
-            val x = it.filter { it != null }
-            rv_products.adapter = adapter
-            adapter.notifyChange(x)
-        }
+                Picasso.get().load(it.avatar)
+                    .placeholder(R.drawable.placeholder).into(iv_avatar)
+
+                tv_name.text = it.name
+                tv_location.text = it.originLocation
+                rating.rating = it.rating!!
+                tv_number_of_followers.text = it.numberOfFollowers.toString()
+                tv_number_of_trips.text = it.numberOfTrips.toString()
+                tv_number_of_products.text = it.numberOfProducts.toString()
+
+                if (it.followed == true)
+                    tv_follow.text = "Un-follow"
+                else
+                    tv_follow.text = "Follow"
+
+
+                val x = it.products!!.filter { it != null }
+                rv_products.adapter = adapter
+                adapter.notifyChange(x)
+            }
     }
 
     fun onClickListener(product: ProductView, index: Int) {

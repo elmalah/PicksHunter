@@ -67,7 +67,7 @@
         tools:text="two days ago" />
 
     <TextView
-        android:id="@+id/tv_check_post"
+        android:id="@+id/tv_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="18dp"

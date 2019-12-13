@@ -35,7 +35,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/iv_product"
+            android:id="@+id/iv_avatar"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_100sdp"
             android:layout_marginStart="@dimen/_14sdp"
@@ -55,8 +55,8 @@
             android:textColor="@color/cardview_dark_background"
             android:textSize="@dimen/_14sdp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_product"
-            app:layout_constraintTop_toTopOf="@+id/iv_product" />
+            app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+            app:layout_constraintTop_toTopOf="@+id/iv_avatar" />
 
         <TextView
             android:id="@+id/et_product_desc"
@@ -78,7 +78,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:alpha="0.4"
             android:background="@color/colorGray1"
-            app:layout_constraintTop_toBottomOf="@+id/iv_product" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_avatar" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tv_attributes"

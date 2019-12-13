@@ -10,7 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
-import com.fly365.utils.injection.InjectorUtils
+import ash.pickshunter.utils.InjectorUtils
 import androidx.navigation.fragment.NavHostFragment
 import ash.pickshunter.*
 import ash.pickshunter.adapter.SpecificationAttributeAdapter

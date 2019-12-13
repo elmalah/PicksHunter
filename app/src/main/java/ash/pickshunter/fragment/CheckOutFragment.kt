@@ -14,13 +14,12 @@ import androidx.navigation.fragment.NavHostFragment
 import ash.pickshunter.*
 import ash.pickshunter.adapter.AddressAdapter
 import ash.pickshunter.adapter.CheckoutProductAttributeAdapter
-import ash.pickshunter.model.AttributeOptionView
 import ash.pickshunter.model.*
 import ash.pickshunter.utils.PreferenceHelper
 import ash.pickshunter.utils.ProgressDialog
 import ash.pickshunter.viewModel.TripViewModel
 import ash.pickshunter.viewModel.UserViewModel
-import com.fly365.utils.injection.InjectorUtils
+import ash.pickshunter.utils.InjectorUtils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.popup_add_address.view.*
@@ -81,7 +80,7 @@ class CheckOutFragment : Fragment(), View.OnClickListener {
 
         if (product.productImages != null && !product.productImages!!.isEmpty())
             Picasso.get().load(product.productImages!![0])
-                .placeholder(R.drawable.placeholder).into(iv_product)
+                .placeholder(R.drawable.placeholder).into(iv_avatar)
 
         tv_product_title.text = product.productName
         tv_price.text = product.displayPrice

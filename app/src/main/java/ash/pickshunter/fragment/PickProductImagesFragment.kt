@@ -1,8 +1,6 @@
 package ash.pickshunter.fragment
 
 import android.Manifest
-import android.app.Activity
-import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -19,21 +17,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
-import com.fly365.utils.injection.InjectorUtils
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_new_product_step_one.*
-import android.widget.AdapterView
+import ash.pickshunter.utils.InjectorUtils
 import androidx.core.content.ContextCompat.checkSelfPermission
-import androidx.navigation.fragment.NavHostFragment
 import ash.pickshunter.*
 import ash.pickshunter.model.*
 import ash.pickshunter.utils.ProgressDialog
 import ash.pickshunter.viewModel.TripViewModel
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_new_product_select_images.*
 import java.io.ByteArrayOutputStream
 import java.io.File

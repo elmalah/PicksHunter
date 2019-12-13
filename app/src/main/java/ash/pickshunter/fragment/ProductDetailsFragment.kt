@@ -1,27 +1,32 @@
 package ash.pickshunter.fragment
 
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.NavHostFragment
 import ash.pickshunter.*
 import ash.pickshunter.adapter.AttributeViewAdapter
 import ash.pickshunter.adapter.CommentAdapter
+import ash.pickshunter.adapter.SliderAdapter
 import ash.pickshunter.model.ProductCommentRequest
 import ash.pickshunter.model.ProductView
 import ash.pickshunter.utils.PreferenceHelper
 import ash.pickshunter.utils.ProgressDialog
 import ash.pickshunter.viewModel.TripViewModel
-import com.fly365.utils.injection.InjectorUtils
+import ash.pickshunter.utils.InjectorUtils
+import com.smarteist.autoimageslider.IndicatorAnimations
+import com.smarteist.autoimageslider.SliderAnimations
+import com.smarteist.autoimageslider.SliderView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_product_details.*
+import kotlinx.android.synthetic.main.fragment_product_details.imageSlider
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment inproductialization parameters, e.g. ARG_ITEM_NUMBER
@@ -43,6 +48,9 @@ class ProductDetailsFragment : Fragment() {
 
     lateinit var product: ProductView
 
+    var sliderAdapter: SliderAdapter? = null
+
+
     private val viewModel: TripViewModel by viewModels {
         InjectorUtils.provideTripViewModelFactory(requireContext())
     }
@@ -55,25 +63,39 @@ class ProductDetailsFragment : Fragment() {
         }
         product = arguments!!.getParcelable("product")
 
+        sliderAdapter = SliderAdapter(arrayListOf(), false, this::onClickListener)
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(PreferenceHelper(requireContext()).userType == "hunter")
+        if (PreferenceHelper(requireContext()).userType == "hunter")
             fb_checkout.hide()
 
-        tv_check_post.text = product.date
+        imageSlider.setSliderAdapter(sliderAdapter)
+        imageSlider.setIndicatorAnimation(IndicatorAnimations.SLIDE); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+        imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        imageSlider.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_RIGHT)
+        imageSlider.setIndicatorSelectedColor(Color.WHITE);
+        imageSlider.setIndicatorUnselectedColor(Color.GRAY);
+        imageSlider.isAutoCycle = false
+
+        imageSlider.setCurrentPageListener { }
+        sliderAdapter!!.notifyChange(product.productImages!!)
+
+        tv_location.text = product.date
         tv_name.text = product.shopperName
-        if (product.productImages != null && product.productImages!!.isNotEmpty())
-            Picasso.get().load(product.productImages!!.getOrNull(0))
-                .placeholder(R.drawable.placeholder).into(iv_product_image)
+
+//        if (product.productImages != null && product.productImages!!.isNotEmpty())
+//            Picasso.get().load(product.productImages!!.getOrNull(0))
+//                .placeholder(R.drawable.placeholder).into(iv_product_image)
 
         Picasso.get().load(product.tripCountryFlag)
             .placeholder(R.drawable.placeholder).into(iv_country_flag)
 
-        Picasso.get().load("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSLbcOjGm-n-4Mtwbf2wE4t-1fu5puULtQ6YpfcJD5ZEuIspLK_")
+        Picasso.get()
+            .load("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSLbcOjGm-n-4Mtwbf2wE4t-1fu5puULtQ6YpfcJD5ZEuIspLK_")
             .placeholder(R.drawable.placeholder).into(iv_user)
 
         tv_product_title.text = product.productName
@@ -93,8 +115,8 @@ class ProductDetailsFragment : Fragment() {
 
         tv_comments_count.text = product.comments!!.count().toString()
 
-        Picasso.get().load(product.shoperAvatar)
-            .placeholder(R.drawable.placeholder).into(iv_product)
+        Picasso.get().load(product.shopperAvatar)
+            .placeholder(R.drawable.placeholder).into(iv_avatar)
 
         var adapter = CommentAdapter(arrayListOf())
         adapter.notifyChange(product.comments!!)
@@ -122,13 +144,11 @@ class ProductDetailsFragment : Fragment() {
                 }
             }
         }
-        iv_product.setOnClickListener{
-            Toast.makeText(requireContext(),"Test Profile",Toast.LENGTH_LONG).show()
-            val bundle = Bundle()
-            bundle.putParcelable("product", product)
-            NavHostFragment.findNavController(main_navigation)
-                .navigate(R.id.fragment_customer_profile, bundle)
-        }
+
+        iv_avatar.setOnClickListener(clickListener)
+
+        tv_name.setOnClickListener(clickListener)
+
         fb_checkout.setOnClickListener() {
             val bundle = Bundle()
             bundle.putParcelable("product", product)
@@ -143,6 +163,23 @@ class ProductDetailsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_product_details, container, false)
+    }
+
+    val clickListener = View.OnClickListener { view ->
+        var userType = PreferenceHelper(requireContext()).userType
+        if (userType == "customer") {
+            val bundle = Bundle()
+            bundle.putInt("profileCustomerId", product.shopperCustomerId!!)
+            NavHostFragment.findNavController(main_navigation)
+                .navigate(R.id.fragment_customer_profile, bundle)
+        } else if (userType == "hunter" && PreferenceHelper(requireContext()).user.id == product.shopperCustomerId) {
+            //navigate to my profile
+        }
+
+    }
+
+    private fun onClickListener(image: String, position: Int) {
+
     }
 
     /**

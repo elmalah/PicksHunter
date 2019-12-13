@@ -13,7 +13,7 @@ import ash.pickshunter.utils.PreferenceHelper
 import ash.pickshunter.viewModel.TripViewModel
 import ash.pickshunter.viewModel.UserViewModel
 import com.crashlytics.android.Crashlytics
-import com.fly365.utils.injection.InjectorUtils
+import ash.pickshunter.utils.InjectorUtils
 import io.fabric.sdk.android.Fabric
 
 class SplashActivity : AppCompatActivity() {

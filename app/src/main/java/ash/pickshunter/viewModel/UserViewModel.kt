@@ -36,7 +36,8 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
     }
 
     fun updateUserAddress(registrationRequest: RegistrationRequest): LiveData<ApiResponse> {
-        apiResponse = repository.updateUserAddress(registrationRequest) as MutableLiveData<ApiResponse>
+        apiResponse =
+            repository.updateUserAddress(registrationRequest) as MutableLiveData<ApiResponse>
         return apiResponse
     }
 
@@ -49,7 +50,7 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
         return apiResponse.value!!.manufacturers!!
     }
 
-    fun updateSelectedBrand(position: Int) : List<Manufacturer> {
+    fun updateSelectedBrand(position: Int): List<Manufacturer> {
         val apiResponse = apiResponse.value
         val manufactureses = apiResponse!!.manufacturers
         manufactureses!![position].selected = !manufactureses[position].selected
@@ -98,5 +99,9 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
     fun resendVerificationCode(userId: Int): LiveData<ApiResponse> {
         apiResponse = repository.resendVerificationCode(userId) as MutableLiveData<ApiResponse>
         return apiResponse
+    }
+
+    fun getHunterProfile(userId: Int, profileCustomerId: Int): LiveData<Profile> {
+        return repository.getHunterProfile(userId, profileCustomerId) as MutableLiveData<Profile>
     }
 }

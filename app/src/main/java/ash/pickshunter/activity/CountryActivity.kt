@@ -14,7 +14,7 @@ import ash.pickshunter.model.State
 import ash.pickshunter.viewModel.TripViewModel
 import ash.pickshunter.adapter.CountryAdapter
 import ash.pickshunter.databinding.ActivityCountryBinding
-import com.fly365.utils.injection.InjectorUtils
+import ash.pickshunter.utils.InjectorUtils
 import kotlinx.android.synthetic.main.activity_country.*
 
 class CountryActivity : AppCompatActivity() {
