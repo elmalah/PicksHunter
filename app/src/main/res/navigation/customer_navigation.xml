@@ -28,6 +28,11 @@
         tools:layout="@layout/fragment_order_list"
         android:name="ash.pickshunter.fragment.OrderFragment"
         android:label="OrderFragment" />
+    <fragment
+        android:id="@+id/fragment_live_trips"
+        tools:layout="@layout/fragment_live_trips"
+        android:name="ash.pickshunter.fragment.LiveTripsFragment"
+        android:label="LiveTripsFragment" />
 
     <fragment
         android:id="@+id/fragment_customer_profile"

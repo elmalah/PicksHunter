@@ -24,7 +24,7 @@
         android:icon="@mipmap/ic_hot"
         android:title="Live Trips"
         app:showAsAction="withText"
-        android:visible="false"  />
+        android:visible="true"  />
 
 
     <item

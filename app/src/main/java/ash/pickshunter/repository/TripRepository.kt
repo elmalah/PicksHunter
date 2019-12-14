@@ -393,6 +393,7 @@ class TripRepository {
                 } else {
 //                    val body: ArrayList<TripDetailsResponse> = Gson().fromJson(response.errorBody()!!.string(), TripDetailsResponse::class.java)
 //                    apiResponse.postValue(body)
+                    Log.e("Error: ", "Failure")
                 }
             }
 

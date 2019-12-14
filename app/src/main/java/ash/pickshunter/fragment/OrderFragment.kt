@@ -27,7 +27,7 @@ class OrderFragment : Fragment() {
         InjectorUtils.provideTripViewModelFactory(requireContext())
     }
 
-    // TODO: Customize parameters
+    // TODO: Customize parametp\ers
     private var columnCount = 1
 
     private var listener: OnListFragmentInteractionListener? = null

@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.GravityCompat
+import androidx.databinding.DataBindingUtil.setContentView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.observe
 import androidx.navigation.NavOptions
@@ -126,6 +128,9 @@ class MainActivity : FragmentResultActivity(), NavigationView.OnNavigationItemSe
 
                 }
                 R.id.action_live_trips -> {
+                    // implement  live trips
+                    NavHostFragment.findNavController(main_navigation)
+                        .navigate(R.id.fragment_live_trips)
                 }
                 R.id.action_my_picks -> {
 
