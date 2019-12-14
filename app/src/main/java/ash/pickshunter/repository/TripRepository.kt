@@ -257,20 +257,20 @@ class TripRepository {
         return apiResponse
     }
 
-    fun getTimelineProduct(): LiveData<ArrayList<ProductView>> {
-        val apiResponse = MutableLiveData<ArrayList<ProductView>>()
+    fun getTimelineProduct(customerId: Int): LiveData<TimelineResult> {
+        val apiResponse = MutableLiveData<TimelineResult>()
         val apiService = endpoints.getClient()!!.create(ApiInterface::class.java)
 
-        val call: Call<ArrayList<ProductView>> = apiService.getTimelineProduct()
-        call.enqueue(object : Callback<ArrayList<ProductView>> {
-            override fun onFailure(call: Call<ArrayList<ProductView>>?, t: Throwable?) {
+        val call: Call<TimelineResult> = apiService.getTimelineProduct(customerId.toString())
+        call.enqueue(object : Callback<TimelineResult> {
+            override fun onFailure(call: Call<TimelineResult>?, t: Throwable?) {
 //                apiResponse.postValue(ApiResponse(t!!))
                 Log.e("Error:","Failure")
             }
 
             override fun onResponse(
-                call: Call<ArrayList<ProductView>>?,
-                response: Response<ArrayList<ProductView>>?
+                call: Call<TimelineResult>?,
+                response: Response<TimelineResult>?
             ) {
                 if (response!!.isSuccessful) {
                     apiResponse.postValue(response.body()!!)

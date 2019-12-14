@@ -20,7 +20,6 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_customer_profile.*
 import kotlinx.android.synthetic.main.fragment_time_line.*
-import kotlinx.android.synthetic.main.fragment_time_line.rv_products
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

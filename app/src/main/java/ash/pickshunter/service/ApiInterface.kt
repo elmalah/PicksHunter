@@ -125,8 +125,8 @@ interface ApiInterface {
     fun calculatePrice(@Body params: PriceRequest): Call<PriceResponse>
 
 
-    @GET("api/timeline/products")
-    fun getTimelineProduct(): Call<ArrayList<ProductView>>
+    @GET("api/timeline/products/{customerId}")
+    fun getTimelineProduct(@Path("customerId") id: String): Call<TimelineResult>
 
 
     @POST("api/timeline/comment")

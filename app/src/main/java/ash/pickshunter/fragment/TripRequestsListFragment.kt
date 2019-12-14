@@ -39,19 +39,8 @@ class TripRequestsListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-//        adapter = StoreAdapter(arrayListOf(), ::onClickListener)
     }
 
-//    private fun onClickListener(shop: Shop, index: Int, addProduct: Boolean) {
-//        if (addProduct) {
-//            val bundle = Bundle()
-//            bundle.putParcelable("shop", shop)
-//            NavHostFragment.findNavController(main_navigation).navigate(R.id.fragment_requests_list, bundle)
-//        }
-//        else
-//            checkOut(shop.tripShopId!!)
-//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

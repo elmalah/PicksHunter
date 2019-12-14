@@ -128,8 +128,8 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
         return repository.calculatePrice(priceRequest)
     }
 
-    fun getTimelineProduct(): LiveData<ArrayList<ProductView>> {
-        return repository.getTimelineProduct()
+    fun getTimelineProduct(customerId: Int): LiveData<TimelineResult> {
+        return repository.getTimelineProduct(customerId)
     }
 
     fun addComment(params: ProductCommentRequest): LiveData<ProductView> {

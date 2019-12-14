@@ -134,6 +134,8 @@ class MainActivity : FragmentResultActivity(), NavigationView.OnNavigationItemSe
 
                 }
                 R.id.action_account -> {
+                    NavHostFragment.findNavController(main_navigation)
+                        .navigate(R.id.fragment_my_profile)
                 }
                 R.id.action_my_requests -> {
                     NavHostFragment.findNavController(main_navigation)

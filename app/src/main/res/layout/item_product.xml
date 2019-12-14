@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/_10sdp"
-    android:layout_marginTop="3.5dp"
-    android:layout_marginBottom="3.5dp"
+    android:layout_marginBottom="7dp"
+    android:background="@drawable/card_background"
 
-    android:background="@drawable/card_background">
+    android:paddingBottom="@dimen/_10sdp">
 
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -140,9 +139,9 @@
         android:layout_height="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_5sdp"
         android:src="@drawable/storepost"
-        app:layout_constraintEnd_toStartOf="@+id/tv_brand_name"
         app:layout_constraintBottom_toBottomOf="@id/tv_returnsIn"
-        app:layout_constraintTop_toTopOf="@id/tv_returnsIn"/>
+        app:layout_constraintEnd_toStartOf="@+id/tv_brand_name"
+        app:layout_constraintTop_toTopOf="@id/tv_returnsIn" />
 
     <TextView
         android:id="@+id/tv_brand_name"
@@ -202,8 +201,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="23dp"
         android:lines="1"
-        android:textSize="@dimen/_14sdp"
         android:textColor="@color/colorGray1"
+        android:textSize="@dimen/_14sdp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_desc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_desc"
@@ -213,21 +212,21 @@
         android:id="@+id/tv_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/_14sdp"
         android:textColor="@color/colorGray1"
+        android:textSize="@dimen/_14sdp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_comments_count"
         app:layout_constraintEnd_toEndOf="@+id/tv_category"
         app:layout_constraintTop_toTopOf="@+id/tv_comments_count"
         tools:text="000 EGP" />
 
     <ImageView
-         android:id="@+id/iv_comment_icon"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         app:layout_constraintTop_toBottomOf="@+id/tv_desc"
-         app:layout_constraintStart_toStartOf="@+id/tv_desc"
-         android:src="@drawable/chat1"
-         android:layout_marginTop="@dimen/_8sdp"/>
+        android:id="@+id/iv_comment_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:src="@drawable/chat1"
+        app:layout_constraintStart_toStartOf="@+id/tv_desc"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
 
     <TextView
         android:id="@+id/tv_comments_count"

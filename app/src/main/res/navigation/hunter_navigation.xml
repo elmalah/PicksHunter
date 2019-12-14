@@ -80,4 +80,10 @@
         android:name="ash.pickshunter.fragment.ProductPricingFragment"
         android:label="ProductPricingFragment" />
 
+    <fragment
+        android:id="@+id/fragment_my_profile"
+        tools:layout="@layout/fragment_my_profile"
+        android:name="ash.pickshunter.fragment.MyProfileFragment"
+        android:label="MyProfileFragment" />
+
 </navigation>
